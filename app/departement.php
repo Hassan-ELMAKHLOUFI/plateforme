@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class departement extends Model
 {
-    protected $table="departements";
-    protected $fillable=['nom','date_cr','chef'];
+    protected $table="departement";
+    protected $fillable=['nom_departement','date_cr','chef','date_fin'];
     protected $primaryKey='id_dep';
 }

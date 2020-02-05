@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class filiere extends Model
 {
-    protected $table="filieres";
-    protected $fillable=['nom','nombre_inscrit','id_departement'];
+    protected $table="filiere";
+    protected $fillable=['nomf','cord','date_cr','date_fin'];
     protected $primaryKey='id_filiere';
-    
+
 }

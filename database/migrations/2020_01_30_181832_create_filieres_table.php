@@ -13,14 +13,16 @@ class CreateFilieresTable extends Migration
      */
     public function up()
     {
-        Schema::create('filieres', function (Blueprint $table) {
+        Schema::create('filiere', function (Blueprint $table) {
             $table->bigIncrements('id_filiere');
-            $table->String('nom');
-            $table->integer('nombre_inscrit');
+            $table->String('nomf');
+            $table->String('cord');
+            $table->date('date_cr');
+            $table->date('date_fin');
             $table->unsignedBigInteger('id_departement');
 
             $table->foreign('id_departement')->references('id_dep')->on('departements')->onDelete('cascade');
-            
+
             $table->timestamps();
         });
     }
@@ -32,7 +34,7 @@ class CreateFilieresTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('filieres');
+        Schema::dropIfExists('filiere');
         $table->dropForeign('id_departement');
     }
 }

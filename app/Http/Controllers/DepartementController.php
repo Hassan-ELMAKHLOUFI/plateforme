@@ -36,19 +36,19 @@ class DepartementController extends Controller
      */
     public function store(Request $request)
     {
-     $departement=array(   
-          
-               
+     $departement=array(
+
+
          'nom' => $request->nom ,
-         'date_cr' =>$request->date_cr, 
+         'date_cr' =>$request->date_cr,
          'chef' => $request->chef
-         
+
            );
 
            departement::create($departement);
            return redirect()->route('departement.index');
     }
- 
+
     /**
      * Display the specified resource.
      *
@@ -61,6 +61,23 @@ class DepartementController extends Controller
     }
 
     /**
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
+     *
      * Show the form for editing the specified resource.
      *
      * @param  \App\departement  $departement
@@ -80,15 +97,15 @@ class DepartementController extends Controller
      */
     public function update(Request $request)
     {
-        $departement=array(   
-          
-               
+        $departement=array(
+
+
             'nom' => $request->nom ,
-            'date_cr' =>$request->date_cr, 
+            'date_cr' =>$request->date_cr,
             'chef' => $request->chef
-            
+
               );
-     
+
              Departement::findOrfail($request->id_departement)->update($departement);
               return redirect()->route('departement.index');
     }
@@ -101,7 +118,7 @@ class DepartementController extends Controller
      */
     public function destroy(Request $departement)
     {
-         
+
         $delete=$departement->all();
        $deletedepartement=Departement::findOrfail($departement->id_departement);
         $deletedepartement->delete();
