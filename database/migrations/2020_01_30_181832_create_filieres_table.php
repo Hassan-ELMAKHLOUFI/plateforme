@@ -21,7 +21,7 @@ class CreateFilieresTable extends Migration
             $table->date('date_fin');
             $table->unsignedBigInteger('id_departement');
 
-            $table->foreign('id_departement')->references('id_dep')->on('departements')->onDelete('cascade');
+            $table->foreign('id_departement')->references('id_departement')->on('departement')->onDelete('cascade');
 
             $table->timestamps();
         });
@@ -35,6 +35,5 @@ class CreateFilieresTable extends Migration
     public function down()
     {
         Schema::dropIfExists('filiere');
-        $table->dropForeign('id_departement');
     }
 }
