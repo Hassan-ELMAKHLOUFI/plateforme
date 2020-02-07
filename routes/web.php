@@ -11,8 +11,21 @@
 |
 */
 
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::Resource('admin','AdminController');
 Route::Resource('departement','DepartementController');
+Route::Resource('etudiant','EtudiantController');
 Route::Resource('filiere','FiliereController');
+Route::Resource('filiereNiveau','FiliereNiveauController');
+Route::Resource('matiere','MatiereController');
+Route::Resource('matiereProf','MatiereProfController');
+Route::Resource('module','ModuleController');
+Route::Resource('moduleFiliere','ModuleFiliereController');
+Route::Resource('niveau','NiveauController');
+Route::Resource('professeur','ProfesseurController');
