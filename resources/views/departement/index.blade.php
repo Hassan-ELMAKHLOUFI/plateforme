@@ -41,8 +41,9 @@
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>nom</th>
-                    <th>date</th>
+                    <th>nom de departement</th>
+                    <th>chef departement</th>
+                    <th>date de creation</th>
                     <th>chef departement</th>
                     <th>Action</th>
                 </tr>
@@ -51,11 +52,13 @@
                     <tr>
                         <td>{{++$key}}</td>
                         <td>{{$departement->nom}}</td>
-                        <td>{{$departement->date_cr}}</td>
                         <td>{{$departement->chef}}</td>
+                        <td>{{$departement->date_cr}}</td>
+                        <td>{{$departement->date_fin}}</td>
                         <td>
                             <a data-id_departement="{{$departement->id_dep}}" data-nom="{{$departement->nom}}"
-                               data-date="{{$departement->date}}" data-chef="{{$departement->chef}}" data-toggle="modal"
+                                data-chef="{{$departement->chef}}" data-date_cr="{{$departement->date_cr}}"
+                               data-date_fin="{{$departement->date_fin}}" data-toggle="modal"
                                data-target="#exampleModal-edit" type="button"
                                class="btn btn-warning btn-sm">modifier</a>
                             <a data-id_departement="{{$departement->id_dep}}" data-toggle="modal"
@@ -91,14 +94,6 @@
                                     <input type="text" name="nom" class="form-control" placeholder="nom de departement">
                                 </div>
                                 <br>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">date</span>
-                                    </div>
-                                    <input type="date" name="date_cr" class="form-control"
-                                           placeholder="nom de departement">
-                                </div>
-                                <br>
 
                                 <div class="input-group">
                                     <div class="input-group-prepend">
@@ -106,7 +101,22 @@
                                     </div>
                                     <input type="text" name="chef" class="form-control" placeholder="chef">
                                 </div>
-
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">date</span>
+                                    </div>
+                                    <input type="date" name="date_cr" class="form-control"
+                                           placeholder="date de creation">
+                                </div>
+                                <br>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">date</span>
+                                    </div>
+                                    <input type="date" name="date_fin" class="form-control"
+                                           placeholder="date de fin">
+                                </div>
+                                <br>
 
                             </form>
                         </div>
@@ -148,19 +158,26 @@
                                 <br>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
-                                        <span class="input-group-text">date</span>
-                                    </div>
-                                    <input type="date" id="date" name="date_cr" class="form-control"
-                                           placeholder="nom de departement">
-                                </div>
-                                <br>
-
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
                                         <span class="input-group-text">chef</span>
                                     </div>
                                     <input type="text" id="chef" name="chef" class="form-control" placeholder="chef">
                                 </div>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">date de creation</span>
+                                    </div>
+                                    <input type="date" id="date" name="date_cr" class="form-control"
+                                           placeholder="date de creation">
+                                </div>
+                                <br>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">date de fin</span>
+                                    </div>
+                                    <input type="date" id="date" name="date_fin" class="form-control"
+                                           placeholder="date de fin">
+                                </div>
+                                <br>
                             </form>
                         </div>
                         <div class="modal-footer">
@@ -220,7 +237,8 @@
 
         var button = $(event.relatedTarget)
         var nom = button.data('nom')
-        var date = button.data('date_cr')
+        var date_cr = button.data('date_cr')
+        var date_fin = button.data('date_fin')
         var chef = button.data('chef')
         var id_departement = button.data('id_departement')
 
@@ -229,8 +247,9 @@
 
         modal.find('.modal-title').text('EDIT STUDENT INFORMATION');
         modal.find('.modal-body #nom').val(nom);
-        modal.find('.modal-body #date_cr').val(date);
         modal.find('.modal-body #chef').val(chef);
+        modal.find('.modal-body #date_cr').val(date_cr);
+        modal.find('.modal-body #date_fin').val(date_fin);
         modal.find('.modal-body #id_departement').val(id_departement);
     });
 

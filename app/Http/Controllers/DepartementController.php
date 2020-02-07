@@ -14,8 +14,8 @@ class DepartementController extends Controller
      */
     public function index(Request $request)
     {
-        $departement['departements'] =Departement::OrderBy('id_dep','asc')->paginate(10);
-        return view('departement.index',$departement);
+        $departement['departement'] = Departement::OrderBy('id_dep', 'asc')->paginate(10);
+        return view('departement.index', $departement);
     }
 
     /**
@@ -31,28 +31,26 @@ class DepartementController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-     $departement=array(
+        $departement = array(
+            'nom' => $request->nom,
+            'date_cr' => $request->date_cr,
+            'chef' => $request->chef,
+            'date_fin' => $request->date_fin
+        );
 
-
-         'nom' => $request->nom ,
-         'date_cr' =>$request->date_cr,
-         'chef' => $request->chef
-
-           );
-
-           departement::create($departement);
-           return redirect()->route('departement.index');
+        departement::create($departement);
+        return redirect()->route('departement.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\departement  $departement
+     * @param \App\departement $departement
      * @return \Illuminate\Http\Response
      */
     public function show(departement $departement)
@@ -80,7 +78,7 @@ class DepartementController extends Controller
      *
      * Show the form for editing the specified resource.
      *
-     * @param  \App\departement  $departement
+     * @param \App\departement $departement
      * @return \Illuminate\Http\Response
      */
     public function edit(departement $departement)
@@ -91,36 +89,36 @@ class DepartementController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\departement  $departement
+     * @param \Illuminate\Http\Request $request
+     * @param \App\departement $departement
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
     {
-        $departement=array(
+        $departement = array(
 
 
-            'nom' => $request->nom ,
-            'date_cr' =>$request->date_cr,
+            'nom' => $request->nom,
+            'date_cr' => $request->date_cr,
             'chef' => $request->chef
 
-              );
+        );
 
-             Departement::findOrfail($request->id_departement)->update($departement);
-              return redirect()->route('departement.index');
+        Departement::findOrfail($request->id_departement)->update($departement);
+        return redirect()->route('departement.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\departement  $departement
+     * @param \App\departement $departement
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $departement)
     {
 
-        $delete=$departement->all();
-       $deletedepartement=Departement::findOrfail($departement->id_departement);
+        $delete = $departement->all();
+        $deletedepartement = Departement::findOrfail($departement->id_departement);
         $deletedepartement->delete();
         return redirect()->route('departement.index');
     }
