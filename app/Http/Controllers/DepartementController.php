@@ -103,7 +103,7 @@ class DepartementController extends Controller
             'date_cr' => $request->date_cr,
             'date_fin' => $request->date_fin,
 
-     );
+        );
 
         Departement::findOrfail($request->id_departement)->update($departement);
         return redirect()->route('departement.index');
