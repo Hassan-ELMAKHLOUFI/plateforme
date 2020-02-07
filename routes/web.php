@@ -29,3 +29,7 @@ Route::Resource('module','ModuleController');
 Route::Resource('moduleFiliere','ModuleFiliereController');
 Route::Resource('niveau','NiveauController');
 Route::Resource('professeur','ProfesseurController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
