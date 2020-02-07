@@ -14,8 +14,8 @@ class DepartementController extends Controller
      */
     public function index(Request $request)
     {
-        $departement['departement'] = Departement::OrderBy('id_dep', 'asc')->paginate(10);
-        return view('departement.index', $departement);
+        $departements['departements'] = Departement::OrderBy('id_dep', 'asc')->paginate(10);
+        return view('departement.index', $departements);
     }
 
     /**
@@ -38,8 +38,8 @@ class DepartementController extends Controller
     {
         $departement = array(
             'nom' => $request->nom,
-            'date_cr' => $request->date_cr,
             'chef' => $request->chef,
+            'date_cr' => $request->date_cr,
             'date_fin' => $request->date_fin
         );
 
@@ -99,8 +99,9 @@ class DepartementController extends Controller
 
 
             'nom' => $request->nom,
+            'chef' => $request->chef,
             'date_cr' => $request->date_cr,
-            'chef' => $request->chef
+            'date_fin' => $request->date_fin,
 
         );
 
