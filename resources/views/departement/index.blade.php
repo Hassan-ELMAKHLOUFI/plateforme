@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>departement</title>
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <meta charset="utf-8" />
+  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>
+    Material Dashboard Dark Edition by Creative Tim
+  </title>
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+  <!--     Fonts and icons     -->
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <!-- Google Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
     <!-- Bootstrap core CSS -->
@@ -24,50 +31,159 @@
     <!-- MDB core JavaScript -->
     <script type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.12.0/js/mdb.min.js"></script>
-</head>
-<body>
-<style>
-    .container {
-        padding: 0.5%;
-    }
-</style>
-<div class="container">
-    <h2 class="alert alert-success">gestion des departement</h2>
-    <div class="row">
-        <a href="" class="btn btn-info" style="margin-left:85%" data-toggle="modal"
-           data-target="#exampleModal">ajouter</a>
-        <div class="col-md-12">
-            <table class="table table-bordered">
-                <thead>
-                <tr>
-                    <th>#</th>
-                    <th>nom</th>
-                    <th>date</th>
-                    <th>chef departement</th>
-                    <th>Action</th>
-                </tr>
-                <tbody>
-                @foreach($departements as $key=>$departement)
-                    <tr>
-                        <td>{{++$key}}</td>
-                        <td>{{$departement->nom}}</td>
-                        <td>{{$departement->date_cr}}</td>
-                        <td>{{$departement->chef}}</td>
-                        <td>
-                            <a data-id_departement="{{$departement->id_dep}}" data-nom="{{$departement->nom}}"
-                               data-date="{{$departement->date}}" data-chef="{{$departement->chef}}" data-toggle="modal"
-                               data-target="#exampleModal-edit" type="button"
-                               class="btn btn-warning btn-sm">modifier</a>
-                            <a data-id_departement="{{$departement->id_dep}}" data-toggle="modal"
-                               data-target="#exampleModal-delete" class="btn btn-danger btn-sm">supprimer</a>
-                        </td>
-                    </tr>
-                @endforeach
-                </tbody>
-                {{$departements->links()}}
-                </thead>
-            </table>
+            <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  <!-- CSS Files -->
+  <link href="../assets/css/material-dashboard.css?v=2.1.0" rel="stylesheet" />
+  <!-- CSS Just for demo purpose, don't include it in your project -->
+  <link href="../assets/demo/demo.css" rel="stylesheet" />
 
+
+</head>
+
+<body class="dark-edition">
+  <div class="wrapper ">
+    <div class="sidebar" data-color="purple" data-background-color="black" data-image="../assets/img/sidebar-2.jpg">
+      <!--
+        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+
+        Tip 2: you can also add an image using data-image tag
+    -->
+      <div class="logo"><a href="http://www.creative-tim.com" class="simple-text logo-normal">
+          Creative Tim
+        </a></div>
+      <div class="sidebar-wrapper">
+        <ul class="nav">
+
+          <li class="nav-item active ">
+            <a class="nav-link" href="./tables.html">
+              <i class="material-icons">content_paste</i>
+              <p>Table List</p>
+            </a>
+          </li>
+
+          <!-- <li class="nav-item active-pro ">
+                <a class="nav-link" href="./upgrade.html">
+                    <i class="material-icons">unarchive</i>
+                    <p>Upgrade to PRO</p>
+                </a>
+            </li> -->
+        </ul>
+      </div>
+    </div>
+    <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " id="navigation-example">
+        <div class="container-fluid">
+          <div class="navbar-wrapper">
+            <a class="navbar-brand" href="javascript:void(0)">Table List</a>
+          </div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation" data-target="#navigation-example">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end">
+            <form class="navbar-form">
+              <div class="input-group no-border">
+                <input type="text" value="" class="form-control" placeholder="Search...">
+                <button type="submit" class="btn btn-default btn-round btn-just-icon">
+                  <i class="material-icons">search</i>
+                  <div class="ripple-container"></div>
+                </button>
+              </div>
+            </form>
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="javascript:void(0)">
+                  <i class="material-icons">dashboard</i>
+                  <p class="d-lg-none d-md-block">
+                    Stats
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link" href="javscript:void(0)" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="material-icons">notifications</i>
+                  <span class="notification">5</span>
+                  <p class="d-lg-none d-md-block">
+                    Some Actions
+                  </p>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="javascript:void(0)">Mike John responded to your email</a>
+                  <a class="dropdown-item" href="javascript:void(0)">You have 5 new tasks</a>
+                  <a class="dropdown-item" href="javascript:void(0)">You're now friend with Andrew</a>
+                  <a class="dropdown-item" href="javascript:void(0)">Another Notification</a>
+                  <a class="dropdown-item" href="javascript:void(0)">Another One</a>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="javascript:void(0)">
+                  <i class="material-icons">person</i>
+                  <p class="d-lg-none d-md-block">
+                    Account
+                  </p>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+ <!-- End Navbar -->
+ <div class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title ">Simple Table</h4>
+                  <p class="card-category"> Here is a subtitle for this table</p>
+                </div>
+                <a href="" class="btn btn-info" style="margin-left:85%" data-toggle="modal"
+           data-target="#exampleModal">ajouter</a>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table table-bordered">
+                      <thead>
+                      <tr>
+                          <th>#</th>
+                          <th>nom</th>
+                          <th>date</th>
+                          <th>chef departement</th>
+                          <th>date de fin </th>
+                          <th>Action</th>
+                      </tr>
+                      <tbody>
+                      @foreach($departements as $key=>$departement)
+                          <tr>
+                              <td>{{++$key}}</td>
+                              <td>{{$departement->nom}}</td>
+                              <td>{{$departement->date_cr}}</td>
+                              <td>{{$departement->chef}}</td>
+                              <td>{{$departement->date_fin}}</td>
+                              <td>
+                                  <a data-id_departement="{{$departement->id_dep}}" data-nom="{{$departement->nom}}"
+                                     data-date="{{$departement->date}}" data-chef="{{$departement->chef}}" data-date_fin="{{$departement->date_fin}}" data-toggle="modal"
+                                     data-target="#exampleModal-edit" type="button"
+                                     class="btn btn-warning btn-sm">modifier</a>
+                                  <a data-id_departement="{{$departement->id_dep}}" data-toggle="modal"
+                                     data-target="#exampleModal-delete" class="btn btn-danger btn-sm">supprimer</a>
+                              </td>
+                          </tr>
+                      @endforeach
+                      </tbody>
+                      {{$departements->links()}}
+                      </thead>
+                  </table>
+                  </div>
+                 
+                </div>
+              </div>
+            </div>
+          
+      </div>
 
             <!-- Modal add -->
             <div class="modal fade-right" id="exampleModal" tabindex="-1" role="dialog"
@@ -75,7 +191,7 @@
                 <div class="modal-dialog modal-notify modal-lg modal-right modal-success" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Ajouter departement</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -84,36 +200,41 @@
 
                             <form action="{{route('departement.store')}}" method="POST">
                                 @csrf
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">nom</span>
-                                    </div>
-                                    <input type="text" name="nom" class="form-control" placeholder="nom de departement">
+                                <div class="form-group">
+                                    <label for="nom" style ="color:#c21db7;">nom</label>
+                                    
+                                    
+                                    <input type="text" name="nom" style="color:black;" class="form-control" placeholder="nom de departement">
                                 </div>
                                 <br>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">date</span>
-                                    </div>
-                                    <input type="date" name="date_cr" class="form-control"
+                                <div class="form-group">
+                                    <label for="date"style ="color:#c21db7;">date</label>
+                                    
+                                     <input type="date" name="date_cr" style="color:black;"class="form-control"
                                            placeholder="nom de departement">
                                 </div>
                                 <br>
 
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">chef</span>
-                                    </div>
-                                    <input type="text" name="chef" class="form-control" placeholder="chef">
+                                <div class="form-group">
+                                    
+                                        <label for="chef"style ="color:#c21db7;">chef</label>  
+                                    
+                                    <input type="text" name="chef" style="color:black;" class="form-control" placeholder="chef">
+                                </div>
+                                <div class="form-group">
+                                   
+                                        <label for="" style ="color:#c21db7;">date de fin</label>
+                                    
+                                    <input type="date" style="color:black;" name="date_fin" class="form-control"
+                                           placeholder="date de fin">
                                 </div>
 
-
-                            </form>
+                            
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
 
-                            <button type="submit" class="btn btn-success">Save</button>
+                            <button type="submit" class="btn btn-success">enregistrer</button>
                         </div>
                         </form>
                     </div>
@@ -127,7 +248,7 @@
                 <div class="modal-dialog modal-notify modal-lg modal-right modal-success" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">modifier</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -137,36 +258,42 @@
                             <form action="{{route('departement.update','id_departement')}}" method="POST">
                                 @csrf
                                 @method('PUT')
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">nom</span>
-                                    </div>
-                                    <input type="text" id="nom" name="nom" class="form-control"
+                                <div class="form-group">
+                                   
+                                        <label for="">nom</label> 
+                                    
+                                    <input type="text" style="color:black;" id="nom" name="nom" class="form-control"
                                            placeholder="nom de departement">
                                 </div>
-                                <input type="hidden" name="id_departement" id="id_departement">
+                                <input type="hidden" style="color:black;" name="id_departement" id="id_departement">
                                 <br>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">date</span>
-                                    </div>
-                                    <input type="date" id="date" name="date_cr" class="form-control"
+                                <div class="form-group">
+                                    
+                                       <label for="">date de debut </label> 
+                                    
+                                    <input type="date" style="color:black;" id="date" name="date_cr" class="form-control"
                                            placeholder="nom de departement">
                                 </div>
                                 <br>
 
                                 <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">chef</span>
-                                    </div>
-                                    <input type="text" id="chef" name="chef" class="form-control" placeholder="chef">
+                                    
+                                        <label for="">chef</label>
+                                    
+                                    <input type="text" id="chef" style="color:black;" name="chef" class="form-control" placeholder="chef">
                                 </div>
-                            </form>
+                                <div class="input-group">
+                                    
+                                        <label for="">date de fin</label>
+                                    
+                                    <input type="date" style="color:black;" id="date" name="date_fin" class="form-control"
+                                           placeholder="date de fin">
+                                </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">fermer</button>
 
-                            <button type="submit" class="btn btn-success">Save</button>
+                            <button type="submit" class="btn btn-success">modifier</button>
                         </div>
                         </form>
                     </div>
@@ -180,7 +307,7 @@
                 <div class="modal-dialog modal-notify modal-lg modal-right modal-success" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">supprimer</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -192,10 +319,10 @@
                                 @method('DELETE')
 
                                 <input type="hidden" name="id_departement" id="id_departement">
-                                <p class="text-center" width="50px"> vous ete sur que vous voulez supprimer ce
+                                <p class="text-center" width="50px"> vous ete sûre que vous voulez supprimer ce
                                     departement</p>
 
-                            </form>
+                            
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
@@ -222,6 +349,7 @@
         var nom = button.data('nom')
         var date = button.data('date_cr')
         var chef = button.data('chef')
+        var date_fin = button.data('date_fin')
         var id_departement = button.data('id_departement')
 
 
@@ -231,6 +359,7 @@
         modal.find('.modal-body #nom').val(nom);
         modal.find('.modal-body #date_cr').val(date);
         modal.find('.modal-body #chef').val(chef);
+        modal.find('.modal-body #date_fin').val(date_fin);
         modal.find('.modal-body #id_departement').val(id_departement);
     });
 
@@ -250,4 +379,26 @@
     });
 
 </script>
+
+
+
+  <!--   Core JS Files   -->
+  <script src="../assets/js/core/jquery.min.js"></script>
+  <script src="../assets/js/core/popper.min.js"></script>
+  <script src="../assets/js/core/bootstrap-material-design.min.js"></script>
+  <script src="https://unpkg.com/default-passive-events"></script>
+  <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+  <!-- Place this tag in your head or just before your close body tag. -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <!--  Google Maps Plugin    -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+  <!-- Chartist JS -->
+  <script src="../assets/js/plugins/chartist.min.js"></script>
+  <!--  Notifications Plugin    -->
+  <script src="../assets/js/plugins/bootstrap-notify.js"></script>
+  <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="../assets/js/material-dashboard.js?v=2.1.0"></script>
+  <!-- Material Dashboard DEMO methods, don't include it in your project! -->
+  <script src="../assets/demo/demo.js"></script>
+  <script>
 </html>
