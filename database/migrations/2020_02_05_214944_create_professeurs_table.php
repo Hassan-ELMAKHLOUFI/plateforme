@@ -19,7 +19,8 @@ class CreateProfesseursTable extends Migration
             $table->string('nom');
             $table->string('prenom');
             $table->string('username');
-            $table->string('mot_de_pass');
+            $table->string('email');
+            $table->string('password');
             $table->integer('grade');
 
 
