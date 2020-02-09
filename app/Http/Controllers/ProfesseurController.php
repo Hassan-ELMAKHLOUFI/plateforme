@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Professeur;
 use Illuminate\Http\Request;
 
 class ProfesseurController extends Controller
@@ -11,9 +12,10 @@ class ProfesseurController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $professeurs['professeurs'] = Professeur::OrderBy('id', 'asc')->paginate(10);
+        return view('professeur.index', $professeurs);
     }
 
     /**
@@ -34,7 +36,18 @@ class ProfesseurController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $professeur = array(
+            'cin' => $request->cin_p,
+            'nom' => $request->nom_p,
+            'prenom' => $request->prenom_p,
+            'username' => $request->username_p,
+            'email' => $request->email_p,
+            'password' => $request->password_p,
+            'grade' => $request->grade_p,
+        );
+
+        Professeur::create($professeur);
+        return redirect()->route('professeur.index');
     }
 
     /**
@@ -43,7 +56,7 @@ class ProfesseurController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Professeur $professeur)
     {
         //
     }
@@ -54,7 +67,7 @@ class ProfesseurController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Professeur $professeur)
     {
         //
     }
@@ -66,9 +79,23 @@ class ProfesseurController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $professeur = array(
+
+            'cin' => $request->cin_p,
+            'nom' => $request->nom_p,
+            'prenom' => $request->prenom_p,
+            'username' => $request->username_p,
+            'email' => $request->email_p,
+            'password' => $request->password_p,
+            'grade' => $request->grade_p,
+
+
+        );
+
+        Professeur::findOrfail($request->id_professeur)->update($professeur);
+        return redirect()->route('professeur.index');
     }
 
     /**
@@ -77,8 +104,12 @@ class ProfesseurController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $professeur)
     {
-        //
+
+        $delete = $professeur->all();
+        $deleteprofesseur = Professeur::findOrfail($professeur->id_professeur);
+        $deleteprofesseur->delete();
+        return redirect()->route('professeur.index');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\niveau;
 use Illuminate\Http\Request;
 
 class NiveauController extends Controller
@@ -11,9 +12,10 @@ class NiveauController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $niveaux['niveaux'] = niveau::OrderBy('id', 'asc')->paginate(10);
+        return view('niveau.index', $niveaux);
     }
 
     /**
@@ -34,7 +36,12 @@ class NiveauController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $niveau = array(
+            'nom' => $request->nom
+        );
+
+        niveau::create($niveau);
+        return redirect()->route('niveau.index');
     }
 
     /**
@@ -43,7 +50,7 @@ class NiveauController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(niveau $niveau)
     {
         //
     }
@@ -54,9 +61,9 @@ class NiveauController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(niveau $niveau)
     {
-        //
+
     }
 
     /**
@@ -66,9 +73,14 @@ class NiveauController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $niveau = array(
+            'nom' => $request->nom,
+        );
+
+        Niveau::findOrfail($request->id_niveau)->update($niveau);
+        return redirect()->route('niveau.index');
     }
 
     /**
@@ -77,8 +89,11 @@ class NiveauController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $niveau)
     {
-        //
+        $delete = $niveau->all();
+        $deleteniveau = Niveau::findOrfail($niveau->id_niveau);
+        $deleteniveau->delete();
+        return redirect()->route('niveau.index');
     }
 }
