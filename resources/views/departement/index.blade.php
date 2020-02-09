@@ -7,7 +7,7 @@
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Material Dashboard Dark Edition by Creative Tim
+    departement
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -50,7 +50,7 @@
         Tip 2: you can also add an image using data-image tag
     -->
       <div class="logo"><a href="http://www.creative-tim.com" class="simple-text logo-normal">
-          Creative Tim
+          departement
         </a></div>
       <div class="sidebar-wrapper">
         <ul class="nav">
@@ -58,7 +58,7 @@
           <li class="nav-item active ">
             <a class="nav-link" href="./tables.html">
               <i class="material-icons">content_paste</i>
-              <p>Table List</p>
+              <p>departement</p>
             </a>
           </li>
 
@@ -76,7 +76,7 @@
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " id="navigation-example">
         <div class="container-fluid">
           <div class="navbar-wrapper">
-            <a class="navbar-brand" href="javascript:void(0)">Table List</a>
+            <a class="navbar-brand" href="javascript:void(0)">departement</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation" data-target="#navigation-example">
             <span class="sr-only">Toggle navigation</span>
@@ -85,15 +85,7 @@
             <span class="navbar-toggler-icon icon-bar"></span>
           </button>
           <div class="collapse navbar-collapse justify-content-end">
-            <form class="navbar-form">
-              <div class="input-group no-border">
-                <input type="text" value="" class="form-control" placeholder="Search...">
-                <button type="submit" class="btn btn-default btn-round btn-just-icon">
-                  <i class="material-icons">search</i>
-                  <div class="ripple-container"></div>
-                </button>
-              </div>
-            </form>
+
             <ul class="navbar-nav">
               <li class="nav-item">
                 <a class="nav-link" href="javascript:void(0)">
@@ -138,14 +130,14 @@
             <div class="col-md-12">
               <div class="card">
                 <div class="card-header card-header-primary">
-                  <h4 class="card-title ">Simple Table</h4>
-                  <p class="card-category"> Here is a subtitle for this table</p>
+                  <h4 class="card-title ">table departement</h4>
+                  <p class="card-category"> </p>
                 </div>
                 <a href="" class="btn btn-info" style="margin-left:85%" data-toggle="modal"
            data-target="#exampleModal">ajouter</a>
                 <div class="card-body">
                   <div class="table-responsive">
-                    <table class="table table-bordered">
+                    <table class="table table-bordered" id="myTable">
                       <thead>
                       <tr>
                           <th>#</th>
@@ -178,11 +170,11 @@
                       </thead>
                   </table>
                   </div>
-                 
+
                 </div>
               </div>
             </div>
-          
+
       </div>
 
             <!-- Modal add -->
@@ -202,34 +194,34 @@
                                 @csrf
                                 <div class="form-group">
                                     <label for="nom" style ="color:#c21db7;">nom</label>
-                                    
-                                    
+
+
                                     <input type="text" name="nom" style="color:black;" class="form-control" placeholder="nom de departement">
                                 </div>
                                 <br>
                                 <div class="form-group">
                                     <label for="date"style ="color:#c21db7;">date</label>
-                                    
+
                                      <input type="date" name="date_cr" style="color:black;"class="form-control"
                                            placeholder="nom de departement">
                                 </div>
                                 <br>
 
                                 <div class="form-group">
-                                    
-                                        <label for="chef"style ="color:#c21db7;">chef</label>  
-                                    
+
+                                        <label for="chef"style ="color:#c21db7;">chef</label>
+
                                     <input type="text" name="chef" style="color:black;" class="form-control" placeholder="chef">
                                 </div>
                                 <div class="form-group">
-                                   
+
                                         <label for="" style ="color:#c21db7;">date de fin</label>
-                                    
+
                                     <input type="date" style="color:black;" name="date_fin" class="form-control"
                                            placeholder="date de fin">
                                 </div>
 
-                            
+
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
@@ -259,36 +251,38 @@
                                 @csrf
                                 @method('PUT')
                                 <div class="form-group">
-                                   
-                                        <label for="">nom</label> 
-                                    
+
+                                        <label for="" style ="color:#c21db7;">nom</label>
+
                                     <input type="text" style="color:black;" id="nom" name="nom" class="form-control"
                                            placeholder="nom de departement">
                                 </div>
                                 <input type="hidden" style="color:black;" name="id_departement" id="id_departement">
                                 <br>
                                 <div class="form-group">
-                                    
-                                       <label for="">date de debut </label> 
-                                    
+
+                                       <label for="" style ="color:#c21db7;">date de debut </label>
+
                                     <input type="date" style="color:black;" id="date" name="date_cr" class="form-control"
                                            placeholder="nom de departement">
                                 </div>
                                 <br>
 
-                                <div class="input-group">
-                                    
-                                        <label for="">chef</label>
-                                    
+                                <div class="form-group">
+
+                                        <label for="" style ="color:#c21db7;">chef</label>
+
                                     <input type="text" id="chef" style="color:black;" name="chef" class="form-control" placeholder="chef">
                                 </div>
-                                <div class="input-group">
-                                    
-                                        <label for="">date de fin</label>
-                                    
+                                <br>
+                                <div class="form-group">
+
+                                        <label for="" style ="color:#c21db7;">date de fin</label>
+
                                     <input type="date" style="color:black;" id="date" name="date_fin" class="form-control"
                                            placeholder="date de fin">
                                 </div>
+                                <br>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">fermer</button>
@@ -322,7 +316,7 @@
                                 <p class="text-center" width="50px"> vous ete sûre que vous voulez supprimer ce
                                     departement</p>
 
-                            
+
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
@@ -355,7 +349,7 @@
 
         var modal = $(this)
 
-        modal.find('.modal-title').text('EDIT STUDENT INFORMATION');
+        modal.find('.modal-title').text('modifier');
         modal.find('.modal-body #nom').val(nom);
         modal.find('.modal-body #date_cr').val(date);
         modal.find('.modal-body #chef').val(chef);
@@ -373,14 +367,21 @@
 
         var modal = $(this)
 
-        modal.find('.modal-title').text('delete STUDENT INFORMATION');
+        modal.find('.modal-title').text('supprimer');
 
         modal.find('.modal-body #id_departement').val(id_departement);
     });
 
 </script>
 
-
+<script>
+    $(document).ready(function() {
+        $('#myTable').DataTable();
+    });
+    $('#myTable').DataTable({
+        responsive: true
+    });
+</script>
 
   <!--   Core JS Files   -->
   <script src="../assets/js/core/jquery.min.js"></script>
@@ -402,3 +403,111 @@
   <script src="../assets/demo/demo.js"></script>
   <script>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- jQuery -->
+<script src="plugins/jquery/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+    $.widget.bridge('uibutton', $.ui.button)
+</script>
+<!-- Bootstrap 4 -->
+<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- ChartJS -->
+<script src="plugins/chart.js/Chart.min.js"></script>
+<!-- Sparkline -->
+<script src="plugins/sparklines/sparkline.js"></script>
+<!-- JQVMap -->
+<script src="plugins/jqvmap/jquery.vmap.min.js"></script>
+<script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+<!-- jQuery Knob Chart -->
+<script src="plugins/jquery-knob/jquery.knob.min.js"></script>
+<!-- daterangepicker -->
+<script src="plugins/moment/moment.min.js"></script>
+<script src="plugins/daterangepicker/daterangepicker.js"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- Summernote -->
+<script src="plugins/summernote/summernote-bs4.min.js"></script>
+<!-- overlayScrollbars -->
+<script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<!-- AdminLTE App -->
+<script src="dist/js/adminlte.js"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="dist/js/pages/dashboard.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="dist/js/demo.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/b-1.6.1/r-2.2.3/datatables.min.js"></script>
+<script src="//cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
+<script>

@@ -46,10 +46,11 @@ class FiliereController extends Controller
     if($select->nom==$request->nom_dep){ 
    
         $filiere=array(   
-          
-               
-            'nom' => $request->nom ,
-            'nombre_inscrit' =>$request->nombre_inscrit, 
+           
+            'nom'=>$request->nom ,
+            'coordinateur' =>$request->coordinateur, 
+            'datedebut' =>$request->datedebut, 
+            'datefin' =>$request->datefin, 
             'id_departement' => $select->id_dep
             
               );
@@ -91,15 +92,23 @@ class FiliereController extends Controller
      */
     public function update(Request $request)
     {
+
+        $selects =Departement::all();
+        foreach($selects as $select)
+  { 
+
+        if($select->nom==$request->nom_dep){ 
       
         $filiere=array(   
-          
-               
             'nom' => $request->nom ,
-            'nombre_inscrit' =>$request->nombre_inscrit, 
+            'coordinateur' =>$request->coordinateur, 
+            'datedebut' =>$request->datedebut, 
+            'datefin' =>$request->datefin, 
             'id_departement' => $select->id_dep
             
-              );
+            );
+            }
+        }
      
              Filiere::findOrfail($request->id_filiere)->update($filiere);
               return redirect()->route('filiere.index');
