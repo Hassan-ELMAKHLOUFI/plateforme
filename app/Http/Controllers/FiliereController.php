@@ -8,15 +8,19 @@ use Illuminate\Http\Request;
 
 class FiliereController extends Controller
 {
+
+
     /**
      * Display a listing of the resource.
+     *
+     *
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
         $filiere['filieres'] =filiere::OrderBy('id_filiere','asc')->paginate(10);
-       
+
         return view('filiere.index',$filiere);
     }
 
@@ -27,7 +31,7 @@ class FiliereController extends Controller
      */
     public function create()
     {
-        
+
     }
 
     /**
@@ -40,23 +44,23 @@ class FiliereController extends Controller
     {
         $selects =Departement::all();
         foreach($selects as $select)
-  { 
+  {
 
 
-    if($select->nom==$request->nom_dep){ 
-   
-        $filiere=array(   
-           
+    if($select->nom==$request->nom_dep){
+
+        $filiere=array(
+
             'nom'=>$request->nom ,
-            'coordinateur' =>$request->coordinateur, 
-            'datedebut' =>$request->datedebut, 
-            'datefin' =>$request->datefin, 
+            'coordinateur' =>$request->coordinateur,
+            'datedebut' =>$request->datedebut,
+            'datefin' =>$request->datefin,
             'id_departement' => $select->id_dep
-            
+
               );
             }
             }
-   
+
               filiere::create($filiere);
               return redirect()->route('filiere.index');
     }
@@ -95,21 +99,21 @@ class FiliereController extends Controller
 
         $selects =Departement::all();
         foreach($selects as $select)
-  { 
+  {
 
-        if($select->nom==$request->nom_dep){ 
-      
-        $filiere=array(   
+        if($select->nom==$request->nom_dep){
+
+        $filiere=array(
             'nom' => $request->nom ,
-            'coordinateur' =>$request->coordinateur, 
-            'datedebut' =>$request->datedebut, 
-            'datefin' =>$request->datefin, 
+            'coordinateur' =>$request->coordinateur,
+            'datedebut' =>$request->datedebut,
+            'datefin' =>$request->datefin,
             'id_departement' => $select->id_dep
-            
+
             );
             }
         }
-     
+
              Filiere::findOrfail($request->id_filiere)->update($filiere);
               return redirect()->route('filiere.index');
     }

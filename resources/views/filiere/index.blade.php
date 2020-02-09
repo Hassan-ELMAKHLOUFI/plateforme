@@ -200,70 +200,60 @@
 
                             <form action="{{route('filiere.store')}}" method="POST">
                                 @csrf
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">nom</span>
-                                    </div>
-                                    <input type="text" name="nom" class="form-control" placeholder="nom de departement">
+                                <div class="form-group">
+                                    <label for="" style ="color:#c21db7;">nom de filiere</label>
+
+
+                                    <input type="text" id="nom" name="nom" class="form-control"
+                                           placeholder="nom de departement">
                                 </div>
+                                <input type="hidden" name="id_filiere" id="id_filiere">
                                 <br>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">coordinateur</span>
-                                    </div>
-                                    <input type="text" name="coordinateur" class="form-control"
+                                <div class="form-group">
+                                    <label for=""style ="color:#c21db7;">coordinateur</label>
+                                    <input type="text" id="coordinateur" name="coordinateur" class="form-control"
                                            placeholder="coordinateur">
                                 </div>
-
                                 <br>
-                                 <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">date debut</span>
-                                    </div>
-                                    <input type="date" name="datedebut" class="form-control"
-                                           placeholder="datedebut">
+
+                                <div class="form-group">
+                                    <label for="" style ="color:#c21db7;">date de debut</label>
+                                    <input type="date" id="datedebut" name="datedebut" class="form-control"
+                                           placeholder="date de debut">
                                 </div>
                                 <br>
 
-                                   <div class="form-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">date fin</span>
-                                    </div>
-                                    <input type="date" name="datefin" class="form-control"
-                                           placeholder="datefin">
+                                <div class="form-group">
+                                    <label for="" style ="color:#c21db7;">date de fin</label>
+
+
+                                    <input type="date" id="datefin" name="datefin" class="form-control"
+                                           placeholder="date de fin">
                                 </div>
                                 <br>
 
+                                <div class="form-group">
 
+                                    <label for="" style ="color:#c21db7;"> id departemeent</label>
 
+                                    <select name="nom_dep" size="2">
+                                        <?php
 
-
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">id departement</span>
-                                    </div>
-
-                                </div>
-
-
-                                <select name="nom_dep" size="1">
-                                    <?php
-                                    use App\departement;
-                                    $departements = Departement::all();
-                                    foreach ($departements as $un) {
-                                        echo '<option>';
-                                        echo $un->nom;
-                                        echo '</option>';
-                                    }
-                                    ?>
-                                </select>
+                                        $departements = Departement::all();
+                                        foreach ($departements as $un) {
+                                            echo '<option>';
+                                            echo $un->nom;
+                                            echo '</option>';
+                                        }
+                                        ?>
+                                    </select>
 
 
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">fermer</button>
 
-                            <button type="submit" class="btn btn-success">Save</button>
+                            <button type="submit" class="btn btn-success">enregistrer</button>
                         </div>
                         </form>
                     </div>
@@ -287,46 +277,42 @@
                             <form action="{{route('filiere.update','id_filiere')}}" method="POST">
                                 @csrf
                                 @method('PUT')
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">nom</span>
-                                    </div>
+                                <div class="form-group">
+                                    <label for=""style ="color:#c21db7;">nom de filiere</label>
+
+
                                     <input type="text" id="nom" name="nom" class="form-control"
                                            placeholder="nom de departement">
                                 </div>
                                 <input type="hidden" name="id_filiere" id="id_filiere">
                                 <br>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">coordinateur</span>
-                                    </div>
+                                <div class="form-group">
+                                    <label for="" style ="color:#c21db7;">coordinateur</label>
                                     <input type="text" id="coordinateur" name="coordinateur" class="form-control"
                                            placeholder="coordinateur">
                                 </div>
                                 <br>
 
-                                     <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">date de debut</span>
-                                    </div>
+                                     <div class="form-group">
+                                         <label for="" style ="color:#c21db7;">date de debut</label>
                                     <input type="date" id="datedebut" name="datedebut" class="form-control"
                                            placeholder="date de debut">
                                 </div>
                                 <br>
 
-                                     <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">date de fin</span>
-                                    </div>
+                                     <div class="form-group">
+                                         <label for="" style ="color:#c21db7;">date de fin</label>
+
+
                                     <input type="date" id="datefin" name="datefin" class="form-control"
                                            placeholder="date de fin">
                                 </div>
                                 <br>
 
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">id departemeent</span>
-                                    </div>
+                                <div class="form-group">
+
+                                    <label for="" style ="color:#c21db7;"> id departemeent</label>
+
                                     <select name="nom_dep" size="1">
                                     <?php
 
@@ -360,7 +346,7 @@
                 <div class="modal-dialog modal-notify modal-lg modal-right modal-success" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">supprimer filiere</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -409,7 +395,7 @@
 
         var modal = $(this)
 
-        modal.find('.modal-title').text('EDIT STUDENT INFORMATION');
+        modal.find('.modal-title').text('modifier');
         modal.find('.modal-body #nom').val(nom);
         modal.find('.modal-body #coordinateur').val(coordinateur);
         modal.find('.modal-body #datedebut').val(datedebut);
@@ -428,7 +414,7 @@
 
         var modal = $(this)
 
-        modal.find('.modal-title').text('delete STUDENT INFORMATION');
+        modal.find('.modal-title').text('supprimer');
 
         modal.find('.modal-body #id_filiere').val(id_filiere);
     });

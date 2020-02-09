@@ -6,11 +6,16 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateFilieresTable extends Migration
 {
+
+
+
     /**
      * Run the migrations.
      *
      * @return void
      */
+
+
     public function up()
     {
         Schema::create('filiere', function (Blueprint $table) {
