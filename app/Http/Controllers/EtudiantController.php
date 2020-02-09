@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Etudiant;
 use Illuminate\Http\Request;
 
 class EtudiantController extends Controller
@@ -11,9 +12,11 @@ class EtudiantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
+        $etudiants['etudiants'] = Etudiant::OrderBy('id', 'asc')->paginate(10);
+        return view('etudiant.index', $etudiants);
     }
 
     /**
@@ -35,6 +38,21 @@ class EtudiantController extends Controller
     public function store(Request $request)
     {
         //
+        $etudiant = array(
+            'cin' => $request->cin,
+            'cne' => $request->cne,
+            'nom' => $request->nom,
+            'prenom' => $request->prenom,
+            'id_niveau' => $request->id_niveau,
+            'email_address' => $request->email_address,
+            'username' => $request->username,
+            'password' => $request->password,
+            'numero' => $request->numero,
+            'num_apologie' => $request->num_apologie
+        );
+
+        Etudiant::create($etudiant);
+        return redirect()->route('etudiant.index');
     }
 
     /**
@@ -66,9 +84,24 @@ class EtudiantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,$id)
     {
         //
+        $etudiant = array(
+            'cin' => $request->cin,
+            'cne' => $request->cne,
+            'nom' => $request->nom,
+            'prenom' => $request->prenom,
+            'id_niveau' => $request->id_niveau,
+            'email_address' => $request->email_address,
+            'username' => $request->username,
+            'password' => $request->password,
+            'numero' => $request->numero,
+            'num_apologie' => $request->num_apologie
+        );
+
+        Etudiant::findOrfail($request->id)->update($etudiant);
+        return redirect()->route('etudiant.index');
     }
 
     /**
@@ -77,8 +110,12 @@ class EtudiantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $etudiant)
     {
         //
+        $delete = $etudiant->all();
+        $deleteetudiant = Etudiant::findOrfail($etudiant->id);
+        $deleteetudiant->delete();
+        return redirect()->route('etudiant.index');
     }
 }

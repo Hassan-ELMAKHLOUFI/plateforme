@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Matiere;
+use App\Module;
 use Illuminate\Http\Request;
 
 class ModuleController extends Controller
@@ -11,9 +13,10 @@ class ModuleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $modules['modules'] = Module::OrderBy('id_module', 'asc')->paginate(10);
+        return view('module.index', $modules);
     }
 
     /**
@@ -35,6 +38,12 @@ class ModuleController extends Controller
     public function store(Request $request)
     {
         //
+        $module = array(
+            'nom_module' => $request->nom_module,
+        );
+
+        Module::create($module);
+        return redirect()->route('module.index');
     }
 
     /**
@@ -69,6 +78,12 @@ class ModuleController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $module = array(
+            'nom_module' => $request->nom_module,
+        );
+
+        Module::findOrFail($request->id_module)->update($module);
+        return redirect()->route('module.index');
     }
 
     /**
@@ -77,8 +92,12 @@ class ModuleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $module)
     {
         //
+        $delete = $module->all();
+        $deletemodule = Module::findOrfail($module->id_module);
+        $deletemodule->delete();
+        return redirect()->route('module.index');
     }
 }

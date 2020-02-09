@@ -15,6 +15,7 @@ class CreateEtudiantsTable extends Migration
     {
         Schema::create('etudiant', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('id_niveau');
             $table->string('cin');
             $table->string('cne');
             $table->string('nom');
@@ -26,7 +27,7 @@ class CreateEtudiantsTable extends Migration
             $table->integer('num_apologie');
             $table->timestamps();
 
-            $table->foreign('id')->references('id')->on('niveau')->onDelete('cascade');
+            $table->foreign('id_niveau')->references('id')->on('niveau')->onDelete('cascade');
         });
     }
 

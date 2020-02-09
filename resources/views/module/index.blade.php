@@ -7,7 +7,7 @@
     <link rel="icon" type="image/png" href="../assets/img/favicon.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <title>
-        filiere
+        Module
     </title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
           name='viewport'/>
@@ -52,7 +52,7 @@
           Tip 2: you can also add an image using data-image tag
       -->
         <div class="logo"><a href="http://www.creative-tim.com" class="simple-text logo-normal">
-                filiere
+                Module
             </a></div>
         <div class="sidebar-wrapper">
             <ul class="nav">
@@ -60,7 +60,7 @@
                 <li class="nav-item active ">
                     <a class="nav-link" href="./tables.html">
                         <i class="material-icons">content_paste</i>
-                        <p>Filiere</p>
+                        <p>Table List</p>
                     </a>
                 </li>
 
@@ -78,7 +78,7 @@
         <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " id="navigation-example">
             <div class="container-fluid">
                 <div class="navbar-wrapper">
-                    <a class="navbar-brand" href="javascript:void(0)">Filiere</a>
+                    <a class="navbar-brand" href="javascript:void(0)">Module</a>
                 </div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index"
                         aria-expanded="false" aria-label="Toggle navigation" data-target="#navigation-example">
@@ -88,7 +88,6 @@
                     <span class="navbar-toggler-icon icon-bar"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-end">
-
                     <ul class="navbar-nav">
                         <li class="nav-item">
                             <a class="nav-link" href="javascript:void(0)">
@@ -134,7 +133,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header card-header-primary">
-                                <h4 class="card-title ">Table filiere </h4>
+                                <h4 class="card-title ">Table matiere</h4>
                                 <p class="card-category"></p>
                             </div>
                             <a href="" class="btn btn-info" style="margin-left:85%" data-toggle="modal"
@@ -145,39 +144,27 @@
                                         <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>nom</th>
-                                            <th>coordinateur</th>
-                                            <th>date de debut</th>
-                                            <th>date de fin</th>
-                                            <th>id departement</th>
+                                            <th>nom module</th>
                                             <th>Action</th>
                                         </tr>
                                         <tbody>
-                                        @foreach($filieres as $key=>$filiere)
+                                        @foreach($modules as $key=>$module)
                                             <tr>
                                                 <td>{{++$key}}</td>
-                                                <td>{{$filiere->nom}}</td>
-                                                <td>{{$filiere->coordinateur}}</td>
-                                                <td>{{$filiere->datedebut}}</td>
-                                                <td>{{$filiere->datefin}}</td>
-                                                <td>{{$filiere->id_departement}}</td>
+                                                <td>{{$module->nom_module}}</td>
                                                 <td>
-                                                    <a data-id_filiere="{{$filiere->id_filiere}}"
-                                                       data-nom="{{$filiere->nom}}"
-                                                       data-coordinateur="{{$filiere->coordinsteur}}"
-                                                       data-datedebut="{{$filiere->datedebut}}"
-                                                       data-datefin="{{$filiere->datefin}}"
-                                                       data-id_departement="{{$filiere->id_departement}}"
+                                                    <a data-id_module="{{$module->id_module}}"
+                                                       data-nom_module="{{$module->nom_module}}"
                                                        data-toggle="modal"
                                                        data-target="#exampleModal-edit" type="button"
                                                        class="btn btn-warning btn-sm">modifier</a>
-                                                    <a data-id_filiere="{{$filiere->id_filiere}}" data-toggle="modal"
+                                                    <a data-id_module="{{$module->id_module}}" data-toggle="modal"
                                                        data-target="#exampleModal-delete" class="btn btn-danger btn-sm">supprimer</a>
                                                 </td>
                                             </tr>
                                         @endforeach
                                         </tbody>
-                                        {{$filieres->links()}}
+                                        {{$modules->links()}}
                                         </thead>
                                     </table>
                                 </div>
@@ -189,73 +176,29 @@
                 </div>
 
                 <!-- Modal add -->
-
                 <div class="modal fade-right" id="exampleModal" tabindex="-1" role="dialog"
                      aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-notify modal-lg modal-right modal-success" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Ajouter module</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
 
-                                <form action="{{route('filiere.store')}}" method="POST">
+                                <form action="{{route('module.store')}}" method="POST">
                                     @csrf
                                     <div class="form-group">
-                                        <label for="" style="color:#c21db7;">nom de filiere</label>
-
-
-                                        <input type="text" id="nom" name="nom" class="form-control"
-                                               placeholder="nom de departement">
+                                        <label for="nom_module" style="color:#c21db7;">nom module</label>
+                                        <input type="text" name="nom_module" style="color:black;" class="form-control"
+                                               placeholder="nom de module">
                                     </div>
-                                    <input type="hidden" name="id_filiere" id="id_filiere">
-                                    <br>
-                                    <div class="form-group">
-                                        <label for="" style="color:#c21db7;">coordinateur</label>
-                                        <input type="text" id="coordinateur" name="coordinateur" class="form-control"
-                                               placeholder="coordinateur">
-                                    </div>
-                                    <br>
 
-                                    <div class="form-group">
-                                        <label for="" style="color:#c21db7;">date de debut</label>
-                                        <input type="date" id="datedebut" name="datedebut" class="form-control"
-                                               placeholder="date de debut">
-                                    </div>
-                                    <br>
-
-                                    <div class="form-group">
-                                        <label for="" style="color:#c21db7;">date de fin</label>
-
-
-                                        <input type="date" id="datefin" name="datefin" class="form-control"
-                                               placeholder="date de fin">
-                                    </div>
-                                    <br>
-
-                                    <div class="form-group">
-
-                                        <label for="" style="color:#c21db7;"> id departemeent</label>
-
-                                        <select name="nom_dep" size="2">
-                                            <?php
-                                            use App\departement;
-                                            $departements = departement::all();
-                                            foreach ($departements as $un) {
-                                                echo '<option>';
-                                                echo $un->nom;
-                                                echo '</option>';
-                                            }
-                                            ?>
-                                        </select>
-
-                                    </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">fermer</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
 
                                 <button type="submit" class="btn btn-success">enregistrer</button>
                             </div>
@@ -271,69 +214,28 @@
                     <div class="modal-dialog modal-notify modal-lg modal-right modal-success" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">modifier</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
 
-                                <form action="{{route('filiere.update','id_filiere')}}" method="POST">
+                                <form action="{{route('module.update','id_module')}}" method="POST">
                                     @csrf
                                     @method('PUT')
+
+                                    <input type="hidden" style="color:black;" name="id_module" id="id_module">
                                     <div class="form-group">
-                                        <label for="" style="color:#c21db7;">nom de filiere</label>
-
-
-                                        <input type="text" id="nom" name="nom" class="form-control"
-                                               placeholder="nom de departement">
-                                    </div>
-                                    <input type="hidden" name="id_filiere" id="id_filiere">
-                                    <br>
-                                    <div class="form-group">
-                                        <label for="" style="color:#c21db7;">coordinateur</label>
-                                        <input type="text" id="coordinateur" name="coordinateur" class="form-control"
-                                               placeholder="coordinateur">
-                                    </div>
-                                    <br>
-
-                                    <div class="form-group">
-                                        <label for="" style="color:#c21db7;">date de debut</label>
-                                        <input type="date" id="datedebut" name="datedebut" class="form-control"
-                                               placeholder="date de debut">
-                                    </div>
-                                    <br>
-
-                                    <div class="form-group">
-                                        <label for="" style="color:#c21db7;">date de fin</label>
-
-
-                                        <input type="date" id="datefin" name="datefin" class="form-control"
-                                               placeholder="date de fin">
-                                    </div>
-                                    <br>
-
-                                    <div class="form-group">
-
-                                        <label for="" style="color:#c21db7;"> id departemeent</label>
-
-                                        <select name="nom_dep" size="1">
-                                            <?php
-
-                                            $departements = Departement::all();
-                                            foreach ($departements as $un) {
-                                                echo '<option>';
-                                                echo $un->nom;
-                                                echo '</option>';
-                                            }
-                                            ?>
-                                        </select>
+                                        <label for="nom_module" style="color:#c21db7;">nom module</label>
+                                        <input type="text" name="nom_module" id="nom_module" style="color:black;" class="form-control"
+                                               placeholder="nom de module">
                                     </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">fermer</button>
 
-                                <button type="submit" class="btn btn-success">Modifier</button>
+                                <button type="submit" class="btn btn-success">modifier</button>
                             </div>
                             </form>
                         </div>
@@ -342,31 +244,30 @@
 
 
                 <!-- Modal delete -->
-
                 <div class="modal fade-left" id="exampleModal-delete" tabindex="-1" role="dialog"
                      aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-notify modal-lg modal-right modal-success" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">supprimer filiere</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">supprimer</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
 
-                                <form action="{{route('filiere.destroy','id_filiere')}}" method="POST">
+                                <form action="{{route('module.destroy','id_module')}}" method="POST">
                                     @csrf
                                     @method('DELETE')
 
-                                    <input type="hidden" name="id_filiere" id="id_filiere">
-                                    <p class="text-center" width="50px"> vous ete sur que vous voulez supprimer ce
-                                        filiere</p>
+                                    <input type="hidden" name="id_module" id="id_module">
+                                    <p class="text-center" width="50px"> vous ete sûre que vous voulez supprimer ce
+                                        matiere</p>
 
 
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-warning" data-dismiss="modal">fermer</button>
+                                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
 
                                 <button type="submit" class="btn btn-danger">supprimer</button>
                             </div>
@@ -374,9 +275,11 @@
                         </div>
                     </div>
                 </div>
-
-
             </div>
+        </div>
+        <div>
+
+        </div>
 
         </div>
 
@@ -387,23 +290,14 @@
     $('#exampleModal-edit').on('show.bs.modal', function (event) {
 
         var button = $(event.relatedTarget)
-        var nom = button.data('nom')
-        var coordinateur = button.data('coordinateur')
-        var datedebut = button.data('datedebut')
-        var datefin = button.data('datefin')
-        var id_departement = button.data('id_departement')
-        var id_filiere = button.data('id_filiere')
-
+        var id_module = button.data('id_module')
+        var nom_module = button.data('nom_module')
 
         var modal = $(this)
 
-        modal.find('.modal-title').text('modifier');
-        modal.find('.modal-body #nom').val(nom);
-        modal.find('.modal-body #coordinateur').val(coordinateur);
-        modal.find('.modal-body #datedebut').val(datedebut);
-        modal.find('.modal-body #datefin').val(datefin);
-        modal.find('.modal-body #id_departement').val(id_departement);
-        modal.find('.modal-body #id_filiere').val(id_filiere);
+        modal.find('.modal-title').text('EDIT STUDENT INFORMATION');
+        modal.find('.modal-body #id_module').val(id_module);
+        modal.find('.modal-body #nom_module').val(nom_module);
     });
 
 
@@ -411,18 +305,16 @@
 
         var button = $(event.relatedTarget)
 
-        var id_filiere = button.data('id_filiere')
-
+        var id_module = button.data('id_module')
 
         var modal = $(this)
 
-        modal.find('.modal-title').text('supprimer');
+        modal.find('.modal-title').text('delete STUDENT INFORMATION');
 
-        modal.find('.modal-body #id_filiere').val(id_filiere);
+        modal.find('.modal-body #id_module').val(id_module);
     });
 
 </script>
-
 <script>
     $(document).ready(function () {
         $('#myTable').DataTable();
@@ -431,6 +323,7 @@
         responsive: true
     });
 </script>
+
 
 <!--   Core JS Files   -->
 <script src="../assets/js/core/jquery.min.js"></script>
@@ -450,116 +343,7 @@
 <script src="../assets/js/material-dashboard.js?v=2.1.0"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 <script src="../assets/demo/demo.js"></script>
-<script>
-    <
-    /html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- jQuery -->
-    < script
-    src = "plugins/jquery/jquery.min.js" ></script>
-<!-- jQuery UI 1.11.4 -->
-<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
-    $.widget.bridge('uibutton', $.ui.button)
-</script>
-<!-- Bootstrap 4 -->
-<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- ChartJS -->
-<script src="plugins/chart.js/Chart.min.js"></script>
-<!-- Sparkline -->
-<script src="plugins/sparklines/sparkline.js"></script>
-<!-- JQVMap -->
-<script src="plugins/jqvmap/jquery.vmap.min.js"></script>
-<script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
-<!-- jQuery Knob Chart -->
-<script src="plugins/jquery-knob/jquery.knob.min.js"></script>
-<!-- daterangepicker -->
-<script src="plugins/moment/moment.min.js"></script>
-<script src="plugins/daterangepicker/daterangepicker.js"></script>
-<!-- Tempusdominus Bootstrap 4 -->
-<script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-<!-- Summernote -->
-<script src="plugins/summernote/summernote-bs4.min.js"></script>
-<!-- overlayScrollbars -->
-<script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-<!-- AdminLTE App -->
-<script src="dist/js/adminlte.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="dist/js/pages/dashboard.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="dist/js/demo.js"></script>
 <script type="text/javascript"
         src="https://cdn.datatables.net/v/bs4/dt-1.10.20/b-1.6.1/r-2.2.3/datatables.min.js"></script>
 <script src="//cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
-<script>
+</html>

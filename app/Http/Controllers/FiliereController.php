@@ -19,9 +19,9 @@ class FiliereController extends Controller
      */
     public function index()
     {
-        $filiere['filieres'] =filiere::OrderBy('id_filiere','asc')->paginate(10);
+        $filiere['filieres'] = filiere::OrderBy('id_filiere', 'asc')->paginate(10);
 
-        return view('filiere.index',$filiere);
+        return view('filiere.index', $filiere);
     }
 
     /**
@@ -37,38 +37,37 @@ class FiliereController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $selects =Departement::all();
-        foreach($selects as $select)
-  {
+        $selects = Departement::all();
+        foreach ($selects as $select) {
 
 
-    if($select->nom==$request->nom_dep){
+            if ($select->nom == $request->nom_dep) {
 
-        $filiere=array(
+                $filiere = array(
 
-            'nom'=>$request->nom ,
-            'coordinateur' =>$request->coordinateur,
-            'datedebut' =>$request->datedebut,
-            'datefin' =>$request->datefin,
-            'id_departement' => $select->id_dep
+                    'nom' => $request->nom,
+                    'coordinateur' => $request->coordinateur,
+                    'datedebut' => $request->datedebut,
+                    'datefin' => $request->datefin,
+                    'id_departement' => $select->id_dep
 
-              );
+                );
+                filiere::create($filiere);
+                return redirect()->route('filiere.index');
             }
-            }
+        }
 
-              filiere::create($filiere);
-              return redirect()->route('filiere.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\filiere  $filiere
+     * @param \App\filiere $filiere
      * @return \Illuminate\Http\Response
      */
     public function show(filiere $filiere)
@@ -79,7 +78,7 @@ class FiliereController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\filiere  $filiere
+     * @param \App\filiere $filiere
      * @return \Illuminate\Http\Response
      */
     public function edit(filiere $filiere)
@@ -90,45 +89,44 @@ class FiliereController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\filiere  $filiere
+     * @param \Illuminate\Http\Request $request
+     * @param \App\filiere $filiere
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
     {
 
-        $selects =Departement::all();
-        foreach($selects as $select)
-  {
+        $selects = Departement::all();
+        foreach ($selects as $select) {
 
-        if($select->nom==$request->nom_dep){
+            if ($select->nom == $request->nom_dep) {
 
-        $filiere=array(
-            'nom' => $request->nom ,
-            'coordinateur' =>$request->coordinateur,
-            'datedebut' =>$request->datedebut,
-            'datefin' =>$request->datefin,
-            'id_departement' => $select->id_dep
+                $filiere = array(
+                    'nom' => $request->nom,
+                    'coordinateur' => $request->coordinateur,
+                    'datedebut' => $request->datedebut,
+                    'datefin' => $request->datefin,
+                    'id_departement' => $select->id_dep
 
-            );
+                );
             }
         }
 
-             Filiere::findOrfail($request->id_filiere)->update($filiere);
-              return redirect()->route('filiere.index');
+        Filiere::findOrfail($request->id_filiere)->update($filiere);
+        return redirect()->route('filiere.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\filiere  $filiere
+     * @param \App\filiere $filiere
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $filiere)
     {
-        $delete=$filiere->all();
-        $deletefiliere=Filiere::findOrfail($filiere->id_filiere);
-         $deletefiliere->delete();
-         return redirect()->route('filiere.index');
+        $delete = $filiere->all();
+        $deletefiliere = Filiere::findOrfail($filiere->id_filiere);
+        $deletefiliere->delete();
+        return redirect()->route('filiere.index');
     }
 }

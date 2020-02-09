@@ -7,7 +7,7 @@
     <link rel="icon" type="image/png" href="../assets/img/favicon.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <title>
-        filiere
+        Etudiant
     </title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
           name='viewport'/>
@@ -52,7 +52,7 @@
           Tip 2: you can also add an image using data-image tag
       -->
         <div class="logo"><a href="http://www.creative-tim.com" class="simple-text logo-normal">
-                filiere
+                Etudiant
             </a></div>
         <div class="sidebar-wrapper">
             <ul class="nav">
@@ -60,7 +60,7 @@
                 <li class="nav-item active ">
                     <a class="nav-link" href="./tables.html">
                         <i class="material-icons">content_paste</i>
-                        <p>Filiere</p>
+                        <p>Etudiant</p>
                     </a>
                 </li>
 
@@ -78,7 +78,7 @@
         <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " id="navigation-example">
             <div class="container-fluid">
                 <div class="navbar-wrapper">
-                    <a class="navbar-brand" href="javascript:void(0)">Filiere</a>
+                    <a class="navbar-brand" href="javascript:void(0)">Etudiant</a>
                 </div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index"
                         aria-expanded="false" aria-label="Toggle navigation" data-target="#navigation-example">
@@ -134,7 +134,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header card-header-primary">
-                                <h4 class="card-title ">Table filiere </h4>
+                                <h4 class="card-title ">Etudiant Table</h4>
                                 <p class="card-category"></p>
                             </div>
                             <a href="" class="btn btn-info" style="margin-left:85%" data-toggle="modal"
@@ -145,39 +145,53 @@
                                         <thead>
                                         <tr>
                                             <th>#</th>
+                                            <th>cin</th>
+                                            <th>niveau</th>
+                                            <th>cne</th>
                                             <th>nom</th>
-                                            <th>coordinateur</th>
-                                            <th>date de debut</th>
-                                            <th>date de fin</th>
-                                            <th>id departement</th>
-                                            <th>Action</th>
+                                            <th>prenom</th>
+                                            <th>email</th>
+                                            <th>username</th>
+                                            <th>password</th>
+                                            <th>numero</th>
+                                            <th>num_apologie</th>
+                                            <th>action</th>
                                         </tr>
                                         <tbody>
-                                        @foreach($filieres as $key=>$filiere)
+                                        @foreach($etudiants as $key=>$etudiant)
                                             <tr>
                                                 <td>{{++$key}}</td>
-                                                <td>{{$filiere->nom}}</td>
-                                                <td>{{$filiere->coordinateur}}</td>
-                                                <td>{{$filiere->datedebut}}</td>
-                                                <td>{{$filiere->datefin}}</td>
-                                                <td>{{$filiere->id_departement}}</td>
+                                                <td>{{$etudiant->cin}}</td>
+                                                <td>{{$etudiant->id_niveau}}</td>
+                                                <td>{{$etudiant->cne}}</td>
+                                                <td>{{$etudiant->nom}}</td>
+                                                <td>{{$etudiant->prenom}}</td>
+                                                <td>{{$etudiant->email_address}}</td>
+                                                <td>{{$etudiant->username}}</td>
+                                                <td>{{$etudiant->password}}</td>
+                                                <td>{{$etudiant->numero}}</td>
+                                                <td>{{$etudiant->num_apologie}}</td>
                                                 <td>
-                                                    <a data-id_filiere="{{$filiere->id_filiere}}"
-                                                       data-nom="{{$filiere->nom}}"
-                                                       data-coordinateur="{{$filiere->coordinsteur}}"
-                                                       data-datedebut="{{$filiere->datedebut}}"
-                                                       data-datefin="{{$filiere->datefin}}"
-                                                       data-id_departement="{{$filiere->id_departement}}"
+                                                    <a data-id="{{$etudiant->id}}" data-cin="{{$etudiant->cin}}"
+                                                       data-cne="{{$etudiant->cne}}" data-nom="{{$etudiant->nom}}"
+                                                       data-prenom="{{$etudiant->prenom}}"
+                                                       data-id_niveau="{{$etudiant->id_niveau}}"
+                                                       data-email_address="{{$etudiant->email_address}}"
+                                                       data-username="{{$etudiant->username}}"
+                                                       data-password="{{$etudiant->password}}"
+                                                       data-numero="{{$etudiant->numero}}"
+                                                       data-num_apologie="{{$etudiant->num_apologie}}"
                                                        data-toggle="modal"
                                                        data-target="#exampleModal-edit" type="button"
                                                        class="btn btn-warning btn-sm">modifier</a>
-                                                    <a data-id_filiere="{{$filiere->id_filiere}}" data-toggle="modal"
+                                                    <a data-id="{{$etudiant->id}}"
+                                                       data-toggle="modal"
                                                        data-target="#exampleModal-delete" class="btn btn-danger btn-sm">supprimer</a>
                                                 </td>
                                             </tr>
                                         @endforeach
                                         </tbody>
-                                        {{$filieres->links()}}
+                                        {{$etudiants->links()}}
                                         </thead>
                                     </table>
                                 </div>
@@ -189,73 +203,95 @@
                 </div>
 
                 <!-- Modal add -->
-
                 <div class="modal fade-right" id="exampleModal" tabindex="-1" role="dialog"
                      aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-notify modal-lg modal-right modal-success" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Ajouter etudiant</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
 
-                                <form action="{{route('filiere.store')}}" method="POST">
+                                <form action="{{route('etudiant.store')}}" method="POST">
                                     @csrf
                                     <div class="form-group">
-                                        <label for="" style="color:#c21db7;">nom de filiere</label>
+                                        <label for="cin" style="color:#c21db7;">cin</label>
 
-
-                                        <input type="text" id="nom" name="nom" class="form-control"
-                                               placeholder="nom de departement">
-                                    </div>
-                                    <input type="hidden" name="id_filiere" id="id_filiere">
-                                    <br>
-                                    <div class="form-group">
-                                        <label for="" style="color:#c21db7;">coordinateur</label>
-                                        <input type="text" id="coordinateur" name="coordinateur" class="form-control"
-                                               placeholder="coordinateur">
+                                        <input type="text" name="cin" style="color:black;" class="form-control"
+                                               placeholder="cin">
                                     </div>
                                     <br>
-
                                     <div class="form-group">
-                                        <label for="" style="color:#c21db7;">date de debut</label>
-                                        <input type="date" id="datedebut" name="datedebut" class="form-control"
-                                               placeholder="date de debut">
+                                        <label for="cne" style="color:#c21db7;">cne</label>
+
+                                        <input type="text" name="cne" style="color:black;" class="form-control"
+                                               placeholder="cne">
                                     </div>
                                     <br>
-
                                     <div class="form-group">
-                                        <label for="" style="color:#c21db7;">date de fin</label>
+                                        <label for="nom" style="color:#c21db7;">nom</label>
 
-
-                                        <input type="date" id="datefin" name="datefin" class="form-control"
-                                               placeholder="date de fin">
+                                        <input type="text" name="nom" style="color:black;" class="form-control"
+                                               placeholder="nom">
                                     </div>
                                     <br>
 
                                     <div class="form-group">
 
-                                        <label for="" style="color:#c21db7;"> id departemeent</label>
+                                        <label for="prenom" style="color:#c21db7;">prenom</label>
 
-                                        <select name="nom_dep" size="2">
-                                            <?php
-                                            use App\departement;
-                                            $departements = departement::all();
-                                            foreach ($departements as $un) {
-                                                echo '<option>';
-                                                echo $un->nom;
-                                                echo '</option>';
-                                            }
-                                            ?>
-                                        </select>
+                                        <input type="text" name="prenom" style="color:black;" class="form-control"
+                                               placeholder="prenom">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="id_niveau" style="color:#c21db7;">id_niveau</label>
 
+                                        <input type="number" name="id_niveau" style="color:black;" class="form-control"
+                                               placeholder="id_niveau" value="1" readonly>
+                                    </div>
+                                    <div class="form-group">
+
+                                        <label for="email_address" style="color:#c21db7;">email</label>
+
+                                        <input type="email" style="color:black;" name="email_address"
+                                               class="form-control"
+                                               placeholder="email">
+                                    </div>
+                                    <div class="form-group">
+
+                                        <label for="username" style="color:#c21db7;">username</label>
+
+                                        <input type="text" style="color:black;" name="username" class="form-control"
+                                               placeholder="username">
+                                    </div>
+                                    <div class="form-group">
+
+                                        <label for="password" style="color:#c21db7;">password</label>
+
+                                        <input type="password" style="color:black;" name="password" class="form-control"
+                                               placeholder="password">
+                                    </div>
+                                    <div class="form-group">
+
+                                        <label for="numero" style="color:#c21db7;">numero</label>
+
+                                        <input type="number" style="color:black;" name="numero" class="form-control"
+                                               placeholder="numero">
+                                    </div>
+                                    <div class="form-group">
+
+                                        <label for="num_apologie" style="color:#c21db7;">num apologie</label>
+
+                                        <input type="number" style="color:black;" name="num_apologie"
+                                               class="form-control"
+                                               placeholder="num_apologie">
                                     </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">fermer</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
 
                                 <button type="submit" class="btn btn-success">enregistrer</button>
                             </div>
@@ -271,69 +307,94 @@
                     <div class="modal-dialog modal-notify modal-lg modal-right modal-success" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">modifier</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
 
-                                <form action="{{route('filiere.update','id_filiere')}}" method="POST">
+                                <form action="{{route('etudiant.update','id')}}" method="POST">
                                     @csrf
                                     @method('PUT')
+                                    <input type="hidden" name="id" id="id">
                                     <div class="form-group">
-                                        <label for="" style="color:#c21db7;">nom de filiere</label>
+                                        <label for="cin" style="color:#c21db7;">cin</label>
 
-
-                                        <input type="text" id="nom" name="nom" class="form-control"
-                                               placeholder="nom de departement">
-                                    </div>
-                                    <input type="hidden" name="id_filiere" id="id_filiere">
-                                    <br>
-                                    <div class="form-group">
-                                        <label for="" style="color:#c21db7;">coordinateur</label>
-                                        <input type="text" id="coordinateur" name="coordinateur" class="form-control"
-                                               placeholder="coordinateur">
+                                        <input type="text" name="cin" id="cin" style="color:black;" class="form-control"
+                                               placeholder="cin">
                                     </div>
                                     <br>
-
                                     <div class="form-group">
-                                        <label for="" style="color:#c21db7;">date de debut</label>
-                                        <input type="date" id="datedebut" name="datedebut" class="form-control"
-                                               placeholder="date de debut">
+                                        <label for="cne" style="color:#c21db7;">cne</label>
+
+                                        <input type="text" name="cne" id="cne" style="color:black;" class="form-control"
+                                               placeholder="cne">
                                     </div>
                                     <br>
-
                                     <div class="form-group">
-                                        <label for="" style="color:#c21db7;">date de fin</label>
+                                        <label for="nom" style="color:#c21db7;">nom</label>
 
-
-                                        <input type="date" id="datefin" name="datefin" class="form-control"
-                                               placeholder="date de fin">
+                                        <input type="text" name="nom" id="nom" style="color:black;" class="form-control"
+                                               placeholder="nom">
                                     </div>
                                     <br>
 
                                     <div class="form-group">
 
-                                        <label for="" style="color:#c21db7;"> id departemeent</label>
+                                        <label for="prenom" style="color:#c21db7;">prenom</label>
 
-                                        <select name="nom_dep" size="1">
-                                            <?php
+                                        <input type="text" name="prenom" id="prenom" style="color:black;" class="form-control"
+                                               placeholder="prenom">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="id_niveau" style="color:#c21db7;">id_niveau</label>
 
-                                            $departements = Departement::all();
-                                            foreach ($departements as $un) {
-                                                echo '<option>';
-                                                echo $un->nom;
-                                                echo '</option>';
-                                            }
-                                            ?>
-                                        </select>
+                                        <input type="number" name="id_niveau" id="id_niveau" style="color:black;" class="form-control"
+                                               placeholder="id_niveau" value="1" readonly>
+                                    </div>
+                                    <div class="form-group">
+
+                                        <label for="email_address" style="color:#c21db7;">email</label>
+
+                                        <input type="email" id="email_address" style="color:black;" name="email_address"
+                                               class="form-control"
+                                               placeholder="email">
+                                    </div>
+                                    <div class="form-group">
+
+                                        <label for="username" style="color:#c21db7;">username</label>
+
+                                        <input type="text" id="username" style="color:black;" name="username" class="form-control"
+                                               placeholder="username">
+                                    </div>
+                                    <div class="form-group">
+
+                                        <label for="password" style="color:#c21db7;">password</label>
+
+                                        <input type="password" id="password" style="color:black;" name="password" class="form-control"
+                                               placeholder="password">
+                                    </div>
+                                    <div class="form-group">
+
+                                        <label for="numero" style="color:#c21db7;">numero</label>
+
+                                        <input type="number" id="numero" style="color:black;" name="numero" class="form-control"
+                                               placeholder="numero">
+                                    </div>
+                                    <div class="form-group">
+
+                                        <label for="num_apologie" style="color:#c21db7;">num apologie</label>
+
+                                        <input type="number" id="num_apologie" style="color:black;" name="num_apologie"
+                                               class="form-control"
+                                               placeholder="num_apologie">
                                     </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">fermer</button>
 
-                                <button type="submit" class="btn btn-success">Modifier</button>
+                                <button type="submit" class="btn btn-success">modifier</button>
                             </div>
                             </form>
                         </div>
@@ -342,31 +403,30 @@
 
 
                 <!-- Modal delete -->
-
                 <div class="modal fade-left" id="exampleModal-delete" tabindex="-1" role="dialog"
                      aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-notify modal-lg modal-right modal-success" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">supprimer filiere</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">supprimer</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
 
-                                <form action="{{route('filiere.destroy','id_filiere')}}" method="POST">
+                                <form action="{{route('etudiant.destroy','id')}}" method="POST">
                                     @csrf
                                     @method('DELETE')
 
-                                    <input type="hidden" name="id_filiere" id="id_filiere">
-                                    <p class="text-center" width="50px"> vous ete sur que vous voulez supprimer ce
-                                        filiere</p>
+                                    <input type="hidden" name="id" id="id">
+                                    <p class="text-center" width="50px"> vous ete sûre que vous voulez supprimer ce
+                                        etudiant</p>
 
 
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-warning" data-dismiss="modal">fermer</button>
+                                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
 
                                 <button type="submit" class="btn btn-danger">supprimer</button>
                             </div>
@@ -381,29 +441,42 @@
         </div>
 
     </div>
+</div>
 </body>
 
 <script>
     $('#exampleModal-edit').on('show.bs.modal', function (event) {
 
-        var button = $(event.relatedTarget)
+        var button = $(event.relatedTarget);
+        var id = button.data('id')
+        var cin = button.data('cin')
+        var cne = button.data('cne')
         var nom = button.data('nom')
-        var coordinateur = button.data('coordinateur')
-        var datedebut = button.data('datedebut')
-        var datefin = button.data('datefin')
-        var id_departement = button.data('id_departement')
-        var id_filiere = button.data('id_filiere')
+        var prenom = button.data('prenom')
+        var id_niveau = button.data('id_niveau')
+        var email = button.data('email_address')
+        var username = button.data('username')
+        var password = button.data('password')
+        var numero = button.data('numero')
+        var num_apologie = button.data('num_apologie')
 
 
         var modal = $(this)
 
-        modal.find('.modal-title').text('modifier');
+        modal.find('.modal-title').text('EDIT STUDENT INFORMATION');
+        modal.find('.modal-body #id').val(id);
+        modal.find('.modal-body #cin').val(cin);
+        modal.find('.modal-body #cne').val(cne);
         modal.find('.modal-body #nom').val(nom);
-        modal.find('.modal-body #coordinateur').val(coordinateur);
-        modal.find('.modal-body #datedebut').val(datedebut);
-        modal.find('.modal-body #datefin').val(datefin);
-        modal.find('.modal-body #id_departement').val(id_departement);
-        modal.find('.modal-body #id_filiere').val(id_filiere);
+        modal.find('.modal-body #prenom').val(prenom);
+        modal.find('.modal-body #id_niveau').val(id_niveau);
+        modal.find('.modal-body #email_address').val(email);
+        modal.find('.modal-body #username').val(username);
+        modal.find('.modal-body #password').val(password);
+        modal.find('.modal-body #numero').val(numero);
+        modal.find('.modal-body #num_apologie').val(num_apologie);
+
+
     });
 
 
@@ -411,18 +484,16 @@
 
         var button = $(event.relatedTarget)
 
-        var id_filiere = button.data('id_filiere')
-
+        var id = button.data('id')
 
         var modal = $(this)
 
-        modal.find('.modal-title').text('supprimer');
+        modal.find('.modal-title').text('delete STUDENT INFORMATION');
 
-        modal.find('.modal-body #id_filiere').val(id_filiere);
+        modal.find('.modal-body #id').val(id);
     });
 
 </script>
-
 <script>
     $(document).ready(function () {
         $('#myTable').DataTable();
@@ -433,133 +504,24 @@
 </script>
 
 <!--   Core JS Files   -->
-<script src="../assets/js/core/jquery.min.js"></script>
-<script src="../assets/js/core/popper.min.js"></script>
-<script src="../assets/js/core/bootstrap-material-design.min.js"></script>
+<script src="/public/assets/js/core/jquery.min.js"></script>
+<script src="/public/assets/js/core/popper.min.js"></script>
+<script src="/public/assets/js/core/bootstrap-material-design.min.js"></script>
 <script src="https://unpkg.com/default-passive-events"></script>
-<script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+<script src="/public/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 <!--  Google Maps Plugin    -->
 <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
 <!-- Chartist JS -->
-<script src="../assets/js/plugins/chartist.min.js"></script>
+<script src="/public/assets/js/plugins/chartist.min.js"></script>
 <!--  Notifications Plugin    -->
-<script src="../assets/js/plugins/bootstrap-notify.js"></script>
+<script src="/public/assets/js/plugins/bootstrap-notify.js"></script>
 <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-<script src="../assets/js/material-dashboard.js?v=2.1.0"></script>
+<script src="/public/assets/js/material-dashboard.js?v=2.1.0"></script>
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
-<script src="../assets/demo/demo.js"></script>
-<script>
-    <
-    /html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- jQuery -->
-    < script
-    src = "plugins/jquery/jquery.min.js" ></script>
-<!-- jQuery UI 1.11.4 -->
-<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
-    $.widget.bridge('uibutton', $.ui.button)
-</script>
-<!-- Bootstrap 4 -->
-<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- ChartJS -->
-<script src="plugins/chart.js/Chart.min.js"></script>
-<!-- Sparkline -->
-<script src="plugins/sparklines/sparkline.js"></script>
-<!-- JQVMap -->
-<script src="plugins/jqvmap/jquery.vmap.min.js"></script>
-<script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
-<!-- jQuery Knob Chart -->
-<script src="plugins/jquery-knob/jquery.knob.min.js"></script>
-<!-- daterangepicker -->
-<script src="plugins/moment/moment.min.js"></script>
-<script src="plugins/daterangepicker/daterangepicker.js"></script>
-<!-- Tempusdominus Bootstrap 4 -->
-<script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-<!-- Summernote -->
-<script src="plugins/summernote/summernote-bs4.min.js"></script>
-<!-- overlayScrollbars -->
-<script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-<!-- AdminLTE App -->
-<script src="dist/js/adminlte.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="dist/js/pages/dashboard.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="dist/js/demo.js"></script>
+<script src="/public/assets/demo/demo.js"></script>
 <script type="text/javascript"
         src="https://cdn.datatables.net/v/bs4/dt-1.10.20/b-1.6.1/r-2.2.3/datatables.min.js"></script>
 <script src="//cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
-<script>
+</html>
