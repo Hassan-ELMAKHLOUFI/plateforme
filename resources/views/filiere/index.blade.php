@@ -207,21 +207,21 @@
                                         <label for="" style="color:#c21db7;">nom de filiere</label>
 
 
-                                        <input type="text" id="nom" name="nom" class="form-control"
+                                        <input style="color:black;" type="text" id="nom" name="nom" class="form-control"
                                                placeholder="nom de departement">
                                     </div>
-                                    <input type="hidden" name="id_filiere" id="id_filiere">
+                                    <input  style="color:black;" type="hidden" name="id_filiere" id="id_filiere">
                                     <br>
                                     <div class="form-group">
                                         <label for="" style="color:#c21db7;">coordinateur</label>
-                                        <input type="text" id="coordinateur" name="coordinateur" class="form-control"
+                                        <input style="color:black;" type="text" id="coordinateur" name="coordinateur" class="form-control"
                                                placeholder="coordinateur">
                                     </div>
                                     <br>
 
                                     <div class="form-group">
                                         <label for="" style="color:#c21db7;">date de debut</label>
-                                        <input type="date" id="datedebut" name="datedebut" class="form-control"
+                                        <input style="color:black;" type="date" id="datedebut" name="datedebut" class="form-control"
                                                placeholder="date de debut">
                                     </div>
                                     <br>
@@ -230,7 +230,7 @@
                                         <label for="" style="color:#c21db7;">date de fin</label>
 
 
-                                        <input type="date" id="datefin" name="datefin" class="form-control"
+                                        <input style="color:black;" type="date" id="datefin" name="datefin" class="form-control"
                                                placeholder="date de fin">
                                     </div>
                                     <br>
@@ -284,21 +284,21 @@
                                         <label for="" style="color:#c21db7;">nom de filiere</label>
 
 
-                                        <input type="text" id="nom" name="nom" class="form-control"
+                                        <input style="color:black;" type="text" id="nom" name="nom" class="form-control"
                                                placeholder="nom de departement">
                                     </div>
                                     <input type="hidden" name="id_filiere" id="id_filiere">
                                     <br>
                                     <div class="form-group">
                                         <label for="" style="color:#c21db7;">coordinateur</label>
-                                        <input type="text" id="coordinateur" name="coordinateur" class="form-control"
+                                        <input style="color:black;" type="text" id="coordinateur" name="coordinateur" class="form-control"
                                                placeholder="coordinateur">
                                     </div>
                                     <br>
 
                                     <div class="form-group">
                                         <label for="" style="color:#c21db7;">date de debut</label>
-                                        <input type="date" id="datedebut" name="datedebut" class="form-control"
+                                        <input style="color:black;" type="date" id="datedebut" name="datedebut" class="form-control"
                                                placeholder="date de debut">
                                     </div>
                                     <br>
@@ -307,7 +307,7 @@
                                         <label for="" style="color:#c21db7;">date de fin</label>
 
 
-                                        <input type="date" id="datefin" name="datefin" class="form-control"
+                                        <input style="color:black;" type="date" id="datefin" name="datefin" class="form-control"
                                                placeholder="date de fin">
                                     </div>
                                     <br>

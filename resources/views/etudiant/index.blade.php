@@ -271,8 +271,9 @@
 
                                         <label for="password" style="color:#c21db7;">password</label>
 
-                                        <input type="password" style="color:black;" name="password" class="form-control"
+                                        <input type="password" id="eye" style="color:black;" name="password" class="form-control"
                                                placeholder="password">
+                                        <span toggle="#eye" class="fa fa-fw fa-eye field-icon toggle-password" style="float: right; margin-left: -25px; margin-top: -25px; position: relative; z-index: 2;"></span>
                                     </div>
                                     <div class="form-group">
 
@@ -443,6 +444,17 @@
     </div>
 </div>
 </body>
+
+<script>$(".toggle-password").click(function() {
+
+        $(this).toggleClass("fa-eye fa-eye-slash");
+        var input = $($(this).attr("toggle"));
+        if (input.attr("type") == "password") {
+            input.attr("type", "text");
+        } else {
+            input.attr("type", "password");
+        }
+    });</script>
 
 <script>
     $('#exampleModal-edit').on('show.bs.modal', function (event) {

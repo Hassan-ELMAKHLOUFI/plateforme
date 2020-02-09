@@ -20,7 +20,7 @@ class CreateEtudiantsTable extends Migration
             $table->string('cne');
             $table->string('nom');
             $table->string('prenom');
-            $table->string('email');
+            $table->string('email_address');
             $table->string('username');
             $table->string('password');
             $table->integer('numero');
