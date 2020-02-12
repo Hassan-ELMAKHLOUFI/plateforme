@@ -171,7 +171,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header card-header-primary">
-                                <h4 class="card-title ">Table matiere</h4>
+                                <h4 class="card-title ">Table module</h4>
                                 <p class="card-category"></p>
                             </div>
                             <a href="" class="btn btn-info" style="margin-left:85%" data-toggle="modal"
