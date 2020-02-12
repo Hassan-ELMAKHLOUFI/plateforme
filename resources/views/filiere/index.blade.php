@@ -56,12 +56,49 @@
         <div class="sidebar-wrapper">
             <ul class="nav">
 
-                <li class="nav-item active ">
-                    <a class="nav-link" href="./tables.html">
+                <li class="nav-item  ">
+                    <a class="nav-link" href="{{route("departement.index")}}">
                         <i class="material-icons">content_paste</i>
-                        <p>Filiere</p>
+                        <p>departement</p>
                     </a>
                 </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{route("filiere.index")}}">
+                        <i class="material-icons">content_paste</i>
+                        <p>filiere</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route("etudiant.index")}}">
+                        <i class="material-icons">content_paste</i>
+                        <p>etudiant</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="{{route("module.index")}}">
+                        <i class="material-icons">content_paste</i>
+                        <p>module</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="{{route("matiere.index")}}">
+                        <i class="material-icons">content_paste</i>
+                        <p>matiere</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                <a class="nav-link" href="{{route("niveau.index")}}">
+                    <i class="material-icons">content_paste</i>
+                    <p>niveau</p>
+                </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="{{route("professeur.index")}}">
+                        <i class="material-icons">content_paste</i>
+                        <p>professeur</p>
+                    </a>
+                </li>
+
 
                 <!-- <li class="nav-item active-pro ">
                       <a class="nav-link" href="./upgrade.html">
