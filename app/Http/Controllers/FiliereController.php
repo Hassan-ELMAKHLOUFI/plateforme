@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\filiere;
 use App\departement;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class FiliereController extends Controller
 {
@@ -129,4 +130,10 @@ class FiliereController extends Controller
         $deletefiliere->delete();
         return redirect()->route('filiere.index');
     }
+
+    public function import(Request $request){
+        Excel::import(new filiere,request()->file('file'));
+        return back();
+    }
 }
+

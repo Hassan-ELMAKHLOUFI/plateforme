@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Matiere;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class MatiereController extends Controller
 {
@@ -104,5 +105,10 @@ class MatiereController extends Controller
         $deletematiere = Matiere::findOrfail($matiere->id_math);
         $deletematiere->delete();
         return redirect()->route('matiere.index');
+    }
+
+    public function import(Request $request){
+        Excel::import(new Matiere,request()->file('file'));
+        return back();
     }
 }

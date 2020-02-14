@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Matiere;
 use App\Module;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ModuleController extends Controller
 {
@@ -99,5 +100,10 @@ class ModuleController extends Controller
         $deletemodule = Module::findOrfail($module->id_module);
         $deletemodule->delete();
         return redirect()->route('module.index');
+    }
+
+    public function import(Request $request){
+        Excel::import(new Module,request()->file('file'));
+        return back();
     }
 }

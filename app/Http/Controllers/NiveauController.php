@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Module;
 use App\niveau;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class NiveauController extends Controller
 {
@@ -95,5 +97,10 @@ class NiveauController extends Controller
         $deleteniveau = Niveau::findOrfail($niveau->id_niveau);
         $deleteniveau->delete();
         return redirect()->route('niveau.index');
+    }
+
+    public function import(Request $request){
+        Excel::import(new Niveau ,request()->file('file'));
+        return back();
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\departement;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class DepartementController extends Controller
 {
@@ -122,5 +123,10 @@ class DepartementController extends Controller
         $deletedepartement = Departement::findOrfail($departement->id_departement);
         $deletedepartement->delete();
         return redirect()->route('departement.index');
+    }
+
+    public function import(Request $request){
+        Excel::import(new departement,request()->file('file'));
+        return back();
     }
 }

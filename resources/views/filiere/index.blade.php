@@ -87,10 +87,10 @@
                     </a>
                 </li>
                 <li class="nav-item ">
-                <a class="nav-link" href="{{route("niveau.index")}}">
-                    <i class="material-icons">content_paste</i>
-                    <p>niveau</p>
-                </a>
+                    <a class="nav-link" href="{{route("niveau.index")}}">
+                        <i class="material-icons">content_paste</i>
+                        <p>niveau</p>
+                    </a>
                 </li>
                 <li class="nav-item ">
                     <a class="nav-link" href="{{route("professeur.index")}}">
@@ -170,11 +170,23 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header card-header-primary">
-                                <h4 class="card-title ">Table filiere </h4>
+                                <h4 class="card-title ">table filiere</h4>
                                 <p class="card-category"></p>
                             </div>
-                            <a href="" class="btn btn-info" style="margin-left:85%" data-toggle="modal"
-                               data-target="#exampleModal">ajouter</a>
+                            <div class="row justify-content-between card-header">
+                                <button id="btn" class="btn btn-info">Export to Excel</button>
+                                <div>
+                                    <form action={{ route('filiere.import') }} method="POST"
+                                          enctype="multipart/form-data">
+                                        @csrf
+                                        <input type="file" name="file">
+                                        <input class="btn btn-primary" type="submit" name="upload" value="upload">
+                                    </form>
+                                </div>
+                                <a href="" class="btn btn-info" data-toggle="modal"
+                                   data-target="#exampleModal">ajouter</a>
+
+                            </div>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-bordered" id="myTable">
@@ -186,7 +198,7 @@
                                             <th>date de debut</th>
                                             <th>date de fin</th>
                                             <th>id departement</th>
-                                            <th>Action</th>
+                                            <th class="exclude">Action</th>
                                         </tr>
                                         <tbody>
                                         @foreach($filieres as $key=>$filiere)
@@ -197,7 +209,7 @@
                                                 <td>{{$filiere->datedebut}}</td>
                                                 <td>{{$filiere->datefin}}</td>
                                                 <td>{{$filiere->id_departement}}</td>
-                                                <td>
+                                                <td class="exclude">
                                                     <a data-id_filiere="{{$filiere->id_filiere}}"
                                                        data-nom="{{$filiere->nom}}"
                                                        data-coordinateur="{{$filiere->coordinsteur}}"
@@ -247,18 +259,20 @@
                                         <input style="color:black;" type="text" id="nom" name="nom" class="form-control"
                                                placeholder="nom de departement">
                                     </div>
-                                    <input  style="color:black;" type="hidden" name="id_filiere" id="id_filiere">
+                                    <input style="color:black;" type="hidden" name="id_filiere" id="id_filiere">
                                     <br>
                                     <div class="form-group">
                                         <label for="" style="color:#c21db7;">coordinateur</label>
-                                        <input style="color:black;" type="text" id="coordinateur" name="coordinateur" class="form-control"
+                                        <input style="color:black;" type="text" id="coordinateur" name="coordinateur"
+                                               class="form-control"
                                                placeholder="coordinateur">
                                     </div>
                                     <br>
 
                                     <div class="form-group">
                                         <label for="" style="color:#c21db7;">date de debut</label>
-                                        <input style="color:black;" type="date" id="datedebut" name="datedebut" class="form-control"
+                                        <input style="color:black;" type="date" id="datedebut" name="datedebut"
+                                               class="form-control"
                                                placeholder="date de debut">
                                     </div>
                                     <br>
@@ -267,7 +281,8 @@
                                         <label for="" style="color:#c21db7;">date de fin</label>
 
 
-                                        <input style="color:black;" type="date" id="datefin" name="datefin" class="form-control"
+                                        <input style="color:black;" type="date" id="datefin" name="datefin"
+                                               class="form-control"
                                                placeholder="date de fin">
                                     </div>
                                     <br>
@@ -328,14 +343,16 @@
                                     <br>
                                     <div class="form-group">
                                         <label for="" style="color:#c21db7;">coordinateur</label>
-                                        <input style="color:black;" type="text" id="coordinateur" name="coordinateur" class="form-control"
+                                        <input style="color:black;" type="text" id="coordinateur" name="coordinateur"
+                                               class="form-control"
                                                placeholder="coordinateur">
                                     </div>
                                     <br>
 
                                     <div class="form-group">
                                         <label for="" style="color:#c21db7;">date de debut</label>
-                                        <input style="color:black;" type="date" id="datedebut" name="datedebut" class="form-control"
+                                        <input style="color:black;" type="date" id="datedebut" name="datedebut"
+                                               class="form-control"
                                                placeholder="date de debut">
                                     </div>
                                     <br>
@@ -344,7 +361,8 @@
                                         <label for="" style="color:#c21db7;">date de fin</label>
 
 
-                                        <input style="color:black;" type="date" id="datefin" name="datefin" class="form-control"
+                                        <input style="color:black;" type="date" id="datefin" name="datefin"
+                                               class="form-control"
                                                placeholder="date de fin">
                                     </div>
                                     <br>
@@ -561,8 +579,7 @@
 
 
     <!-- jQuery -->
-    < script
-    src = "plugins/jquery/jquery.min.js" ></script>
+    <script src="plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -597,5 +614,15 @@
 <script src="dist/js/demo.js"></script>
 <script type="text/javascript"
         src="https://cdn.datatables.net/v/bs4/dt-1.10.20/b-1.6.1/r-2.2.3/datatables.min.js"></script>
-<script src="//cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
 <script>
+    $('#btn').click(function () {
+        $('.table').table2excel({
+            exclude: ".exclude",
+            name: "Filiere",
+            filename: "Filiere",
+            fileext: ".xls",
+        })
+    });
+</script>
+<script src="//cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
+</html>

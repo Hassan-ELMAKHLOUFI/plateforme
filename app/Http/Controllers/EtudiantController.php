@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Etudiant;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class EtudiantController extends Controller
 {
@@ -117,5 +118,9 @@ class EtudiantController extends Controller
         $deleteetudiant = Etudiant::findOrfail($etudiant->id);
         $deleteetudiant->delete();
         return redirect()->route('etudiant.index');
+    }
+    public function import(Request $request){
+        Excel::import(new Etudiant,request()->file('file'));
+        return back();
     }
 }

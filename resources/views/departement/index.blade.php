@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8"/>
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
@@ -174,29 +173,40 @@
                                 <h4 class="card-title ">table departement</h4>
                                 <p class="card-category"></p>
                             </div>
-                            <a href="" class="btn btn-info" style="margin-left:85%" data-toggle="modal"
-                               data-target="#exampleModal">ajouter</a>
+                            <div class="row justify-content-between card-header">
+                                <button id="btn" class="btn btn-info">Export to Excel</button>
+                                <div>
+                                    <form action={{ route('departement.import') }} method="POST" enctype="multipart/form-data">
+                                        @csrf
+                                        <input type="file" name="file">
+                                        <input class="btn btn-primary" type="submit" name="upload" value="upload">
+                                    </form>
+                                </div>
+                                <a href="" class="btn btn-info" data-toggle="modal"
+                                   data-target="#exampleModal">ajouter</a>
+
+                            </div>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-bordered" id="myTable">
                                         <thead>
                                         <tr>
-                                            <th>#</th>
+                                            <th class="exclude">#</th>
                                             <th>nom</th>
                                             <th>date</th>
                                             <th>chef departement</th>
                                             <th>date de fin</th>
-                                            <th>Action</th>
+                                            <th class="exclude">Action</th>
                                         </tr>
                                         <tbody>
                                         @foreach($departements as $key=>$departement)
                                             <tr>
-                                                <td>{{++$key}}</td>
+                                                <td class="exclude">{{++$key}}</td>
                                                 <td>{{$departement->nom}}</td>
                                                 <td>{{$departement->date_cr}}</td>
                                                 <td>{{$departement->chef}}</td>
                                                 <td>{{$departement->date_fin}}</td>
-                                                <td>
+                                                <td class="exclude">
                                                     <a data-id_departement="{{$departement->id_dep}}"
                                                        data-nom="{{$departement->nom}}"
                                                        data-date="{{$departement->date}}"
@@ -213,6 +223,44 @@
                                         </tbody>
                                         {{$departements->links()}}
                                         </thead>
+                                        <?php
+                                        use App\departement;
+                                        if (isset($_POST['upload'])) {
+
+                                            $inputfilename = $_FILES['file']['tmp_name'];
+                                            $exceldata = array();
+
+                                            try {
+                                                $inputfiletype = PHPExcel_IOFactory::identify($inputfilename);
+                                                $objReader = PHPExcel_IOFactory::createReader($inputfiletype);
+                                                $objPHPExcel = $objReader->load($inputfilename);
+                                            } catch (Exception $e) {
+                                            }
+                                            $sheet = $objPHPExcel->getSheet(0);
+                                            $highestRow = $sheet->getHighestRow();
+                                            $highestColumn = $sheet->getHighestColumn();
+                                            for ($row = 1; $row <= $highestRow; $row++) {
+                                                $rowData = $sheet->rangeToArray('A' . $row . ':' . $highestColumn . $row, NULL, TRUE, FALSE);
+                                                //$sql = "INSERT INTO departement VALUES('" . $rowData[0][0] . "','" . $rowData[0][1] . "','" . $rowData[0][2] . "','" . $rowData[0][3] . "')";
+                                            }
+                                        $departement = array(
+                                            'nom' => $rowData[0][0],
+                                            'chef' => $rowData[0][1],
+                                            'date_cr' => $rowData[0][2],
+                                            'date_fin' => $rowData[0][3]
+                                        );
+                                            ?>
+                                            {{\App\departement::created($departement)}}
+                                        <?php
+                                            foreach ($exceldata as $index => $excelraw) {
+                                                echo "<tr>";
+                                                foreach ($excelraw as $excelcolumn) {
+                                                    echo "<td>" . $excelcolumn . "</td>";
+                                                }
+                                                echo "</tr>";
+                                            }
+                                        }
+                                        ?>
                                     </table>
                                 </div>
 
@@ -273,7 +321,7 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
 
-                                <button type="submit" class="btn btn-success">enregistrer</button>
+                                <button type="submit" value="enregistrer" class="btn btn-success">enregistrer</button>
                             </div>
                             </form>
                         </div>
@@ -454,9 +502,9 @@
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 <script src="../assets/demo/demo.js"></script>
 
-    <!-- jQuery -->
-    <script
-    src = "plugins/jquery/jquery.min.js" ></script>
+<!-- jQuery -->
+<script
+    src="plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -491,5 +539,15 @@
 <script src="dist/js/demo.js"></script>
 <script type="text/javascript"
         src="https://cdn.datatables.net/v/bs4/dt-1.10.20/b-1.6.1/r-2.2.3/datatables.min.js"></script>
+<script>
+    $('#btn').click(function () {
+        $('.table').table2excel({
+            exclude: ".exclude",
+            name: "Departement",
+            filename: "Departement",
+            fileext: ".xls",
+        })
+    });
+</script>
 <script src="//cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
 </html>

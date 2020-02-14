@@ -2,14 +2,15 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="../assets/img/favicon.png">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <title>
         Material Dashboard Dark Edition by Creative Tim
     </title>
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+          name='viewport'/>
     <!--     Fonts and icons     -->
 
     <!-- Font Awesome -->
@@ -33,12 +34,13 @@
     <!-- MDB core JavaScript -->
     <script type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.12.0/js/mdb.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" type="text/css"
+          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!-- CSS Files -->
-    <link href="../assets/css/material-dashboard.css?v=2.1.0" rel="stylesheet" />
+    <link href="../assets/css/material-dashboard.css?v=2.1.0" rel="stylesheet"/>
     <!-- CSS Just for demo purpose, don't include it in your project -->
-    <link href="../assets/demo/demo.css" rel="stylesheet" />
+    <link href="../assets/demo/demo.css" rel="stylesheet"/>
 
 
 </head>
@@ -89,10 +91,10 @@
                 </li>
                 <li class="nav-item ">
 
-                <a class="nav-link" href="{{route("niveau.index")}}">
-                    <i class="material-icons">content_paste</i>
-                    <p>niveau</p>
-                </a>
+                    <a class="nav-link" href="{{route("niveau.index")}}">
+                        <i class="material-icons">content_paste</i>
+                        <p>niveau</p>
+                    </a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="{{route("professeur.index")}}">
@@ -118,7 +120,8 @@
                 <div class="navbar-wrapper">
                     <a class="navbar-brand" href="javascript:void(0)">Liste des tableaux</a>
                 </div>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation" data-target="#navigation-example">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index"
+                        aria-expanded="false" aria-label="Toggle navigation" data-target="#navigation-example">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="navbar-toggler-icon icon-bar"></span>
                     <span class="navbar-toggler-icon icon-bar"></span>
@@ -136,7 +139,8 @@
                             </a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link" href="javscript:void(0)" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link" href="javscript:void(0)" id="navbarDropdownMenuLink"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="material-icons">notifications</i>
                                 <span class="notification">5</span>
                                 <p class="d-lg-none d-md-block">
@@ -166,8 +170,20 @@
                             <div class="card-header card-header-primary">
                                 <h4 class="card-title ">Table des professeurs</h4>
                             </div>
-                            <a href="" class="btn btn-info" style="margin-left:85%" data-toggle="modal"
-                               data-target="#exampleModal">ajouter</a>
+                            <div class="row justify-content-between card-header">
+                                <button id="btn" class="btn btn-info">Export to Excel</button>
+                                <div>
+                                    <form action={{ route('professeur.import') }} method="POST"
+                                          enctype="multipart/form-data">
+                                        @csrf
+                                        <input type="file" name="file">
+                                        <input class="btn btn-primary" type="submit" name="upload" value="upload">
+                                    </form>
+                                </div>
+                                <a href="" class="btn btn-info" data-toggle="modal"
+                                   data-target="#exampleModal">ajouter</a>
+                            </div>
+
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-bordered" id="myTable">
@@ -178,10 +194,10 @@
                                             <th>nom</th>
                                             <th>prenom</th>
                                             <th>username</th>
-                                            <th>email </th>
+                                            <th>email</th>
                                             <th>mot de passe</th>
                                             <th>grade</th>
-                                            <th>Action</th>
+                                            <th class="exclude">Action</th>
                                         </tr>
                                         <tbody>
                                         @foreach($professeurs as $key=>$professeur)
@@ -195,12 +211,15 @@
                                                 <td>{{$professeur->password}}</td>
                                                 <td>{{$professeur->grade}}</td>
 
-                                                <td>
-                                                    <a data-id_professeur="{{$professeur->id}}" data-cin="{{$professeur->cin}}"
+                                                <td class="exclude">
+                                                    <a data-id_professeur="{{$professeur->id}}"
+                                                       data-cin="{{$professeur->cin}}"
                                                        data-nom="{{$professeur->nom}}"
-                                                       data-prenom="{{$professeur->prenom}}" data-username="{{$professeur->username}}"
+                                                       data-prenom="{{$professeur->prenom}}"
+                                                       data-username="{{$professeur->username}}"
                                                        data-email="{{$professeur->email}}"
-                                                       data-password="{{$professeur->password}}" data-grade="{{$professeur->grade}}" data-toggle="modal"
+                                                       data-password="{{$professeur->password}}"
+                                                       data-grade="{{$professeur->grade}}" data-toggle="modal"
                                                        data-target="#exampleModal-edit" type="button"
                                                        class="btn btn-warning btn-sm">modifier</a>
                                                     <a data-id_professeur="{{$professeur->id}}" data-toggle="modal"
@@ -236,51 +255,60 @@
                                 <form action="{{route('professeur.store')}}" method="POST">
                                     @csrf
                                     <div class="form-group">
-                                        <label for="cin_p" style ="color:#c21db7;">cin</label>
+                                        <label for="cin_p" style="color:#c21db7;">cin</label>
 
 
-                                        <input type="text" name="cin_p" style="color:black;" class="form-control" pattern="[A-Z]{1,2}[1-9]{2,5}" placeholder="Exemple: XX145">
+                                        <input type="text" name="cin_p" style="color:black;" class="form-control"
+                                               pattern="[A-Z]{1,2}[1-9]{2,5}" placeholder="Exemple: XX145">
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="nom_p" style ="color:#c21db7;">nom</label>
+                                        <label for="nom_p" style="color:#c21db7;">nom</label>
 
 
-                                        <input type="text" name="nom_p"  style="color:black;" class="form-control" pattern="[a-zA-Z]*" placeholder="nom de professeur">
+                                        <input type="text" name="nom_p" style="color:black;" class="form-control"
+                                               pattern="[a-zA-Z]*" placeholder="nom de professeur">
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="prenom_p" style ="color:#c21db7;">prenom</label>
+                                        <label for="prenom_p" style="color:#c21db7;">prenom</label>
 
 
-                                        <input type="text" name="prenom_p" style="color:black;" class="form-control" pattern="[a-zA-Z]*" placeholder="prenom de professeur">
+                                        <input type="text" name="prenom_p" style="color:black;" class="form-control"
+                                               pattern="[a-zA-Z]*" placeholder="prenom de professeur">
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="username_p" style ="color:#c21db7;">nom d'utilsateur</label>
+                                        <label for="username_p" style="color:#c21db7;">nom d'utilsateur</label>
 
 
-                                        <input type="text" name="username_p" style="color:black;" class="form-control" pattern="[a-zA-Z1-9]*" placeholder="username">
+                                        <input type="text" name="username_p" style="color:black;" class="form-control"
+                                               pattern="[a-zA-Z1-9]*" placeholder="username">
                                     </div>
                                     <div class="form-group">
-                                        <label for="email_p" style ="color:#c21db7;">email</label>
+                                        <label for="email_p" style="color:#c21db7;">email</label>
 
 
-                                        <input type="text" name="email_p" style="color:black;" class="form-control" pattern="[a-zA-Z1-9]*@ests.ac.ma" placeholder="Exemple: XXX111@ests.ac.ma">
+                                        <input type="text" name="email_p" style="color:black;" class="form-control"
+                                               pattern="[a-zA-Z1-9]*@ests.ac.ma"
+                                               placeholder="Exemple: XXX111@ests.ac.ma">
                                     </div>
                                     <div class="form-group">
-                                        <label for="password_p" style ="color:#c21db7;">mot de passe</label>
+                                        <label for="password_p" style="color:#c21db7;">mot de passe</label>
                                         <div>
-                                        <input type="password" id="eye" name="password_p" style="color:black;" class="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
-                                               placeholder="Utiliser au moin 6 cratctéres contient des lettre en MAJ et des lettre en MIN et des chiffres">
-                                            <span toggle="#eye" class="fa fa-fw fa-eye field-icon toggle-password" style="float: right; margin-left: -25px; margin-top: -25px; position: relative; z-index: 2;"></span>
+                                            <input type="password" id="eye" name="password_p" style="color:black;"
+                                                   class="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
+                                                   placeholder="Utiliser au moin 6 cratctéres contient des lettre en MAJ et des lettre en MIN et des chiffres">
+                                            <span toggle="#eye" class="fa fa-fw fa-eye field-icon toggle-password"
+                                                  style="float: right; margin-left: -25px; margin-top: -25px; position: relative; z-index: 2;"></span>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="grade_p" style ="color:#c21db7;">grade</label>
+                                        <label for="grade_p" style="color:#c21db7;">grade</label>
 
-                                        <input type="text" name="grade_p" style="color:black;" class="form-control" pattern="[1-9]{1,2}" placeholder="grade de professeur">
+                                        <input type="text" name="grade_p" style="color:black;" class="form-control"
+                                               pattern="[1-9]{1,2}" placeholder="grade de professeur">
                                     </div>
 
                             </div>
@@ -315,54 +343,63 @@
 
                                         <label for="">cin</label>
 
-                                        <input type="text" style="color:black;" id="cin_p" name="cin_p" class="form-control"
-                                               pattern="[A-Z]{1,2}[1-9]{2,5}"   placeholder="Exemple: XX154">
+                                        <input type="text" style="color:black;" id="cin_p" name="cin_p"
+                                               class="form-control"
+                                               pattern="[A-Z]{1,2}[1-9]{2,5}" placeholder="Exemple: XX154">
                                     </div>
                                     <input type="hidden" style="color:black;" name="id_professeur" id="id_professeur">
                                     <div class="form-group">
 
                                         <label for="">nom</label>
 
-                                        <input type="text" style="color:black;" id="nom_p" name="nom_p" class="form-control"
+                                        <input type="text" style="color:black;" id="nom_p" name="nom_p"
+                                               class="form-control"
                                                pattern="[a-zA-Z]*" placeholder="nom de professeur">
                                     </div>
                                     <div class="form-group">
 
                                         <label for="">prenom</label>
 
-                                        <input type="text" style="color:black;" id="prenom_p" name="prenom_p" class="form-control"
-                                               pattern="[a-zA-Z]*"  placeholder="prenom de professeur">
+                                        <input type="text" style="color:black;" id="prenom_p" name="prenom_p"
+                                               class="form-control"
+                                               pattern="[a-zA-Z]*" placeholder="prenom de professeur">
                                     </div>
                                     <div class="form-group">
 
                                         <label for="">nom d'utilsateur</label>
 
-                                        <input type="text" style="color:black;" id="username_p" name="username_p" class="form-control"
-                                               pattern="[a-zA-Z1-9]*"      placeholder="username">
+                                        <input type="text" style="color:black;" id="username_p" name="username_p"
+                                               class="form-control"
+                                               pattern="[a-zA-Z1-9]*" placeholder="username">
                                     </div>
                                     <div class="form-group">
 
                                         <label for="">email</label>
 
-                                        <input type="text" style="color:black;" id="email_p" name="email_p" class="form-control"
-                                               pattern="[a-zA-Z1-9]*@ests.ac.ma" placeholder="Exemple: XXX111@ests.ac.ma">
+                                        <input type="text" style="color:black;" id="email_p" name="email_p"
+                                               class="form-control"
+                                               pattern="[a-zA-Z1-9]*@ests.ac.ma"
+                                               placeholder="Exemple: XXX111@ests.ac.ma">
                                     </div>
                                     <div class="form-group">
 
                                         <label for="">mot de passe</label>
                                         <div>
-                                        <input type="password" style="color:black;" id="password_p" name="password_p" class="form-control"
-                                               pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
-                                               placeholder="Utiliser au moin 6 cratctéres contient des lettre en MAJ et des lettre en min et des chiffres">
-                                        <span toggle="#password_p" class="fa fa-fw fa-eye field-icon toggle-password"
-                                              style="float: right; margin-left: -25px; margin-top: -25px; position: relative; z-index: 2;"></span>
-                                    </div>
+                                            <input type="password" style="color:black;" id="password_p"
+                                                   name="password_p" class="form-control"
+                                                   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
+                                                   placeholder="Utiliser au moin 6 cratctéres contient des lettre en MAJ et des lettre en min et des chiffres">
+                                            <span toggle="#password_p"
+                                                  class="fa fa-fw fa-eye field-icon toggle-password"
+                                                  style="float: right; margin-left: -25px; margin-top: -25px; position: relative; z-index: 2;"></span>
+                                        </div>
                                     </div>
                                     <div class="form-group">
 
                                         <label for="">grade</label>
 
-                                        <input type="text" style="color:black;" id="grade_p" name="grade_p" class="form-control"
+                                        <input type="text" style="color:black;" id="grade_p" name="grade_p"
+                                               class="form-control"
                                                pattern="[1-9]{1,2}" placeholder="grade de professeur">
                                     </div>
                             </div>
@@ -417,7 +454,7 @@
 
     </div>
 </body>
-<script>$(".toggle-password").click(function() {
+<script>$(".toggle-password").click(function () {
 
         $(this).toggleClass("fa-eye fa-eye-slash");
         var input = $($(this).attr("toggle"));
@@ -500,5 +537,15 @@
 <script src="../assets/demo/demo.js"></script>
 <script type="text/javascript"
         src="https://cdn.datatables.net/v/bs4/dt-1.10.20/b-1.6.1/r-2.2.3/datatables.min.js"></script>
+<script>
+    $('#btn').click(function () {
+        $('.table').table2excel({
+            exclude: ".exclude",
+            name: "Professseur",
+            filename: "Professeur",
+            fileext: ".xls",
+        })
+    });
+</script>
 <script src="//cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
-    </html>
+</html>

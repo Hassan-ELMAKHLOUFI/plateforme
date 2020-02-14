@@ -174,8 +174,20 @@
                                 <h4 class="card-title ">Table module</h4>
                                 <p class="card-category"></p>
                             </div>
-                            <a href="" class="btn btn-info" style="margin-left:85%" data-toggle="modal"
-                               data-target="#exampleModal">ajouter</a>
+                            <div class="row justify-content-between card-header">
+                                <button id="btn" class="btn btn-info">Export to Excel</button>
+                                <div>
+                                    <form action={{ route('module.import') }} method="POST"
+                                          enctype="multipart/form-data">
+                                        @csrf
+                                        <input type="file" name="file">
+                                        <input class="btn btn-primary" type="submit" name="upload" value="upload">
+                                    </form>
+                                </div>
+                                <a href="" class="btn btn-info" data-toggle="modal"
+                                   data-target="#exampleModal">ajouter</a>
+
+                            </div>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-bordered" id="myTable">
@@ -183,14 +195,14 @@
                                         <tr>
                                             <th>#</th>
                                             <th>nom module</th>
-                                            <th>Action</th>
+                                            <th class="exclude">Action</th>
                                         </tr>
                                         <tbody>
                                         @foreach($modules as $key=>$module)
                                             <tr>
                                                 <td>{{++$key}}</td>
                                                 <td>{{$module->nom_module}}</td>
-                                                <td>
+                                                <td class="exclude">
                                                     <a data-id_module="{{$module->id_module}}"
                                                        data-nom_module="{{$module->nom_module}}"
                                                        data-toggle="modal"
@@ -383,5 +395,16 @@
 <script src="../assets/demo/demo.js"></script>
 <script type="text/javascript"
         src="https://cdn.datatables.net/v/bs4/dt-1.10.20/b-1.6.1/r-2.2.3/datatables.min.js"></script>
+<script src="//cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
+<script>
+    $('#btn').click(function () {
+        $('.table').table2excel({
+            exclude: ".exclude",
+            name: "Module",
+            filename: "Module",
+            fileext: ".xls",
+        })
+    });
+</script>
 <script src="//cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
 </html>

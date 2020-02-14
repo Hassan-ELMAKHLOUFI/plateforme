@@ -33,3 +33,10 @@ Route::Resource('professeur','ProfesseurController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::post('departement/import', 'departementController@import')->name('departement.import');
+Route::post('etudiant/import', 'EtudiantController@import')->name('etudiant.import');
+Route::post('filiere/import', 'FiliereController@import')->name('filiere.import');
+Route::post('matiere/import', 'MatiereController@import')->name('matiere.import');
+Route::post('module/import', 'ModuleController@import')->name('module.import');
+Route::post('niveau/import', 'NiveauController@import')->name('niveau.import');
+Route::post('professeur/import', 'ProfesseurController@import')->name('professeur.import');

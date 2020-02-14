@@ -164,8 +164,19 @@
                             <div class="card-header card-header-primary">
                                 <h4 class="card-title ">Table des niveaux</h4>
                             </div>
-                            <a href="" class="btn btn-info" style="margin-left:85%" data-toggle="modal"
-                               data-target="#exampleModal">ajouter</a>
+                            <div class="row justify-content-between card-header">
+                                <button id="btn" class="btn btn-info">Export to Excel</button>
+                                <div>
+                                    <form action={{ route('niveau.import') }} method="POST"
+                                          enctype="multipart/form-data">
+                                        @csrf
+                                        <input type="file" name="file">
+                                        <input class="btn btn-primary" type="submit" name="upload" value="upload">
+                                    </form>
+                                </div>
+                                <a href="" class="btn btn-info" data-toggle="modal"
+                                   data-target="#exampleModal">ajouter</a>
+                            </div>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-bordered" id="myTable">
@@ -173,14 +184,14 @@
                                         <tr>
                                             <th>#</th>
                                             <th>nom</th>
-                                            <th>action</th>
+                                            <th class="exclude">action</th>
                                         </tr>
                                         <tbody>
                                         @foreach($niveaux as $key=>$niveau)
                                             <tr>
                                                 <td>{{++$key}}</td>
                                                 <td>{{$niveau->nom}}</td>
-                                                <td>
+                                                <td class="exclude">
                                                     <a data-id_niveau="{{$niveau->id}}" data-nom="{{$niveau->nom}}"
                                                        data-toggle="modal"
                                                        data-target="#exampleModal-edit" type="button"
@@ -376,5 +387,15 @@
 <script src="../assets/demo/demo.js"></script>
 <script type="text/javascript"
         src="https://cdn.datatables.net/v/bs4/dt-1.10.20/b-1.6.1/r-2.2.3/datatables.min.js"></script>
+<script>
+    $('#btn').click(function () {
+        $('.table').table2excel({
+            exclude: ".exclude",
+            name: "Niveau",
+            filename: "Niveau",
+            fileext: ".xls",
+        })
+    });
+</script>
 <script src="//cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
     </html>

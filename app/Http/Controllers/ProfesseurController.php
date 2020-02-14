@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Professeur;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProfesseurController extends Controller
 {
@@ -111,5 +112,10 @@ class ProfesseurController extends Controller
         $deleteprofesseur = Professeur::findOrfail($professeur->id_professeur);
         $deleteprofesseur->delete();
         return redirect()->route('professeur.index');
+    }
+
+    public function import(Request $request){
+        Excel::import(new Professeur ,request()->file('file'));
+        return back();
     }
 }
