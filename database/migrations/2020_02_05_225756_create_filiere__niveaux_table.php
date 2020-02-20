@@ -15,12 +15,12 @@ class CreateFiliereNiveauxTable extends Migration
     {
         Schema::create('filiere_niveau', function (Blueprint $table) {
             $table->bigIncrements('id_f_n');
-            $table->unsignedBigInteger('id');
-            $table->unsignedBigInteger('id_filiere');
+            $table->unsignedBigInteger('niveau_id');
+            $table->unsignedBigInteger('filiere_id');
             $table->timestamps();
 
-            $table->foreign('id')->references('id')->on('niveau')->onDelete('cascade');
-            $table->foreign('id_filiere')->references('id_filiere')->on('filiere')->onDelete('cascade');
+            $table->foreign('niveau_id')->references('id')->on('niveau')->onDelete('cascade');
+            $table->foreign('filiere_id')->references('id_filiere')->on('filiere')->onDelete('cascade');
         });
     }
 

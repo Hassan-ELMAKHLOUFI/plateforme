@@ -246,6 +246,16 @@
                                                placeholder="nom de module">
                                     </div>
 
+                                    <div class="form-group">
+                                        <label for="id_filiere" style="color:#c21db7;">Filiere</label>
+                                        {{$filiere = \App\filiere::all()}}
+                                        <select name="ïd_filiere">
+                                            @foreach($filiere as $f){
+                                        <option value="{{$f->id_filiere}}">{{$f->nom_filiere}}</option>
+                                            }
+                                        </select>
+                                    </div>
+
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
@@ -342,12 +352,13 @@
         var button = $(event.relatedTarget)
         var id_module = button.data('id_module')
         var nom_module = button.data('nom_module')
-
+        var id_filiere = button.data('id_filiere')
         var modal = $(this)
 
         modal.find('.modal-title').text('EDIT STUDENT INFORMATION');
         modal.find('.modal-body #id_module').val(id_module);
         modal.find('.modal-body #nom_module').val(nom_module);
+        modal.find('.modal-body #id_filiere').val(id_filiere);
     });
 
 

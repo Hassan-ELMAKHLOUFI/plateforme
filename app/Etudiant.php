@@ -9,9 +9,8 @@ use Maatwebsite\Excel\Concerns\WithHeadingRow;
 class Etudiant extends Model implements ToModel, WithHeadingRow
 {
     protected $table = "etudiant";
-    protected $fillable = ['cin', 'id_niveau', 'cne', 'nom', 'prenom', 'email_address', 'username', 'password', 'numero', 'num_apologie'];
-    protected $primaryKey = 'id';
-
+    protected $fillable = ['cin', 'niveau_id', 'groupe_id','cne', 'nom', 'prenom', 'email_address', 'username', 'password', 'numero', 'num_apologie'];
+    protected $primaryKey = 'etudiant_id';
     /**
      * @param array $row
      *
@@ -21,8 +20,7 @@ class Etudiant extends Model implements ToModel, WithHeadingRow
     {
         // TODO: Implement model() method.
         return new etudiant(array(
-            'id'     => $row['id'],
-            'id_niveau'    => $row['id_niveau'],
+            'niveau_id'    => $row['niveau_id'],
             'cin'    => $row['cin'],
             'cne'    => $row['cne'],
             'nom'    => $row['nom'],
@@ -34,4 +32,5 @@ class Etudiant extends Model implements ToModel, WithHeadingRow
             'num_apologie'    => $row['num_apologie'],
         ));
     }
+
 }

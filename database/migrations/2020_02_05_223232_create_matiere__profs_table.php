@@ -15,16 +15,16 @@ class CreateMatiereProfsTable extends Migration
     {
         Schema::create('matiere_prof', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('id_module')->nullable('false')->unique();
-            $table->unsignedBigInteger('id_math')->nullable('false')->unique();
-            $table->unsignedBigInteger('id_prof')->nullable('false')->unique();
+            $table->unsignedBigInteger('module_id')->nullable('false')->unique();
+            $table->unsignedBigInteger('matiere_id')->nullable('false')->unique();
+            $table->unsignedBigInteger('professeur_id')->nullable('false')->unique();
             $table->string('cin');
             $table->unsignedBigInteger('grade');
             $table->timestamps();
 
-            $table->foreign('id_module')->references('id_module')->on('matiere')->onDelete('cascade');
-            $table->foreign('id_math')->references('id_math')->on('matiere')->onDelete('cascade');
-            $table->foreign('id_prof')->references('id')->on('professeur')->onDelete('cascade');
+            $table->foreign('module_id')->references('id_module')->on('matiere')->onDelete('cascade');
+            $table->foreign('matiere_id')->references('id_math')->on('matiere')->onDelete('cascade');
+            $table->foreign('professeur_id')->references('id')->on('professeur')->onDelete('cascade');
 
         });
     }

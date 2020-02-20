@@ -10,7 +10,7 @@ class Niveau extends Model implements ToModel, WithHeadingRow
 {
     protected $table="niveau";
     protected $fillable=['nom'];
-    protected $primaryKey='id';
+    protected $primaryKey='niveau_id';
 
     /**
      * @param array $row
