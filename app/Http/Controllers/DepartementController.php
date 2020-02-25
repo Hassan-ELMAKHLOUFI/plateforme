@@ -15,7 +15,7 @@ class DepartementController extends Controller
      */
     public function index(Request $request)
     {
-        $departements['departements'] = Departement::OrderBy('id_dep', 'asc')->paginate(10);
+        $departements['departements'] = Departement::OrderBy('departement_id', 'asc')->paginate(10);
         return view('departement.index', $departements);
     }
 
@@ -106,7 +106,7 @@ class DepartementController extends Controller
 
         );
 
-        Departement::findOrfail($request->id_departement)->update($departement);
+        Departement::findOrfail($request->departement_id)->update($departement);
         return redirect()->route('departement.index');
     }
 
@@ -120,7 +120,7 @@ class DepartementController extends Controller
     {
 
         $delete = $departement->all();
-        $deletedepartement = Departement::findOrfail($departement->id_departement);
+        $deletedepartement = Departement::findOrfail($departement->departement_id);
         $deletedepartement->delete();
         return redirect()->route('departement.index');
     }

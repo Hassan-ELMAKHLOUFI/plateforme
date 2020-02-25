@@ -15,14 +15,12 @@ class CreateReponseTextsTable extends Migration
     {
         Schema::create('reponse_text', function (Blueprint $table) {
             $table->bigIncrements('reponse_text_id');
-            $table->unsignedBigInteger('test_id');
             $table->unsignedBigInteger('question_id');
             $table->unsignedBigInteger('etudiant_id');
             $table->binary('fichier');
             $table->timestamps();
 
-            $table->foreign('test_id')->references('test_id')->on('test_libre')->onDelete('cascade');
-            $table->foreign('question_id')->references('question_id')->on('test_libre')->onDelete('cascade');
+            $table->foreign('question_id')->references('question_id')->on('text_libre')->onDelete('cascade');
             $table->foreign('etudiant_id')->references('etudiant_id')->on('etudiant')->onDelete('cascade');
         });
     }

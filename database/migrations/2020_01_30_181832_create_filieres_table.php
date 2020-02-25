@@ -18,13 +18,13 @@ class CreateFilieresTable extends Migration
     public function up()
     {
         Schema::create('filiere', function (Blueprint $table) {
-            $table->bigIncrements('id_filiere');
+            $table->bigIncrements('filiere_id');
             $table->String('nom');
             $table->String('coordinateur');
             $table->date('datedebut');
             $table->date('datefin');
-            $table->unsignedBigInteger('id_departement');
-             $table->foreign('id_departement')->references('id_dep')->on('departement')->onDelete('cascade');
+            $table->unsignedBigInteger('departement_id');
+             $table->foreign('departement_id')->references('departement_id')->on('departement')->onDelete('cascade');
 
             $table->timestamps();
         });

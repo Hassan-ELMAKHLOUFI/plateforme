@@ -19,8 +19,8 @@ class CreateModuleFilieresTable extends Migration
             $table->unsignedBigInteger('filiere_id')->nullable('false');
             $table->timestamps();
 
-            $table->foreign('module_id')->references('id_module')->on('module')->onDelete('cascade');
-            $table->foreign('filiere_id')->references('id_filiere')->on('filiere')->onDelete('cascade');
+            $table->foreign('module_id')->references('module_id')->on('module')->onDelete('cascade');
+            $table->foreign('filiere_id')->references('filiere_id')->on('filiere')->onDelete('cascade');
         });
     }
 

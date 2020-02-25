@@ -19,8 +19,8 @@ class CreateFiliereNiveauxTable extends Migration
             $table->unsignedBigInteger('filiere_id');
             $table->timestamps();
 
-            $table->foreign('niveau_id')->references('id')->on('niveau')->onDelete('cascade');
-            $table->foreign('filiere_id')->references('id_filiere')->on('filiere')->onDelete('cascade');
+            $table->foreign('niveau_id')->references('niveau_id')->on('niveau')->onDelete('cascade');
+            $table->foreign('filiere_id')->references('filiere_id')->on('filiere')->onDelete('cascade');
         });
     }
 

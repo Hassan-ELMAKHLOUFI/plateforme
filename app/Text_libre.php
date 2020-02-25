@@ -13,5 +13,5 @@ class Text_libre extends Model
 
     public function reponse_text(){
         return $this->hasMany('App\Reponse_text','question_id','question_id');
-    }
+}
 }

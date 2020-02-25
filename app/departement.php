@@ -13,7 +13,7 @@ class departement extends Model implements ToModel, WithHeadingRow
 
     protected $table="departement";
     protected $fillable=['nom','date_cr','chef','date_fin'];
-    protected $primaryKey='id_dep';
+    protected $primaryKey='departement_id';
 
     /**
      * @param array $row

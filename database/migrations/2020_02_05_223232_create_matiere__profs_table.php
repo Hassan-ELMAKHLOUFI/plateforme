@@ -22,9 +22,9 @@ class CreateMatiereProfsTable extends Migration
             $table->unsignedBigInteger('grade');
             $table->timestamps();
 
-            $table->foreign('module_id')->references('id_module')->on('matiere')->onDelete('cascade');
-            $table->foreign('matiere_id')->references('id_math')->on('matiere')->onDelete('cascade');
-            $table->foreign('professeur_id')->references('id')->on('professeur')->onDelete('cascade');
+            $table->foreign('module_id')->references('module_id')->on('matiere')->onDelete('cascade');
+            $table->foreign('matiere_id')->references('matiere_id')->on('matiere')->onDelete('cascade');
+            $table->foreign('professeur_id')->references('professeur_id')->on('professeur')->onDelete('cascade');
 
         });
     }

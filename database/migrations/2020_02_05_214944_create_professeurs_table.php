@@ -14,7 +14,8 @@ class CreateProfesseursTable extends Migration
     public function up()
     {
         Schema::create('professeur', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('professeur_id');
+            $table->unsignedBigInteger('departement_id');
             $table->string('cin');
             $table->string('nom');
             $table->string('prenom');
@@ -23,7 +24,7 @@ class CreateProfesseursTable extends Migration
             $table->string('password');
             $table->integer('grade');
 
-
+            $table->foreign('departement_id')->references('departement_id')->on('departement')->onDelete('cascade');
             $table->timestamps();
 
 

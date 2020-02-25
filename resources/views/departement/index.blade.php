@@ -207,14 +207,14 @@
                                                 <td>{{$departement->chef}}</td>
                                                 <td>{{$departement->date_fin}}</td>
                                                 <td class="exclude">
-                                                    <a data-id_departement="{{$departement->id_dep}}"
+                                                    <a data-departement_id="{{$departement->departement_id}}"
                                                        data-nom="{{$departement->nom}}"
                                                        data-date="{{$departement->date}}"
                                                        data-chef="{{$departement->chef}}"
                                                        data-date_fin="{{$departement->date_fin}}" data-toggle="modal"
                                                        data-target="#exampleModal-edit" type="button"
                                                        class="btn btn-warning btn-sm">modifier</a>
-                                                    <a data-id_departement="{{$departement->id_dep}}"
+                                                    <a data-departement_id="{{$departement->departement_id}}"
                                                        data-toggle="modal"
                                                        data-target="#exampleModal-delete" class="btn btn-danger btn-sm">supprimer</a>
                                                 </td>
@@ -342,7 +342,7 @@
                             </div>
                             <div class="modal-body">
 
-                                <form action="{{route('departement.update','id_departement')}}" method="POST">
+                                <form action="{{route('departement.update','departement_id')}}" method="POST">
                                     @csrf
                                     @method('PUT')
                                     <div class="form-group">
@@ -352,7 +352,7 @@
                                         <input type="text" style="color:black;" id="nom" name="nom" class="form-control"
                                                placeholder="nom de departement">
                                     </div>
-                                    <input type="hidden" style="color:black;" name="id_departement" id="id_departement">
+                                    <input type="hidden" style="color:black;" name="departement_id" id="departement_id">
                                     <br>
                                     <div class="form-group">
 
@@ -408,11 +408,11 @@
                             </div>
                             <div class="modal-body">
 
-                                <form action="{{route('departement.destroy','id_departement')}}" method="POST">
+                                <form action="{{route('departement.destroy','departement_id')}}" method="POST">
                                     @csrf
                                     @method('DELETE')
 
-                                    <input type="hidden" name="id_departement" id="id_departement">
+                                    <input type="hidden" name="departement_id" id="departement_id">
                                     <p class="text-center" width="50px"> vous ete sûre que vous voulez supprimer ce
                                         departement</p>
 
@@ -444,7 +444,7 @@
         var date = button.data('date_cr')
         var chef = button.data('chef')
         var date_fin = button.data('date_fin')
-        var id_departement = button.data('id_departement')
+        var departement_id = button.data('departement_id')
 
 
         var modal = $(this)
@@ -454,7 +454,7 @@
         modal.find('.modal-body #date_cr').val(date);
         modal.find('.modal-body #chef').val(chef);
         modal.find('.modal-body #date_fin').val(date_fin);
-        modal.find('.modal-body #id_departement').val(id_departement);
+        modal.find('.modal-body #departement_id').val(departement_id);
     });
 
 
@@ -462,14 +462,14 @@
 
         var button = $(event.relatedTarget)
 
-        var id_departement = button.data('id_departement')
+        var departement_id = button.data('departement_id')
 
 
         var modal = $(this)
 
         modal.find('.modal-title').text('supprimer');
 
-        modal.find('.modal-body #id_departement').val(id_departement);
+        modal.find('.modal-body #departement_id').val(departement_id);
     });
 
 </script>

@@ -14,13 +14,13 @@ class CreateMatieresTable extends Migration
     public function up()
     {
         Schema::create('matiere', function (Blueprint $table) {
-            $table->bigIncrements('id_math');
+            $table->bigIncrements('matiere_id');
             $table->string('nom_matiere');
             $table->string('volume_horaire');
-            $table->unsignedBigInteger('id_module');
+            $table->unsignedBigInteger('module_id');
             $table->timestamps();
 
-            $table->foreign('id_module')->references('id_module')->on('module')->onDelete('cascade');
+            $table->foreign('module_id')->references('module_id')->on('module')->onDelete('cascade');
         });
     }
 

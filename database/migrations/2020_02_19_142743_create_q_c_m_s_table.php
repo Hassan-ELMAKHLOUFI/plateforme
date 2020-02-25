@@ -14,7 +14,8 @@ class CreateQCMSTable extends Migration
     public function up()
     {
         Schema::create('QCM', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('question_id');
+            $table->unsignedBigInteger('test_id');
             $table->string('type');
             $table->string('question_text');
             $table->double('note');
@@ -22,7 +23,7 @@ class CreateQCMSTable extends Migration
 
             $table->timestamps();
 
-            $table->foreign('question_id')->references('question_id')->on('question')->onDelete('cascade');
+            $table->foreign('test_id')->references('test_id')->on('test')->onDelete('cascade');
 
         });
     }
