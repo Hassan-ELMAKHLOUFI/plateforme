@@ -11,7 +11,7 @@ class Test extends Model implements ToModel, WithHeadingRow
 
     protected $table="test";
     protected $fillable=['nom','note','duree','salle','date'];
-    protected $primaryKey='id';
+    protected $primaryKey='test_id';
     //
     /**
      * @param array $row

@@ -10,7 +10,7 @@ class Option extends Model implements ToModel, WithHeadingRow
 {
     protected $table="option";
     protected $fillable=['option_text','point'];
-    protected $primaryKey='id';
+    protected $primaryKey='option_id';
     //
     /**
      * @param array $row

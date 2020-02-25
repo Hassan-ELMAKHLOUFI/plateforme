@@ -10,7 +10,7 @@ class QCM extends Model implements ToModel, WithHeadingRow
 {
     protected $table="QCM";
     protected $fillable=['type'];
-    protected $primaryKey='id';
+    protected $primaryKey='question_id';
 
     /**
      * @param array $row
