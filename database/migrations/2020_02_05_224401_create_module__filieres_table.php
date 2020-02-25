@@ -13,14 +13,14 @@ class CreateModuleFilieresTable extends Migration
      */
     public function up()
     {
-        Schema::create('module_filiere', function (Blueprint $table) {
+        Schema::create('filiere_module', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('id_module')->nullable('false')->unique();
-            $table->unsignedBigInteger('id_filiere');
+            $table->unsignedBigInteger('module_id')->nullable('false');
+            $table->unsignedBigInteger('filiere_id')->nullable('false');
             $table->timestamps();
 
-            $table->foreign('id_module')->references('id_module')->on('module')->onDelete('cascade');
-            $table->foreign('id_filiere')->references('id_filiere')->on('filiere')->onDelete('cascade');
+            $table->foreign('module_id')->references('id_module')->on('module')->onDelete('cascade');
+            $table->foreign('filiere_id')->references('id_filiere')->on('filiere')->onDelete('cascade');
         });
     }
 
@@ -31,6 +31,6 @@ class CreateModuleFilieresTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('module_filiere');
+        Schema::dropIfExists('filiere_module');
     }
 }
