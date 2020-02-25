@@ -16,7 +16,7 @@ class EtudiantController extends Controller
     public function index(Request $request)
     {
         //
-        $etudiants['etudiants'] = Etudiant::OrderBy('id', 'asc')->paginate(10);
+        $etudiants['etudiants'] = Etudiant::OrderBy('etudiant_id', 'asc')->paginate(10);
         return view('etudiant.index', $etudiants);
     }
 
@@ -44,7 +44,7 @@ class EtudiantController extends Controller
             'cne' => $request->cne,
             'nom' => $request->nom,
             'prenom' => $request->prenom,
-            'id_niveau' => $request->id_niveau,
+            'niveau_id' => $request->id_niveau,
             'email_address' => $request->email_address,
             'username' => $request->username,
             'password' => $request->password,

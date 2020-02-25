@@ -210,7 +210,7 @@
                                             <tr>
                                                 <td>{{++$key}}</td>
                                                 <td>{{$etudiant->cin}}</td>
-                                                <td>{{$etudiant->id_niveau}}</td>
+                                                <td>{{$etudiant->niveau_id}}</td>
                                                 <td>{{$etudiant->cne}}</td>
                                                 <td>{{$etudiant->nom}}</td>
                                                 <td>{{$etudiant->prenom}}</td>
@@ -220,10 +220,12 @@
                                                 <td>{{$etudiant->numero}}</td>
                                                 <td>{{$etudiant->num_apologie}}</td>
                                                 <td class="exclude">
-                                                    <a data-id="{{$etudiant->id}}" data-cin="{{$etudiant->cin}}"
+                                                    <a data-id="{{$etudiant->etudiant_id}}"
+                                                       data-groupe_id="{{$etudiant->groupe_id}}"
+                                                       data-cin="{{$etudiant->cin}}"
                                                        data-cne="{{$etudiant->cne}}" data-nom="{{$etudiant->nom}}"
                                                        data-prenom="{{$etudiant->prenom}}"
-                                                       data-id_niveau="{{$etudiant->id_niveau}}"
+                                                       data-id_niveau="{{$etudiant->niveau_id}}"
                                                        data-email_address="{{$etudiant->email_address}}"
                                                        data-username="{{$etudiant->username}}"
                                                        data-password="{{$etudiant->password}}"
@@ -232,7 +234,7 @@
                                                        data-toggle="modal"
                                                        data-target="#exampleModal-edit" type="button"
                                                        class="btn btn-warning btn-sm">modifier</a>
-                                                    <a data-id="{{$etudiant->id}}"
+                                                    <a data-id="{{$etudiant->etudiant_id}}"
                                                        data-toggle="modal"
                                                        data-target="#exampleModal-delete" class="btn btn-danger btn-sm">supprimer</a>
                                                 </td>

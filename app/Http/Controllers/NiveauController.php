@@ -16,7 +16,7 @@ class NiveauController extends Controller
      */
     public function index(Request $request)
     {
-        $niveaux['niveaux'] = niveau::OrderBy('id', 'asc')->paginate(10);
+        $niveaux['niveaux'] = niveau::OrderBy('niveau_id', 'asc')->paginate(10);
         return view('niveau.index', $niveaux);
     }
 
