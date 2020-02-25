@@ -95,7 +95,7 @@ class ProfesseurController extends Controller
 
         );
 
-        Professeur::findOrfail($request->id_professeur)->update($professeur);
+        Professeur::findOrfail($request->professeur_id)->update($professeur);
         return redirect()->route('professeur.index');
     }
 
@@ -109,7 +109,7 @@ class ProfesseurController extends Controller
     {
 
         $delete = $professeur->all();
-        $deleteprofesseur = Professeur::findOrfail($professeur->id_professeur);
+        $deleteprofesseur = Professeur::findOrfail($professeur->professeur_id);
         $deleteprofesseur->delete();
         return redirect()->route('professeur.index');
     }

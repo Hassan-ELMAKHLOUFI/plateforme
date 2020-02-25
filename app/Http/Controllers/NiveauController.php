@@ -81,7 +81,7 @@ class NiveauController extends Controller
             'nom' => $request->nom,
         );
 
-        Niveau::findOrfail($request->id_niveau)->update($niveau);
+        Niveau::findOrfail($request->niveau_id)->update($niveau);
         return redirect()->route('niveau.index');
     }
 
@@ -94,7 +94,7 @@ class NiveauController extends Controller
     public function destroy(Request $niveau)
     {
         $delete = $niveau->all();
-        $deleteniveau = Niveau::findOrfail($niveau->id_niveau);
+        $deleteniveau = Niveau::findOrfail($niveau->niveau_id);
         $deleteniveau->delete();
         return redirect()->route('niveau.index');
     }

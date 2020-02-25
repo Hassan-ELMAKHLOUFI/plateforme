@@ -16,7 +16,7 @@ class MatiereController extends Controller
     public function index(Request $request)
     {
         //
-        $matieres['matieres'] = Matiere::OrderBy('id_math', 'asc')->paginate(10);
+        $matieres['matieres'] = Matiere::OrderBy('matiere_id', 'asc')->paginate(10);
         return view('matiere.index', $matieres);
     }
 
@@ -42,7 +42,7 @@ class MatiereController extends Controller
         $matiere = array(
             'nom_matiere' => $request->nom_matiere,
             'volume_horaire' => $request->volume_horaire,
-            'id_module' => $request->id_module
+            'module_id' => $request->module_id
 
         );
 
@@ -85,10 +85,10 @@ class MatiereController extends Controller
         $matiere = array(
             'nom_matiere' => $request->nom_matiere,
             'volume_horaire' => $request->volume_horaire,
-            'id_module' => $request->id_module
+            'module_id' => $request->module_id
         );
 
-        Matiere::findOrFail($request->id_math)->update($matiere);
+        Matiere::findOrFail($request->matiere_id)->update($matiere);
         return redirect()->route('matiere.index');
     }
 
@@ -102,7 +102,7 @@ class MatiereController extends Controller
     {
         //
         $delete = $matiere->all();
-        $deletematiere = Matiere::findOrfail($matiere->id_math);
+        $deletematiere = Matiere::findOrfail($matiere->matiere_id);
         $deletematiere->delete();
         return redirect()->route('matiere.index');
     }

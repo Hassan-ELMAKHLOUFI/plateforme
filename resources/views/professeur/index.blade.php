@@ -212,7 +212,7 @@
                                                 <td>{{$professeur->grade}}</td>
 
                                                 <td class="exclude">
-                                                    <a data-id_professeur="{{$professeur->id}}"
+                                                    <a data-professeur_id="{{$professeur->professeur_id}}"
                                                        data-cin="{{$professeur->cin}}"
                                                        data-nom="{{$professeur->nom}}"
                                                        data-prenom="{{$professeur->prenom}}"
@@ -222,7 +222,7 @@
                                                        data-grade="{{$professeur->grade}}" data-toggle="modal"
                                                        data-target="#exampleModal-edit" type="button"
                                                        class="btn btn-warning btn-sm">modifier</a>
-                                                    <a data-id_professeur="{{$professeur->id}}" data-toggle="modal"
+                                                    <a data-professeur_id="{{$professeur->professeur_id}}" data-toggle="modal"
                                                        data-target="#exampleModal-delete" class="btn btn-danger btn-sm">supprimer</a>
                                                 </td>
                                             </tr>
@@ -336,7 +336,7 @@
                             </div>
                             <div class="modal-body">
 
-                                <form action="{{route('professeur.update','id_professeur')}}" method="POST">
+                                <form action="{{route('professeur.update','professeur_id')}}" method="POST">
                                     @csrf
                                     @method('PUT')
                                     <div class="form-group">
@@ -347,7 +347,7 @@
                                                class="form-control"
                                                pattern="[A-Z]{1,2}[1-9]{2,5}" placeholder="Exemple: XX154">
                                     </div>
-                                    <input type="hidden" style="color:black;" name="id_professeur" id="id_professeur">
+                                    <input type="hidden" style="color:black;" name="professeur_id" id="professeur_id">
                                     <div class="form-group">
 
                                         <label for="">nom</label>
@@ -427,11 +427,11 @@
                             </div>
                             <div class="modal-body">
 
-                                <form action="{{route('professeur.destroy','id_professeur')}}" method="POST">
+                                <form action="{{route('professeur.destroy','professeur_id')}}" method="POST">
                                     @csrf
                                     @method('DELETE')
 
-                                    <input type="hidden" name="id_professeur" id="id_professeur">
+                                    <input type="hidden" name="professeur_id" id="professeur_id">
                                     <p class="text-center" width="50px"> vous ete sûre que vous voulez supprimer ce
                                         professeur</p>
 
@@ -475,7 +475,7 @@
         var email = button.data('email')
         var password = button.data('password')
         var grade = button.data('grade')
-        var id_professeur = button.data('id_professeur')
+        var professeur_id = button.data('professeur_id')
 
 
         var modal = $(this)
@@ -488,7 +488,7 @@
         modal.find('.modal-body #email_p').val(email);
         modal.find('.modal-body #password_p').val(password);
         modal.find('.modal-body #grade_p').val(grade);
-        modal.find('.modal-body #id_professeur').val(id_professeur);
+        modal.find('.modal-body #professeur_id').val(professeur_id);
     });
 
 
@@ -496,14 +496,14 @@
 
         var button = $(event.relatedTarget)
 
-        var id_professeur = button.data('id_professeur')
+        var professeur_id = button.data('professeur_id')
 
 
         var modal = $(this)
 
         modal.find('.modal-title').text('Supprimer le professeur');
 
-        modal.find('.modal-body #id_professeur').val(id_professeur);
+        modal.find('.modal-body #professeur_id').val(professeur_id);
     });
 
 </script>

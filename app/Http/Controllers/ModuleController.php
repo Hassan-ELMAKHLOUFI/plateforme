@@ -16,7 +16,7 @@ class ModuleController extends Controller
      */
     public function index(Request $request)
     {
-        $modules['modules'] = Module::OrderBy('id_module', 'asc')->paginate(10);
+        $modules['modules'] = Module::OrderBy('module_id', 'asc')->paginate(10);
         return view('module.index', $modules);
     }
 
@@ -83,7 +83,7 @@ class ModuleController extends Controller
             'nom_module' => $request->nom_module,
         );
 
-        Module::findOrFail($request->id_module)->update($module);
+        Module::findOrFail($request->module_id)->update($module);
         return redirect()->route('module.index');
     }
 
@@ -97,7 +97,7 @@ class ModuleController extends Controller
     {
         //
         $delete = $module->all();
-        $deletemodule = Module::findOrfail($module->id_module);
+        $deletemodule = Module::findOrfail($module->module_id);
         $deletemodule->delete();
         return redirect()->route('module.index');
     }

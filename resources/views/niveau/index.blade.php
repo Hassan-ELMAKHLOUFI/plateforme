@@ -192,11 +192,11 @@
                                                 <td>{{++$key}}</td>
                                                 <td>{{$niveau->nom}}</td>
                                                 <td class="exclude">
-                                                    <a data-id_niveau="{{$niveau->id}}" data-nom="{{$niveau->nom}}"
+                                                    <a data-niveau_id="{{$niveau->niveau_id}}" data-nom="{{$niveau->nom}}"
                                                        data-toggle="modal"
                                                        data-target="#exampleModal-edit" type="button"
                                                        class="btn btn-warning btn-sm">modifier</a>
-                                                    <a data-id_niveau="{{$niveau->id}}" data-toggle="modal"
+                                                    <a data-niveau_id="{{$niveau->niveau_id}}" data-toggle="modal"
                                                        data-target="#exampleModal-delete" class="btn btn-danger btn-sm">supprimer</a>
                                                 </td>
                                             </tr>
@@ -261,7 +261,7 @@
                             </div>
                             <div class="modal-body">
 
-                                <form action="{{route('niveau.update','id_niveau')}}" method="POST">
+                                <form action="{{route('niveau.update','niveau_id')}}" method="POST">
                                     @csrf
                                     @method('PUT')
                                     <div class="form-group">
@@ -271,7 +271,7 @@
                                         <input type="text" style="color:black;" id="nom" name="nom" class="form-control"
                                                pattern="[a-zA-Z]{3,}"    placeholder="nom de niveau">
                                     </div>
-                                    <input type="hidden" style="color:black;" name="id_niveau" id="id_niveau">
+                                    <input type="hidden" style="color:black;" name="niveau_id" id="niveau_id">
 
                             </div>
                             <div class="modal-footer">
@@ -298,11 +298,11 @@
                             </div>
                             <div class="modal-body">
 
-                                <form action="{{route('niveau.destroy','id_niveau')}}" method="POST">
+                                <form action="{{route('niveau.destroy','niveau_id')}}" method="POST">
                                     @csrf
                                     @method('DELETE')
 
-                                    <input type="hidden" name="id_niveau" id="id_niveau">
+                                    <input type="hidden" name="niveau_id" id="niveau_id">
                                     <p class="text-center" width="50px"> vous ete sûre que vous voulez supprimer ce
                                         niveau</p>
 
@@ -331,14 +331,14 @@
 
         var button = $(event.relatedTarget)
         var nom = button.data('nom')
-        var id_niveau = button.data('id_niveau')
+        var niveau_id = button.data('niveau_id')
 
 
         var modal = $(this)
 
         modal.find('.modal-title').text('Modifier les information');
         modal.find('.modal-body #nom').val(nom);
-        modal.find('.modal-body #id_niveau').val(id_niveau);
+        modal.find('.modal-body #niveau_id').val(niveau_id);
     });
 
 
@@ -346,14 +346,14 @@
 
         var button = $(event.relatedTarget)
 
-        var id_niveau = button.data('id_niveau')
+        var niveau_id = button.data('niveau_id')
 
 
         var modal = $(this)
 
         modal.find('.modal-title').text('Supprimer Niveau');
 
-        modal.find('.modal-body #id_niveau').val(id_niveau);
+        modal.find('.modal-body #niveau_id').val(niveau_id);
     });
 
 </script>

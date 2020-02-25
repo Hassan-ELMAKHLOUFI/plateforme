@@ -10,8 +10,8 @@ class filiere extends Model implements ToModel, WithHeadingRow
 {
     protected $table = "filiere";
 
-    protected $fillable = ['nom', 'coordinateur', 'datedebut', 'datefin', 'id_departement'];
-    protected $primaryKey = 'id_filiere';
+    protected $fillable = ['nom', 'coordinateur', 'datedebut', 'datefin', 'departement_id'];
+    protected $primaryKey = 'filiere_id';
 
     /**
      * @param array $row
@@ -22,12 +22,12 @@ class filiere extends Model implements ToModel, WithHeadingRow
     {
         // TODO: Implement model() method.
         return new filiere(array(
-            'id_filiere' => $row['id_filiere'],
+            'filiere_id' => $row['filiere_id'],
             'nom' => $row['nom'],
             'coordinateur' => $row['coordinateur'],
             'datedebut' => $row['datedebut'],
             'datefin' => $row['datefin'],
-            'id_departement' => $row['id_departement']
+            'departement_id' => $row['departement_id']
         ));
     }
 }

@@ -10,7 +10,7 @@ class Module extends Model implements ToModel, WithHeadingRow
 {
     protected $table="module";
     protected $fillable=['nom_module'];
-    protected $primaryKey='id_module';
+    protected $primaryKey='module_id';
 
     /**
      * @param array $row

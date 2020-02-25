@@ -208,18 +208,18 @@
                                                 <td>{{$filiere->coordinateur}}</td>
                                                 <td>{{$filiere->datedebut}}</td>
                                                 <td>{{$filiere->datefin}}</td>
-                                                <td>{{$filiere->id_departement}}</td>
+                                                <td>{{$filiere->departement_id}}</td>
                                                 <td class="exclude">
-                                                    <a data-id_filiere="{{$filiere->id_filiere}}"
+                                                    <a data-filiere_id="{{$filiere->filiere_id}}"
                                                        data-nom="{{$filiere->nom}}"
                                                        data-coordinateur="{{$filiere->coordinsteur}}"
                                                        data-datedebut="{{$filiere->datedebut}}"
                                                        data-datefin="{{$filiere->datefin}}"
-                                                       data-id_departement="{{$filiere->id_departement}}"
+                                                       data-departement_id="{{$filiere->departement_id}}"
                                                        data-toggle="modal"
                                                        data-target="#exampleModal-edit" type="button"
                                                        class="btn btn-warning btn-sm">modifier</a>
-                                                    <a data-id_filiere="{{$filiere->id_filiere}}" data-toggle="modal"
+                                                    <a data-filiere_id="{{$filiere->filiere_id}}" data-toggle="modal"
                                                        data-target="#exampleModal-delete" class="btn btn-danger btn-sm">supprimer</a>
                                                 </td>
                                             </tr>
@@ -259,7 +259,7 @@
                                         <input style="color:black;" type="text" id="nom" name="nom" class="form-control"
                                                placeholder="nom de departement">
                                     </div>
-                                    <input style="color:black;" type="hidden" name="id_filiere" id="id_filiere">
+                                    <input style="color:black;" type="hidden" name="filiere_id" id="filiere_id">
                                     <br>
                                     <div class="form-group">
                                         <label for="" style="color:#c21db7;">coordinateur</label>
@@ -329,7 +329,7 @@
                             </div>
                             <div class="modal-body">
 
-                                <form action="{{route('filiere.update','id_filiere')}}" method="POST">
+                                <form action="{{route('filiere.update','filiere_id')}}" method="POST">
                                     @csrf
                                     @method('PUT')
                                     <div class="form-group">
@@ -339,7 +339,7 @@
                                         <input style="color:black;" type="text" id="nom" name="nom" class="form-control"
                                                placeholder="nom de departement">
                                     </div>
-                                    <input type="hidden" name="id_filiere" id="id_filiere">
+                                    <input type="hidden" name="filiere_id" id="filiere_id">
                                     <br>
                                     <div class="form-group">
                                         <label for="" style="color:#c21db7;">coordinateur</label>
@@ -409,11 +409,11 @@
                             </div>
                             <div class="modal-body">
 
-                                <form action="{{route('filiere.destroy','id_filiere')}}" method="POST">
+                                <form action="{{route('filiere.destroy','filiere_id')}}" method="POST">
                                     @csrf
                                     @method('DELETE')
 
-                                    <input type="hidden" name="id_filiere" id="id_filiere">
+                                    <input type="hidden" name="filiere_id" id="filiere_id">
                                     <p class="text-center" width="50px"> vous ete sur que vous voulez supprimer ce
                                         filiere</p>
 
@@ -445,8 +445,8 @@
         var coordinateur = button.data('coordinateur')
         var datedebut = button.data('datedebut')
         var datefin = button.data('datefin')
-        var id_departement = button.data('id_departement')
-        var id_filiere = button.data('id_filiere')
+        var departement_id = button.data('departement_id')
+        var filiere_id = button.data('filiere_id')
 
 
         var modal = $(this)
@@ -456,8 +456,8 @@
         modal.find('.modal-body #coordinateur').val(coordinateur);
         modal.find('.modal-body #datedebut').val(datedebut);
         modal.find('.modal-body #datefin').val(datefin);
-        modal.find('.modal-body #id_departement').val(id_departement);
-        modal.find('.modal-body #id_filiere').val(id_filiere);
+        modal.find('.modal-body #departement_id').val(departement_id);
+        modal.find('.modal-body #filiere_id').val(filiere_id);
     });
 
 
@@ -465,14 +465,14 @@
 
         var button = $(event.relatedTarget)
 
-        var id_filiere = button.data('id_filiere')
+        var filiere_id = button.data('filiere_id')
 
 
         var modal = $(this)
 
         modal.find('.modal-title').text('supprimer');
 
-        modal.find('.modal-body #id_filiere').val(id_filiere);
+        modal.find('.modal-body #filiere_id').val(filiere_id);
     });
 
 </script>

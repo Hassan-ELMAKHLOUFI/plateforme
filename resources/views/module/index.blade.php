@@ -89,10 +89,10 @@
                 </li>
                 <li class="nav-item ">
 
-                <a class="nav-link" href="{{route("niveau.index")}}">
-                    <i class="material-icons">content_paste</i>
-                    <p>niveau</p>
-                </a>
+                    <a class="nav-link" href="{{route("niveau.index")}}">
+                        <i class="material-icons">content_paste</i>
+                        <p>niveau</p>
+                    </a>
                 </li>
                 <li class="nav-item ">
                     <a class="nav-link" href="{{route("professeur.index")}}">
@@ -203,12 +203,12 @@
                                                 <td>{{++$key}}</td>
                                                 <td>{{$module->nom_module}}</td>
                                                 <td class="exclude">
-                                                    <a data-id_module="{{$module->id_module}}"
+                                                    <a data-module_id="{{$module->module_id}}"
                                                        data-nom_module="{{$module->nom_module}}"
                                                        data-toggle="modal"
                                                        data-target="#exampleModal-edit" type="button"
                                                        class="btn btn-warning btn-sm">modifier</a>
-                                                    <a data-id_module="{{$module->id_module}}" data-toggle="modal"
+                                                    <a data-module_id="{{$module->module_id}}" data-toggle="modal"
                                                        data-target="#exampleModal-delete" class="btn btn-danger btn-sm">supprimer</a>
                                                 </td>
                                             </tr>
@@ -248,12 +248,16 @@
 
                                     <div class="form-group">
                                         <label for="id_filiere" style="color:#c21db7;">Filiere</label>
-                                        {{$filiere = \App\filiere::all()}}
-                                        <select name="ïd_filiere">
-                                            @foreach($filiere as $f){
-                                        <option value="{{$f->id_filiere}}">{{$f->nom_filiere}}</option>
+                                        <?php
+                                        use App\filiere;
+                                        $filieres = filiere::all();
+                                      echo "<select size='2' name=id_filiere>";
+                                            foreach($filieres as $f){
+                                                $id_filiere=$f->filiere_id;
+                                                echo "<option value=$id_filiere>$f->nom</option>";
                                             }
-                                        </select>
+                                        echo "</select>";
+                                        ?>
                                     </div>
 
                             </div>
@@ -281,14 +285,15 @@
                             </div>
                             <div class="modal-body">
 
-                                <form action="{{route('module.update','id_module')}}" method="POST">
+                                <form action="{{route('module.update','module_id')}}" method="POST">
                                     @csrf
                                     @method('PUT')
 
-                                    <input type="hidden" style="color:black;" name="id_module" id="id_module">
+                                    <input type="hidden" style="color:black;" name="module_id" id="module_id">
                                     <div class="form-group">
                                         <label for="nom_module" style="color:#c21db7;">nom module</label>
-                                        <input type="text" name="nom_module" id="nom_module" style="color:black;" class="form-control"
+                                        <input type="text" name="nom_module" id="nom_module" style="color:black;"
+                                               class="form-control"
                                                placeholder="nom de module">
                                     </div>
                             </div>
@@ -316,11 +321,11 @@
                             </div>
                             <div class="modal-body">
 
-                                <form action="{{route('module.destroy','id_module')}}" method="POST">
+                                <form action="{{route('module.destroy','module_id')}}" method="POST">
                                     @csrf
                                     @method('DELETE')
 
-                                    <input type="hidden" name="id_module" id="id_module">
+                                    <input type="hidden" name="module_id" id="module_id">
                                     <p class="text-center" width="50px"> vous ete sûre que vous voulez supprimer ce
                                         matiere</p>
 
@@ -341,22 +346,22 @@
 
         </div>
 
-        </div>
-
     </div>
+
+</div>
 </body>
 
 <script>
     $('#exampleModal-edit').on('show.bs.modal', function (event) {
 
         var button = $(event.relatedTarget)
-        var id_module = button.data('id_module')
+        var module_id = button.data('module_id')
         var nom_module = button.data('nom_module')
         var id_filiere = button.data('id_filiere')
         var modal = $(this)
 
         modal.find('.modal-title').text('EDIT STUDENT INFORMATION');
-        modal.find('.modal-body #id_module').val(id_module);
+        modal.find('.modal-body #module_id').val(module_id);
         modal.find('.modal-body #nom_module').val(nom_module);
         modal.find('.modal-body #id_filiere').val(id_filiere);
     });
@@ -366,13 +371,13 @@
 
         var button = $(event.relatedTarget)
 
-        var id_module = button.data('id_module')
+        var module_id = button.data('module_id')
 
         var modal = $(this)
 
         modal.find('.modal-title').text('delete STUDENT INFORMATION');
 
-        modal.find('.modal-body #id_module').val(id_module);
+        modal.find('.modal-body #module_id').val(module_id);
     });
 
 </script>

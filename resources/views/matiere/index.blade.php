@@ -201,18 +201,18 @@
                                         @foreach($matieres as $key=>$matiere)
                                             <tr>
                                                 <td>{{++$key}}</td>
-                                                <td>{{\App\Module::query()->find($matiere->id_module)->nom_module}}</td>
+                                                <td>{{\App\Module::query()->find($matiere->module_id)->nom_module}}</td>
                                                 <td>{{$matiere->nom_matiere}}</td>
                                                 <td>{{$matiere->volume_horaire}}</td>
                                                 <td>
-                                                    <a data-id_math="{{$matiere->id_math}}"
-                                                       data-id_module="{{$matiere->id_module}}"
+                                                    <a data-matiere_id="{{$matiere->matiere_id}}"
+                                                       data-module_id="{{$matiere->module_id}}"
                                                        data-nom_matiere="{{$matiere->nom_matiere}}"
                                                        data-volume_horaire="{{$matiere->volume_horaire}}"
                                                        data-toggle="modal"
                                                        data-target="#exampleModal-edit" type="button"
                                                        class="btn btn-warning btn-sm">modifier</a>
-                                                    <a data-id_math="{{$matiere->id_math}}" data-toggle="modal"
+                                                    <a data-matiere_id="{{$matiere->matiere_id}}" data-toggle="modal"
                                                        data-target="#exampleModal-delete" class="btn btn-danger btn-sm">supprimer</a>
                                                 </td>
                                             </tr>
@@ -251,17 +251,17 @@
                                     </div>
                                     <br>
                                     <!--<div class="form-group">
-                                        <label for="id_module" style="color:#c21db7;">module</label>
+                                        <label for="module_id" style="color:#c21db7;">module</label>
 
-                                        <input type="number" name="id_module" style="color:black;" class="form-control"
+                                        <input type="number" name="module_id" style="color:black;" class="form-control"
                                                placeholder="module">
                                     </div>-->
                                     <div class="form-group">
-                                        <label for="id_module" style="color:#c21db7;">module</label>
-                                        <select name="id_module" id="id_module" class="form-control">
+                                        <label for="module_id" style="color:#c21db7;">module</label>
+                                        <select name="module_id" id="module_id" class="form-control">
                                             {{$mod = \App\Module::all()}}
                                             @foreach( $mod as $m)
-                                                <option value="{{ $m->id_module }}">{{ $m->nom_module }}</option>
+                                                <option value="{{ $m->module_id }}">{{ $m->nom_module }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -302,11 +302,11 @@
                             </div>
                             <div class="modal-body">
 
-                                <form action="{{route('matiere.update','id_math')}}" method="POST">
+                                <form action="{{route('matiere.update','matiere_id')}}" method="POST">
                                     @csrf
                                     @method('PUT')
 
-                                    <input type="hidden" style="color:black;" name="id_math" id="id_math">
+                                    <input type="hidden" style="color:black;" name="matiere_id" id="matiere_id">
                                     <div class="form-group">
                                         <label for="nom_matiere" style="color:#c21db7;">nom matiere</label>
                                         <input type="text" name="nom_matiere" id="nom_matiere" style="color:black;" class="form-control"
@@ -314,11 +314,11 @@
                                     </div>
                                     <br>
                                     <div class="form-group">
-                                        <label for="id_module" style="color:#c21db7;">module</label>
-                                        <select name="id_module" id="id_module" class="form-control">
+                                        <label for="module_id" style="color:#c21db7;">module</label>
+                                        <select name="module_id" id="module_id" class="form-control">
                                             {{$mod = \App\Module::all()}}
                                             @foreach( $mod as $m )
-                                                <option value="{{ $m->id_module }}">{{ $m->nom_module }}</option>
+                                                <option value="{{ $m->module_id }}">{{ $m->nom_module }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -357,11 +357,11 @@
                             </div>
                             <div class="modal-body">
 
-                                <form action="{{route('matiere.destroy','id_math')}}" method="POST">
+                                <form action="{{route('matiere.destroy','matiere_id')}}" method="POST">
                                     @csrf
                                     @method('DELETE')
 
-                                    <input type="hidden" name="id_math" id="id_math">
+                                    <input type="hidden" name="matiere_id" id="matiere_id">
                                     <p class="text-center" width="50px"> vous ete sûre que vous voulez supprimer ce
                                         matiere</p>
 
@@ -389,20 +389,20 @@
     $('#exampleModal-edit').on('show.bs.modal', function (event) {
 
         var button = $(event.relatedTarget)
-        var id_math = button.data('id_math')
+        var matiere_id = button.data('matiere_id')
         var nom_matiere = button.data('nom_matiere')
         var volume_horaire = button.data('volume_horaire')
-        var id_module = button.data('id_module')
+        var module_id = button.data('module_id')
 
 
 
         var modal = $(this)
 
         modal.find('.modal-title').text('EDIT STUDENT INFORMATION');
-        modal.find('.modal-body #id_math').val(id_math);
+        modal.find('.modal-body #matiere_id').val(matiere_id);
         modal.find('.modal-body #nom_matiere').val(nom_matiere);
         modal.find('.modal-body #volume_horaire').val(volume_horaire);
-        modal.find('.modal-body #id_module:selected').val(id_module);
+        modal.find('.modal-body #module_id:selected').val(module_id);
     });
 
 
@@ -410,14 +410,14 @@
 
         var button = $(event.relatedTarget)
 
-        var id_math = button.data('id_math')
+        var matiere_id = button.data('matiere_id')
 
 
         var modal = $(this)
 
         modal.find('.modal-title').text('delete STUDENT INFORMATION');
 
-        modal.find('.modal-body #id_math').val(id_math);
+        modal.find('.modal-body #matiere_id').val(matiere_id);
     });
 
 </script>

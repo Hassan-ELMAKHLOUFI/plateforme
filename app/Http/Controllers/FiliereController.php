@@ -20,7 +20,7 @@ class FiliereController extends Controller
      */
     public function index()
     {
-        $filiere['filieres'] = filiere::OrderBy('id_filiere', 'asc')->paginate(10);
+        $filiere['filieres'] = filiere::OrderBy('filiere_id', 'asc')->paginate(10);
 
         return view('filiere.index', $filiere);
     }
@@ -55,7 +55,7 @@ class FiliereController extends Controller
                     'coordinateur' => $request->coordinateur,
                     'datedebut' => $request->datedebut,
                     'datefin' => $request->datefin,
-                    'id_departement' => $select->id_dep
+                    'departement_id' => $select->departement_id
 
                 );
                 filiere::create($filiere);
@@ -107,13 +107,13 @@ class FiliereController extends Controller
                     'coordinateur' => $request->coordinateur,
                     'datedebut' => $request->datedebut,
                     'datefin' => $request->datefin,
-                    'id_departement' => $select->id_dep
+                    'departement_id' => $select->id_dep
 
                 );
             }
         }
 
-        Filiere::findOrfail($request->id_filiere)->update($filiere);
+        Filiere::findOrfail($request->filiere_id)->update($filiere);
         return redirect()->route('filiere.index');
     }
 
@@ -126,7 +126,7 @@ class FiliereController extends Controller
     public function destroy(Request $filiere)
     {
         $delete = $filiere->all();
-        $deletefiliere = Filiere::findOrfail($filiere->id_filiere);
+        $deletefiliere = Filiere::findOrfail($filiere->filiere_id);
         $deletefiliere->delete();
         return redirect()->route('filiere.index');
     }
