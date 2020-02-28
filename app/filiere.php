@@ -30,4 +30,12 @@ class filiere extends Model implements ToModel, WithHeadingRow
             'departement_id' => $row['departement_id']
         ));
     }
+
+    public function niveau(){
+        return $this->belongsToMany('App\filiere');
+    }
+
+    public function module(){
+        return $this->belongsToMany('App\Module');
+    }
 }

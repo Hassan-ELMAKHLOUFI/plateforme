@@ -31,4 +31,13 @@ class departement extends Model implements ToModel, WithHeadingRow
             'date_fin'    => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['date_fin']),
         ));
     }
+
+    public function filiere(){
+        return $this->hasMany('App\filiere');
+    }
+
+    public function professeur(){
+        return $this->hasMany('App\Professeur');
+    }
+
 }

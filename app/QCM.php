@@ -25,4 +25,12 @@ class QCM extends Model implements ToModel, WithHeadingRow
 
         ));
     }
+
+    public function question(){
+        return $this->hasMany('App\Option');
+    }
+
+    public function reponse_qcm(){
+        return $this->hasOne('App\Reponse_QCM');
+    }
 }

@@ -24,4 +24,9 @@ class Niveau extends Model implements ToModel, WithHeadingRow
             'nom' => $row['nom']
         ));
     }
+
+    public function filiere(){
+        $this->belongsToMany('App\Niveau');
+    }
+
 }

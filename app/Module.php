@@ -24,4 +24,12 @@ class Module extends Model implements ToModel, WithHeadingRow
             'nom_module' => $row['nom_module']
         ));
     }
+
+    public function matiere(){
+        return $this->hasMany('App\Matiere');
+    }
+
+    public function module(){
+        return $this->belongsToMany('App\filiere');
+    }
 }
