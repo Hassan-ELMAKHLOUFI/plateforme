@@ -14,6 +14,4 @@ class Session extends Model
     public function etudiant(){
         return $this->hasMany('App\Etudiant','etudiant_id','etudiant_id');
     }
-
-
 }

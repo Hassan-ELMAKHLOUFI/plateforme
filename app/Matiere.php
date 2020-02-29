@@ -30,6 +30,6 @@ class Matiere extends Model implements ToModel, WithHeadingRow
     }
 
     public function professeur(){
-        return $this->belongsToMany('App\Matiere');
+        return $this->belongsToMany('App\Professeur', 'matiere_prof', 'matiere_id', 'professeur_id');
     }
 }

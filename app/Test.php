@@ -13,6 +13,11 @@ class Test extends Model implements ToModel, WithHeadingRow
     protected $fillable=['nom','note','duree','salle','date'];
     protected $primaryKey='test_id';
     //
+    /**
+     * @param array $row
+     *
+     * @return Model|Model[]|null
+     */
     public function model(array $row)
     {
         return new test(array(
@@ -21,22 +26,5 @@ class Test extends Model implements ToModel, WithHeadingRow
             'duree'    => $row['duree'],
             'salle'    => $row['salle'],
             'date'    => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['date']),
-        ));
-    }
-
-    public function groupe(){
-        return $this->hasMany('App\Groupe');
-    }
-
-    public function qcm(){
-        return $this->hasMany('App\QCM');
-    }
-
-    public function text_libre(){
-        return $this->hasMany('App\Text_libre');
-    }
-
-    public function resultat(){
-        return $this->hasMany('App\Resultat');
-    }
+        ));    }
 }

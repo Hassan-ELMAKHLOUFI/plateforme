@@ -25,11 +25,7 @@ class Module extends Model implements ToModel, WithHeadingRow
         ));
     }
 
-    public function matiere(){
-        return $this->hasMany('App\Matiere');
-    }
-
-    public function module(){
-        return $this->belongsToMany('App\filiere');
+    public function filiere(){
+        return $this->belongsToMany('App\filiere','filiere_module','module_id','filiere_id');
     }
 }

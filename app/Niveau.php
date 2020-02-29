@@ -26,7 +26,6 @@ class Niveau extends Model implements ToModel, WithHeadingRow
     }
 
     public function filiere(){
-        $this->belongsToMany('App\Niveau');
+        return $this->belongsToMany('App\filiere','filiere_niveau','niveau_id','filiere_id');
     }
-
 }

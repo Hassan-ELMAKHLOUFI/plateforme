@@ -11,8 +11,4 @@ class Reponse_QCM extends Model
     protected $fillable=[];
     protected $primaryKey='reponse_id';
 
-    public function qcm(){
-        return $this->hasOne('App\QCM');
-    }
-
 }

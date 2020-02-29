@@ -32,12 +32,4 @@ class departement extends Model implements ToModel, WithHeadingRow
         ));
     }
 
-    public function filiere(){
-        return $this->hasMany('App\filiere');
-    }
-
-    public function professeur(){
-        return $this->hasMany('App\Professeur');
-    }
-
 }

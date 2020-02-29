@@ -32,11 +32,7 @@ class filiere extends Model implements ToModel, WithHeadingRow
     }
 
     public function niveau(){
-        return $this->belongsToMany('App\filiere');
-    }
-
-    public function module(){
-        return $this->belongsToMany('App\Module');
+        return $this->belongsToMany('App\Niveau','filiere_niveau','filiere_id','niveau_id');
     }
 
     public function module(){
