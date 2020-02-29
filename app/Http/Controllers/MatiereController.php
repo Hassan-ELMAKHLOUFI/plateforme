@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Matiere;
+use App\Professeur;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -46,7 +47,9 @@ class MatiereController extends Controller
 
         );
 
-        Matiere::create($matiere);
+        $m = new Matiere($matiere);
+        $p = Professeur::query()->findOrFail($request->professeur_id);
+        $p->matiere()->save($m);
         return redirect()->route('matiere.index');
     }
 

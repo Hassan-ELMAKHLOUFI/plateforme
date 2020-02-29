@@ -15,7 +15,7 @@ class ProfesseurController extends Controller
      */
     public function index(Request $request)
     {
-        $professeurs['professeurs'] = Professeur::OrderBy('id', 'asc')->paginate(10);
+        $professeurs['professeurs'] = Professeur::OrderBy('professeur_id', 'asc')->paginate(10);
         return view('professeur.index', $professeurs);
     }
 
@@ -45,6 +45,7 @@ class ProfesseurController extends Controller
             'email' => $request->email_p,
             'password' => $request->password_p,
             'grade' => $request->grade_p,
+            'departement_id' => $request->departement_id
         );
 
         Professeur::create($professeur);
@@ -91,7 +92,7 @@ class ProfesseurController extends Controller
             'email' => $request->email_p,
             'password' => $request->password_p,
             'grade' => $request->grade_p,
-
+            'departement_id' => $request->departement_id
 
         );
 

@@ -197,6 +197,7 @@
                                             <th>email</th>
                                             <th>mot de passe</th>
                                             <th>grade</th>
+                                            <th>departement_id</th>
                                             <th class="exclude">Action</th>
                                         </tr>
                                         <tbody>
@@ -210,7 +211,7 @@
                                                 <td>{{$professeur->email}}</td>
                                                 <td>{{$professeur->password}}</td>
                                                 <td>{{$professeur->grade}}</td>
-
+                                                <td>{{$professeur->departement_id}}</td>
                                                 <td class="exclude">
                                                     <a data-professeur_id="{{$professeur->professeur_id}}"
                                                        data-cin="{{$professeur->cin}}"
@@ -219,7 +220,9 @@
                                                        data-username="{{$professeur->username}}"
                                                        data-email="{{$professeur->email}}"
                                                        data-password="{{$professeur->password}}"
-                                                       data-grade="{{$professeur->grade}}" data-toggle="modal"
+                                                       data-grade="{{$professeur->grade}}"
+                                                       data-departement_id="{{$professeur->departement_id}}"
+                                                       data-toggle="modal"
                                                        data-target="#exampleModal-edit" type="button"
                                                        class="btn btn-warning btn-sm">modifier</a>
                                                     <a data-professeur_id="{{$professeur->professeur_id}}" data-toggle="modal"
@@ -309,6 +312,16 @@
 
                                         <input type="text" name="grade_p" style="color:black;" class="form-control"
                                                pattern="[1-9]{1,2}" placeholder="grade de professeur">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="departement_id" style="color:#c21db7;">Departement</label>
+                                        <?php $departement = \App\Departement::all()?>
+                                        <select name="departement_id" size="2">
+                                            @foreach($departement as $d)
+                                                <option value="{{$d->departement_id}}">{{$d->nom}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
 
                             </div>
@@ -402,6 +415,16 @@
                                                class="form-control"
                                                pattern="[1-9]{1,2}" placeholder="grade de professeur">
                                     </div>
+                                    <div class="form-group">
+                                        <label for="departement_id" style="color:#c21db7;">Departement</label>
+                                        <?php $departement = \App\Departement::all()?>
+                                        <select name="departement_id" size="2">
+                                            @foreach($departement as $d)
+                                                <option value={{$d->departement_id}}>{{$d->nom}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">fermer</button>
@@ -476,7 +499,7 @@
         var password = button.data('password')
         var grade = button.data('grade')
         var professeur_id = button.data('professeur_id')
-
+        var departement_id = button.data('departement_id')
 
         var modal = $(this)
 
@@ -489,6 +512,7 @@
         modal.find('.modal-body #password_p').val(password);
         modal.find('.modal-body #grade_p').val(grade);
         modal.find('.modal-body #professeur_id').val(professeur_id);
+        modal.find('.modal-body #departement_id option:selected').val(departement_id);
     });
 
 

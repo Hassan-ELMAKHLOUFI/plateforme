@@ -14,7 +14,7 @@ class Professeur extends Authenticatable implements ToModel, WithHeadingRow
 
     protected $guard = 'professeur';
     protected $table="professeur";
-    protected $fillable=['cin','nom','prenom','username','email','password','grade'];
+    protected $fillable=['cin','nom','prenom','username','email','password','grade','departement_id'];
     protected $primaryKey='professeur_id';
 
     /**
@@ -33,6 +33,12 @@ class Professeur extends Authenticatable implements ToModel, WithHeadingRow
             'email' => $row['email'],
             'password' => $row['password'],
             'grade' => $row['grade'],
+            'departement_id' => $row['grade'],
         ));
     }
+
+    public function matiere(){
+        return $this->belongsToMany('App\Matiere','matiere_prof','professeur_id','matiere_id');
+    }
+
 }

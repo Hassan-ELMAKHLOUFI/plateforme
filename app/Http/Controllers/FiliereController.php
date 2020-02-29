@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\filiere;
 use App\departement;
+use App\Niveau;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -58,7 +59,9 @@ class FiliereController extends Controller
                     'departement_id' => $select->departement_id
 
                 );
-                filiere::create($filiere);
+                $f = new filiere($filiere);
+                $n = Niveau::query()->findOrFail($request->niveau_id);
+                $n->filiere()->save($f);
                 return redirect()->route('filiere.index');
             }
         }
@@ -107,7 +110,7 @@ class FiliereController extends Controller
                     'coordinateur' => $request->coordinateur,
                     'datedebut' => $request->datedebut,
                     'datefin' => $request->datefin,
-                    'departement_id' => $select->id_dep
+                    'departement_id' => $select->departement_id
 
                 );
             }

@@ -265,6 +265,15 @@
                                             @endforeach
                                         </select>
                                     </div>
+                                    <div class="form-group">
+                                        <label for="professeur_id" style="color:#c21db7;">Professeur</label>
+                                        <?php $professeur = \App\Professeur::all()?>
+                                        <select name="professeur_id" size="2">
+                                            @foreach($professeur as $p)
+                                                <option value={{$p->professeur_id}}>{{$p->nom}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                     <br>
 
                                     <div class="form-group">

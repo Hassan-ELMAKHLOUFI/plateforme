@@ -15,14 +15,11 @@ class CreateMatiereProfsTable extends Migration
     {
         Schema::create('matiere_prof', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('module_id')->nullable('false')->unique();
             $table->unsignedBigInteger('matiere_id')->nullable('false')->unique();
             $table->unsignedBigInteger('professeur_id')->nullable('false')->unique();
-            $table->string('cin');
-            $table->unsignedBigInteger('grade');
             $table->timestamps();
 
-            $table->foreign('module_id')->references('module_id')->on('matiere')->onDelete('cascade');
+
             $table->foreign('matiere_id')->references('matiere_id')->on('matiere')->onDelete('cascade');
             $table->foreign('professeur_id')->references('professeur_id')->on('professeur')->onDelete('cascade');
 

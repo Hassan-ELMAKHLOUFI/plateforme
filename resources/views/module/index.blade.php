@@ -247,11 +247,11 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="id_filiere" style="color:#c21db7;">Filiere</label>
+                                        <label for="filiere_id" style="color:#c21db7;">Filiere</label>
                                         <?php
                                         use App\filiere;
                                         $filieres = filiere::all();
-                                      echo "<select size='2' name=id_filiere>";
+                                      echo "<select size='2' name=filiere_id>";
                                             foreach($filieres as $f){
                                                 $id_filiere=$f->filiere_id;
                                                 echo "<option value=$id_filiere>$f->nom</option>";

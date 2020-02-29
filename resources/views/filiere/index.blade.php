@@ -303,6 +303,15 @@
                                             ?>
                                         </select>
 
+                                        <div class="form-group">
+                                            <label for="niveau_id" style="color:#c21db7;">niveau</label>
+                                            <?php $niveau = \App\Niveau::all()?>
+                                            <select name="niveau_id" size="2">
+                                                @foreach($niveau as $n)
+                                                    <option value="{{$n->niveau_id}}">{{$n->nom}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                     </div>
                             </div>
                             <div class="modal-footer">
@@ -382,6 +391,16 @@
                                             }
                                             ?>
                                         </select>
+
+                                        <div class="form-group">
+                                            <label for="niveau_id" style="color:#c21db7;">niveau</label>
+                                            <?php $niveau = \App\Niveau::all()?>
+                                            <select name="niveau_id" size="2">
+                                                @foreach($niveau as $n)
+                                                    <option value="{{$n->niveau_id}}">{{$n->nom}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                     </div>
                             </div>
                             <div class="modal-footer">

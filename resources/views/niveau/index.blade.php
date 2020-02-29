@@ -2,14 +2,15 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
     <link rel="icon" type="image/png" href="../assets/img/favicon.png">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <title>
         Material Dashboard Dark Edition by Creative Tim
     </title>
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+          name='viewport'/>
     <!--     Fonts and icons     -->
 
     <!-- Font Awesome -->
@@ -31,12 +32,13 @@
     <!-- MDB core JavaScript -->
     <script type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.12.0/js/mdb.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" type="text/css"
+          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!-- CSS Files -->
-    <link href="../assets/css/material-dashboard.css?v=2.1.0" rel="stylesheet" />
+    <link href="../assets/css/material-dashboard.css?v=2.1.0" rel="stylesheet"/>
     <!-- CSS Just for demo purpose, don't include it in your project -->
-    <link href="../assets/demo/demo.css" rel="stylesheet" />
+    <link href="../assets/demo/demo.css" rel="stylesheet"/>
 
 
 </head>
@@ -87,10 +89,10 @@
                 </li>
                 <li class="nav-item ">
 
-                <a class="nav-link active" href="{{route("niveau.index")}}">
-                    <i class="material-icons">content_paste</i>
-                    <p>niveau</p>
-                </a>
+                    <a class="nav-link active" href="{{route("niveau.index")}}">
+                        <i class="material-icons">content_paste</i>
+                        <p>niveau</p>
+                    </a>
                 </li>
                 <li class="nav-item ">
                     <a class="nav-link" href="{{route("professeur.index")}}">
@@ -116,7 +118,8 @@
                 <div class="navbar-wrapper">
                     <a class="navbar-brand" href="javascript:void(0)">Liste des tableaux</a>
                 </div>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation" data-target="#navigation-example">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index"
+                        aria-expanded="false" aria-label="Toggle navigation" data-target="#navigation-example">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="navbar-toggler-icon icon-bar"></span>
                     <span class="navbar-toggler-icon icon-bar"></span>
@@ -134,7 +137,8 @@
                             </a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link" href="javscript:void(0)" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link" href="javscript:void(0)" id="navbarDropdownMenuLink"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="material-icons">notifications</i>
                                 <span class="notification">5</span>
                                 <p class="d-lg-none d-md-block">
@@ -192,7 +196,8 @@
                                                 <td>{{++$key}}</td>
                                                 <td>{{$niveau->nom}}</td>
                                                 <td class="exclude">
-                                                    <a data-niveau_id="{{$niveau->niveau_id}}" data-nom="{{$niveau->nom}}"
+                                                    <a data-niveau_id="{{$niveau->niveau_id}}"
+                                                       data-nom="{{$niveau->nom}}"
                                                        data-toggle="modal"
                                                        data-target="#exampleModal-edit" type="button"
                                                        class="btn btn-warning btn-sm">modifier</a>
@@ -229,12 +234,12 @@
                                 <form action="{{route('niveau.store')}}" method="POST">
                                     @csrf
                                     <div class="form-group">
-                                        <label for="nom" style ="color:#c21db7;">nom</label>
+                                        <label for="nom" style="color:#c21db7;">nom</label>
 
 
-                                        <input type="text" name="nom" style="color:black;" class="form-control" pattern="[a-zA-Z]{3,}" placeholder="nom de niveau">
+                                        <input type="text" name="nom" style="color:black;" class="form-control"
+                                               pattern="[a-zA-Z]{3,}" placeholder="nom de niveau">
                                     </div>
-
 
                             </div>
                             <div class="modal-footer">
@@ -269,7 +274,7 @@
                                         <label for="">nom</label>
 
                                         <input type="text" style="color:black;" id="nom" name="nom" class="form-control"
-                                               pattern="[a-zA-Z]{3,}"    placeholder="nom de niveau">
+                                               pattern="[a-zA-Z]{3,}" placeholder="nom de niveau">
                                     </div>
                                     <input type="hidden" style="color:black;" name="niveau_id" id="niveau_id">
 
@@ -398,4 +403,4 @@
     });
 </script>
 <script src="//cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
-    </html>
+</html>

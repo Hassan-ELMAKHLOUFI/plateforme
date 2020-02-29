@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\filiere;
 use App\Matiere;
 use App\Module;
 use Illuminate\Http\Request;
@@ -43,7 +44,9 @@ class ModuleController extends Controller
             'nom_module' => $request->nom_module,
         );
 
-        Module::create($module);
+        $m = new Module($module);
+        $f = Filiere::query()->findOrFail($request->filiere_id);
+        $f->module()->save($m);
         return redirect()->route('module.index');
     }
 
@@ -95,7 +98,6 @@ class ModuleController extends Controller
      */
     public function destroy(Request $module)
     {
-        //
         $delete = $module->all();
         $deletemodule = Module::findOrfail($module->module_id);
         $deletemodule->delete();
