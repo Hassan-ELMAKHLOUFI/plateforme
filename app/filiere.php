@@ -42,6 +42,4 @@ class filiere extends Model implements ToModel, WithHeadingRow
     public function module(){
         return $this->belongsToMany('App\Module','filiere_module','filiere_id','module_id');
     }
-
-
 }
