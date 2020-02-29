@@ -296,6 +296,19 @@
                                                class="form-control"
                                                placeholder="nom de module">
                                     </div>
+                                    <div class="form-group">
+                                        <label for="filiere_id" style="color:#c21db7;">Filiere</label>
+                                        <?php
+
+                                        $filieres = filiere::all();
+                                        echo "<select size='2' name=filiere_id>";
+                                        foreach($filieres as $f){
+                                            $id_filiere=$f->filiere_id;
+                                            echo "<option value=$id_filiere>$f->nom</option>";
+                                        }
+                                        echo "</select>";
+                                        ?>
+                                    </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">fermer</button>
