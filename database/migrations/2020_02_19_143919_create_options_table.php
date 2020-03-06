@@ -15,7 +15,7 @@ class CreateOptionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('options', function (Blueprint $table) {
+        Schema::create('option', function (Blueprint $table) {
             $table->bigIncrements('option_id');
             $table->string('option_text');
             $table->integer('point');
@@ -30,6 +30,6 @@ class CreateOptionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('options');
+        Schema::dropIfExists('option');
     }
 }

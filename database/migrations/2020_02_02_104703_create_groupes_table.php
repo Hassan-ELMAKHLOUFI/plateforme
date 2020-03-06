@@ -18,7 +18,11 @@ class CreateGroupesTable extends Migration
             $table->unsignedBigInteger('test_id');
             $table->integer('nombre_etudiant');
             $table->timestamps();
+
+            $table->foreign('test_id')->references('test_id')->on('test')->onDelete('cascade');
         });
+
+
     }
 
     /**

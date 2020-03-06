@@ -297,10 +297,30 @@
                                                placeholder="prenom">
                                     </div>
                                     <div class="form-group">
-                                        <label for="id_niveau" style="color:#c21db7;">id_niveau</label>
+                                        <label for="niveau_id" style="color:#c21db7;">Niveau</label>
+                                        <?php
 
-                                        <input type="number" name="id_niveau" style="color:black;" class="form-control"
-                                               placeholder="id_niveau" value="1" readonly>
+                                        use App\filiere;use App\Niveau;$niveaux = Niveau::all();
+                                        echo "<select size='2' name=niveau_id>";
+                                        foreach($niveaux as $n){
+                                            $niveau_id =$n->niveau_id;
+                                            echo "<option value=$niveau_id>$n->nom</option>";
+                                        }
+                                        echo "</select>";
+                                        ?>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="filiere_id" style="color:#c21db7;">Filiere</label>
+                                        <?php
+
+                                        $filieres = filiere::all();
+                                        echo "<select size='2' name=filiere_id>";
+                                        foreach($filieres as $f){
+                                            $id_filiere=$f->filiere_id;
+                                            echo "<option value=$id_filiere>$f->nom</option>";
+                                        }
+                                        echo "</select>";
+                                        ?>
                                     </div>
                                     <div class="form-group">
 

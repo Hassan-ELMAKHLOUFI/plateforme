@@ -84,7 +84,6 @@ class MatiereController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
         $matiere = array(
             'nom_matiere' => $request->nom_matiere,
             'volume_horaire' => $request->volume_horaire,

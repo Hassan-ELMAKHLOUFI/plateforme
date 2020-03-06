@@ -15,8 +15,8 @@ class CreateEtudiantsTable extends Migration
     {
         Schema::create('etudiant', function (Blueprint $table) {
             $table->bigIncrements('etudiant_id');
-            $table->unsignedBigInteger('groupe_id')->default(1);
             $table->unsignedBigInteger('niveau_id');
+            $table->unsignedBigInteger('filiere_id');
             $table->string('cin');
             $table->string('cne');
             $table->string('nom');
@@ -29,7 +29,7 @@ class CreateEtudiantsTable extends Migration
             $table->timestamps();
 
             $table->foreign('niveau_id')->references('niveau_id')->on('niveau')->onDelete('cascade');
-            $table->foreign('groupe_id')->references('groupe_id')->on('groupe')->onDelete('cascade');
+            $table->foreign('filiere_id')->references('filiere_id')->on('filiere')->onDelete('cascade');
         });
     }
 

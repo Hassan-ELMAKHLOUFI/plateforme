@@ -29,6 +29,8 @@ Route::Resource('module','ModuleController');
 Route::Resource('moduleFiliere','ModuleFiliereController');
 Route::Resource('niveau','NiveauController');
 Route::Resource('professeur','ProfesseurController');
+Route::Resource('groupe','GroupeController');
+Route::Resource('test','TestController');
 
 Auth::routes();
 

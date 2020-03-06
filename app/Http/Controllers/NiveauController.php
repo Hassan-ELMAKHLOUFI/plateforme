@@ -39,8 +39,8 @@ class NiveauController extends Controller
     public function store(Request $request)
     {
         $niveau = array(
-            'nom' => $request->nom
-        );
+        'nom' => $request->nom
+    );
 
         niveau::create($niveau);
         return redirect()->route('niveau.index');
