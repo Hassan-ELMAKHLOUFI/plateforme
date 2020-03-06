@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 
+use App\Etudiant;
+use App\Groupe;
 use App\Test;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -48,7 +50,29 @@ class TestController extends Controller
         );
 
 
-        Test::create($test);
+        $currentTest = Test::query()->create($test);
+
+        $nbe = ceil(Etudiant::query()->count() / $request->ng);
+        $skip = 0;
+        for ($i = 0; $i < $nbe; $i++) {
+
+
+            $groupe = array(
+                'test_id' => $currentTest->test_id,
+                'filiere_id' => $request->filiere_id,
+                'niveau_id' => $request->niveau_id,
+                'nombre_etudiant' => $request->ng,
+            );
+
+            $g = new Groupe($groupe);
+            $etudiant = Etudiant::query()->skip($skip)->take($request->ng)->get();
+            $skip += $request->ng;
+            foreach ($etudiant as $e) {
+                $e->groupe()->save($g);
+            }
+        }
+
+
         return redirect()->route('test.index');
     }
 
