@@ -21,7 +21,7 @@ class Test extends Model implements ToModel, WithHeadingRow
             'note' => $row['note'],
             'duree' => $row['duree'],
             'salle' => $row['salle'],
-            'description' => $row['description'],
+            'discription' => $row['discription'],
             'date'    => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['date'])
         ));
     }
