@@ -9,7 +9,7 @@
     <title>Document</title>
 </head>
 <body>
-<form action='{{route('test.store')}}' method='POST'>
+<form action='{{route('test.store')}}'{{action("TestController@store")}} method='POST'>
     @csrf
     <label>
         Nom de Test

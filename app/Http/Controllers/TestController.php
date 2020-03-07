@@ -48,7 +48,8 @@ class TestController extends Controller
             'note' => $request->note,
             'duree' => $request->duree,
             'salle' => $request->salle,
-            'date' => $request->date
+            'date' => $request->date,
+            'description' => $request->description
         );
 
 
@@ -143,7 +144,8 @@ class TestController extends Controller
             'note' => $request->note,
             'duree' => $request->duree,
             'salle' => $request->salle,
-            'date' => $request->date
+            'date' => $request->date,
+            'description' => $request->description
         ]);
 
         Test::findOrFail($request->test_id)->update($test);
