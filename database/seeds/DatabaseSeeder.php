@@ -10,6 +10,8 @@ class DatabaseSeeder extends Seeder
      *
      * @return void
      */
+
+
     public function run()
     {
         $faker = Faker::create();
@@ -26,7 +28,7 @@ class DatabaseSeeder extends Seeder
         DB::table('filiere')->insert([
             'departement_id' => 1,
             'nom' => 'GL',
-            'coordinateur'  => $faker->name,
+            'coordinateur' => $faker->name,
             'datedebut' => $faker->dateTime(),
             'datefin' => $faker->dateTime(),
 
@@ -43,18 +45,6 @@ class DatabaseSeeder extends Seeder
             'nom' => 'troiseme',
         ]);
 
-
-
-        DB::table('test')->insert([
-            'nom' => 'dba',
-            'note' => 20,
-            'duree' => 180,
-            'salle' => 1,
-            'date' => \Carbon\Carbon::create('2020', '10', '3'),
-        ]);
-
-
-
         foreach (range(1, 50) as $i) {
             DB::table('etudiant')->insert([
                 'cin' => $faker->randomNumber(6),
@@ -64,13 +54,10 @@ class DatabaseSeeder extends Seeder
                 'filiere_id' => 1,
                 'niveau_id' => 1,
                 'email_address' => $faker->email,
-                'username' => $faker->userName,
-                'password' => $faker->password,
                 'numero' => $faker->randomNumber(),
                 'num_apologie' => $faker->randomNumber(6)
             ]);
         }
-
-
     }
+
 }

@@ -47,8 +47,6 @@ class EtudiantController extends Controller
             'niveau_id' => $request->niveau_id,
             'filiere_id' => $request->filiere_id,
             'email_address' => $request->email_address,
-            'username' => $request->username,
-            'password' => $request->password,
             'numero' => $request->numero,
             'num_apologie' => $request->num_apologie
         );
@@ -97,8 +95,6 @@ class EtudiantController extends Controller
             'niveau_id' => $request->niveau_id,
             'filiere_id' => $request->filiere_id,
             'email_address' => $request->email_address,
-            'username' => $request->username,
-            'password' => $request->password,
             'numero' => $request->numero,
             'num_apologie' => $request->num_apologie
         );

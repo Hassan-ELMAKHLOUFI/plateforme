@@ -17,8 +17,8 @@ class CreateSessionsTable extends Migration
             $table->bigIncrements('session_id');
             $table->unsignedBigInteger('etudiant_id');
             $table->unsignedBigInteger('test_id');
-            $table->string('nom_utilisateur');
-            $table->string('mot_passe');
+            $table->string('username');
+            $table->string('password');
             $table->timestamps();
 
             $table->foreign('etudiant_id')->references('etudiant_id')->on('etudiant')->onDelete('cascade');

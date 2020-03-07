@@ -24,4 +24,8 @@ class Test extends Model implements ToModel, WithHeadingRow
             'date'    => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['date'])
         ));
     }
+
+    public function session(){
+        return $this->hasMany('App\Session','session_id');
+    }
 }

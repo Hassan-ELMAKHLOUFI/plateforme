@@ -22,8 +22,6 @@ class CreateEtudiantsTable extends Migration
             $table->string('nom');
             $table->string('prenom');
             $table->string('email_address');
-            $table->string('username');
-            $table->string('password');
             $table->integer('numero');
             $table->integer('num_apologie');
             $table->timestamps();

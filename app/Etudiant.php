@@ -38,4 +38,8 @@ class Etudiant extends Model implements ToModel, WithHeadingRow
         return $this->belongsToMany('App\Groupe','etudiant_groupe','etudiant_id','groupe_id');
     }
 
+    public function session(){
+        return $this->hasOne('App\Etudiant','etudiant_id','etudiant_id');
+    }
+
 }

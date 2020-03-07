@@ -8,10 +8,14 @@ class Session extends Model
 {
     //
     protected $table="session";
-    protected $fillable=['nom_utilisateur','mot_passe'];
+    protected $fillable=['etudiant_id','test_id','username','password'];
     protected $primaryKey='session_id';
 
     public function etudiant(){
-        return $this->hasMany('App\Etudiant','etudiant_id','etudiant_id');
+    return $this->hasMany('App\Etudiant','etudiant_id','etudiant_id');
+}
+    public function test(){
+        return $this->hasOne('App\Test','test_id','test_id');
     }
+
 }
