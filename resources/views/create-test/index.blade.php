@@ -18,7 +18,7 @@
                     <h1 class="wizard__title">créer</h1>
                 </div>
 <form action='{{action("TestController@store")}}' method='POST'>
-    @csrf
+       @csrf
                 <div class="wizard__steps">
                     <nav class="steps">
                         <div class="step">
