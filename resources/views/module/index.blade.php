@@ -254,7 +254,7 @@
                                       echo "<select size='2' name=filiere_id>";
                                             foreach($filieres as $f){
                                                 $id_filiere=$f->filiere_id;
-                                                echo "<option value=$id_filiere>$f->nom</option>";
+                                                echo "<option value=$id_filiere>$f->nom </option>";
                                             }
                                         echo "</select>";
                                         ?>
