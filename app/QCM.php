@@ -3,7 +3,6 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
@@ -24,10 +23,6 @@ class QCM extends Model implements ToModel, WithHeadingRow
         return new QCM(array(
             'type'     => $row['type'],
             'test_id'=> $row['test_id'],
-            'type'     => $row[''],
-            'type'     => $row['type']
-            
-
 
         ));
     }
@@ -36,5 +31,5 @@ class QCM extends Model implements ToModel, WithHeadingRow
     }
     public function test(){
         return $this->belongsTo('App\Test','test_id','test_id');
-    } 
+    }
 }

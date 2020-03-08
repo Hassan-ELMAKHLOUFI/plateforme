@@ -22,7 +22,7 @@ class TestController extends Controller
     public function index()
     {
         $tests['tests'] = Test::OrderBy('test_id', 'asc')->paginate(10);
-        return view('test.index', $tests);
+        return view('create-test.index', $tests);
     }
 
     /**
@@ -105,7 +105,7 @@ class TestController extends Controller
         }
 
 
-        return redirect()->route('test.index');
+        return redirect()->route('create-test.index');
     }
 
     /**
@@ -149,7 +149,7 @@ class TestController extends Controller
         ]);
 
         Test::findOrFail($request->test_id)->update($test);
-        return redirect()->route('test.index');
+        return redirect()->route('create-test.index');
     }
 
     /**
@@ -162,7 +162,7 @@ class TestController extends Controller
     {
         $deletetest = Test::findOrfail($test->test_id);
         $deletetest->delete();
-        return redirect()->route('test.index');
+        return redirect()->route('create-test.index');
     }
 
     public function import(Request $request)
@@ -173,7 +173,7 @@ class TestController extends Controller
     public function export_pdf($test_id)
     {
         // Fetch all customers from database
-        $sessions = Session::query()->get()->where('test_id','=',$test_id);
+        $sessions = Session::query()->get()->where('test_id', '=', $test_id);
         // Send data to the view using loadView function of PDF facade
         $pdf = PDF::loadView('test.pdf', compact('sessions'));
         // If you want to store the generated pdf to the server then you can use the store function
@@ -192,5 +192,11 @@ class TestController extends Controller
             $pass[] = $alphabet[$n];
         }
         return implode($pass); //turn the array into a string
+    }
+
+    public function index1()
+    {
+        $tests['tests'] = Test::orderBy('test_id', 'asc');
+        return view('quiz.index', $tests);
     }
 }

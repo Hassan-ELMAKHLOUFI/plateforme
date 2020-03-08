@@ -20,7 +20,7 @@ class CreateTestsTable extends Migration
                 $table->string('duree');
                 $table->string('salle');
                 $table->date('date');
-                $table->multiLineString('discription');
+                $table->string('discription');
                 $table->timestamps();
             });
     }

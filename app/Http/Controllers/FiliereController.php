@@ -128,7 +128,7 @@ class FiliereController extends Controller
      */
     public function destroy(Request $filiere)
     {
-        
+        $delete = $filiere->all();
         $deletefiliere = Filiere::findOrfail($filiere->filiere_id);
         $deletefiliere->delete();
         return redirect()->route('filiere.index');

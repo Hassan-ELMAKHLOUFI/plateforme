@@ -9,7 +9,7 @@
     <title>Document</title>
 </head>
 <body>
-<form action='{{route('test.store')}}'{{action("TestController@store")}} method='POST'>
+<form action='{{action("TestController@store")}}' method='POST'>
     @csrf
     <label>
         Nom de Test
@@ -61,6 +61,7 @@
         echo "</select>";
         ?>
     </div>
+    <textarea name="discription"></textarea>
     <button type="submit">Enregistrer</button>
 </form>
 <br><br>

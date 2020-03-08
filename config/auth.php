@@ -36,15 +36,6 @@ return [
     */
 
     'guards' => [
-        'admin' => [
-            'driver' => 'session',
-            'provider' => 'admins',
-        ],
-        'professeur' => [
-            'driver' => 'session',
-            'provider' => 'professeurs',
-        ],
-        
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
@@ -53,12 +44,8 @@ return [
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
-        ],        
- 
+        ],
     ],
-
-        
-   
 
     /*
     |--------------------------------------------------------------------------
@@ -81,14 +68,6 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
-        ], 
-         'admins' => [
-            'driver' => 'eloquent',
-            'model' => App\Admin::class,
-        ],
-        'professeurs' => [
-            'driver' => 'eloquent',
-            'model' => App\Professeur::class,
         ],
 
         // 'users' => [
@@ -124,6 +103,5 @@ return [
             'expire' => 60,
         ],
     ],
-
 
 ];

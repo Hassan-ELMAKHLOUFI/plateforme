@@ -10,7 +10,7 @@ class Test extends Model implements ToModel, WithHeadingRow
 {
 
     protected $table = "test";
-    protected $fillable = ['nom','duree','salle','date','note','description'];
+    protected $fillable = ['nom', 'duree', 'salle', 'date', 'note', 'discription'];
     protected $primaryKey = 'test_id';
 
     public function model(array $row)
@@ -22,11 +22,17 @@ class Test extends Model implements ToModel, WithHeadingRow
             'duree' => $row['duree'],
             'salle' => $row['salle'],
             'discription' => $row['discription'],
-            'date'    => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['date'])
+            'date' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['date'])
         ));
     }
 
-    public function session(){
-        return $this->hasMany('App\Session','session_id');
+    public function qcm()
+    {
+        return $this->hasMany('App\qcm', 'test_id', 'test_id');
+    }
+
+    public function session()
+    {
+        return $this->hasMany('App\Session', 'session_id');
     }
 }

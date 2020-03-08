@@ -29,11 +29,11 @@ Route::Resource('module','ModuleController');
 Route::Resource('moduleFiliere','ModuleFiliereController');
 Route::Resource('niveau','NiveauController');
 Route::Resource('professeur','ProfesseurController');
-Route::resource('test','testController');
+Route::Resource('create-test','TestController');
 Route::resource('Resultat','ResultatController');
 Route::get ('qcm/{test_id}','QcmController@question');
 Route::get ('result','ResultatController@test');
-Route::Resource('test','TestController');
+Route::get('test','TestController@index1');
 Route::get('/session_pdf/{test}','TestController@export_pdf')->name('test.pdf');
 
 Auth::routes();

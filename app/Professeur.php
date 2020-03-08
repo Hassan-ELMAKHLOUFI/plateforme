@@ -16,7 +16,6 @@ class Professeur extends Authenticatable implements ToModel, WithHeadingRow
     protected $table="professeur";
     protected $fillable=['cin','nom','prenom','username','email','password','grade','departement_id'];
     protected $primaryKey='professeur_id';
-    protected  $hidden ='password';
 
     /**
      * @param array $row

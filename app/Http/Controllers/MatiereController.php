@@ -49,9 +49,7 @@ class MatiereController extends Controller
 
         $m = new Matiere($matiere);
         $p = Professeur::query()->findOrFail($request->professeur_id);
-        //$p->matiere()->save($m);
-        $m->save();
-        $m->professeur()->attach($p);
+        $p->matiere()->save($m);
         return redirect()->route('matiere.index');
     }
 
