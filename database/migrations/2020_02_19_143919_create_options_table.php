@@ -19,6 +19,9 @@ class CreateOptionsTable extends Migration
             $table->bigIncrements('option_id');
             $table->string('option_text');
             $table->integer('point');
+            $table->unsignedBiginteger('question_id');
+            $table->foreign('question_id')->references('question_id')->on('qcm')->onDelete('cascade');
+
             $table->timestamps();
         });
     }

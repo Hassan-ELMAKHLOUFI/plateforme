@@ -3,13 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
 class QCM extends Model implements ToModel, WithHeadingRow
 {
-    protected $table="QCM";
-    protected $fillable=['type'];
+    protected $table="qcm";
+    protected $fillable=['type','test_id','question_text','note'];
     protected $primaryKey='question_id';
 
     /**
@@ -22,7 +23,18 @@ class QCM extends Model implements ToModel, WithHeadingRow
         // TODO: Implement model() method.
         return new QCM(array(
             'type'     => $row['type'],
+            'test_id'=> $row['test_id'],
+            'type'     => $row[''],
+            'type'     => $row['type']
+            
+
 
         ));
     }
+    public function options(){
+        return $this->hasMany('App\Option','question_id');
+    }
+    public function test(){
+        return $this->belongsTo('App\Test','test_id','test_id');
+    } 
 }

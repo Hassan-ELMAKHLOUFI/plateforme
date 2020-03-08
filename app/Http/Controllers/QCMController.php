@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\departement;
+use App\Test ;
+
+
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -85,5 +87,16 @@ class QCMController extends Controller
 
     public function import(Request $request){
 
+    }
+    public function question($test_id){
+      
+
+   
+     $test=Test::findOrfail($test_id);
+     $qcms['qcms']=$test->qcm; 
+    
+     return view ('qcm.index',compact('qcms','test')) ;
+         
+         
     }
 }

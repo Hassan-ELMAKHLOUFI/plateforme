@@ -8,8 +8,8 @@ use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
 class Option extends Model implements ToModel, WithHeadingRow
 {
-    protected $table="option";
-    protected $fillable=['option_text','point'];
+    protected $table="options";
+    protected $fillable=['option_text','point','question_id'];
     protected $primaryKey='option_id';
     //
     /**
@@ -23,7 +23,13 @@ class Option extends Model implements ToModel, WithHeadingRow
         return new option(array(
             'option_text'     => $row['option_text'],
             'point'    => $row['point'],
+            'question_id'=>$row['question_id']
 
         ));
+    }
+
+    public function qcm(){
+        return $this->belongsTo('App\qcm','question_id','question_id');
+
     }
 }
