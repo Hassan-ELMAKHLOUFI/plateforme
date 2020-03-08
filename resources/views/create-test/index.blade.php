@@ -9,6 +9,7 @@
 </head>
 <body>
 <div class="wrapper">
+
     <div id="wizard" class="wizard">
         <div class="wizard__content">
             <header class="wizard__header">
@@ -17,8 +18,7 @@
                 <div class="wizard__header-content">
                     <h1 class="wizard__title">créer</h1>
                 </div>
-<form action='{{action("TestController@store")}}' method='POST'>
-    @csrf
+
                 <div class="wizard__steps">
                     <nav class="steps">
                         <div class="step">
@@ -82,157 +82,158 @@
                 </div>
             </header>
 
-
-            <div class="panels">
-                <div class="panel">
-                    <section>
-                        <div class="inner">
-                            <div class="form-row">
-                                <div class="form-holder form-holder-2">
-                                    <label class="form-row-inner">
-                                        <input type="number" name="ng" id="ng" class="form-control" required>
-                                        <span class="label" style="left: 160px;">Nombre des etudiants </span>
-                                        <span class="border"></span>
-                                    </label>
+            <form id='createTest' action="{{action('TestController@store')}}" method='POST'>
+                @csrf
+                <div class="panels">
+                    <div class="panel">
+                        <section>
+                            <div class="inner">
+                                <div class="form-row">
+                                    <div class="form-holder form-holder-2">
+                                        <label class="form-row-inner">
+                                            <input type="number" name="ng" id="ng" class="form-control" required>
+                                            <span class="label" style="left: 160px;">Nombre des etudiants </span>
+                                            <span class="border"></span>
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="inner" style="display: flex">
-                            <div class="form-row">
-                                <div class="form-holder form-holder-2 form-control">
-                                    <label class="form-row-inner">
-                                        <?php
+                            <div class="inner" style="display: flex">
+                                <div class="form-row">
+                                    <div class="form-holder form-holder-2 form-control">
+                                        <label class="form-row-inner">
+                                            <?php
 
-                                        use App\filiere;use App\Niveau;$niveaux = Niveau::all();
-                                        echo "<select type='text' size='1' style='width: 235px;margin-bottom:-50px' name=niveau_id> ";
-                                        foreach ($niveaux as $n) {
-                                            $niveau_id = $n->niveau_id;
-                                            echo "<option value=$niveau_id>$n->nom</option>";
-                                        }
-                                        echo "</select>";
-                                        ?>
-                                        <span class="label" style="top: -30px; left:85px" for="niveau_id">Niveau</span>
-                                        <span class="border"></span>
-                                    </label>
+                                            use App\filiere;use App\Niveau;$niveaux = Niveau::all();
+                                            echo "<select type='text' size='1' style='width: 235px;margin-bottom:-50px' name=niveau_id> ";
+                                            foreach ($niveaux as $n) {
+                                                $niveau_id = $n->niveau_id;
+                                                echo "<option value=$niveau_id>$n->nom</option>";
+                                            }
+                                            echo "</select>";
+                                            ?>
+                                            <span class="label" style="top: -30px; left:85px"
+                                                  for="niveau_id">Niveau</span>
+                                            <span class="border"></span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-holder form-holder-2">
+                                        <label class="form-row-inner">
+                                            <?php
+
+                                            $filieres = filiere::all();
+                                            echo "<select size='1' style='width: 235px;margin-bottom:-80px ' name=filiere_id>";
+                                            foreach ($filieres as $f) {
+                                                $id_filiere = $f->filiere_id;
+                                                echo "<option value=$id_filiere>$f->nom</option>";
+                                            }
+                                            echo "</select>";
+                                            ?>
+                                            <span class="label" style="top:-30px; left:80px "
+                                                  for="filiere_id">Filiere</span>
+                                            <span class="border"></span>
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
-
-                            <div class="form-row">
-                                <div class="form-holder form-holder-2">
-                                    <label class="form-row-inner">
-                                        <?php
-
-                                        $filieres = filiere::all();
-                                        echo "<select size='1' style='width: 235px;margin-bottom:-80px ' name=filiere_id>";
-                                        foreach ($filieres as $f) {
-                                            $id_filiere = $f->filiere_id;
-                                            echo "<option value=$id_filiere>$f->nom</option>";
-                                        }
-                                        echo "</select>";
-                                        ?>
-                                        <span class="label" style="top:-30px; left:80px "
-                                              for="filiere_id">Filiere</span>
-                                        <span class="border"></span>
-                                    </label>
+                        </section>
+                    </div>
+                    <div class="panel">
+                        <section>
+                            <div class="inner" style="display: flex;align-items: stretch">
+                                <div class="form-row">
+                                    <div class="form-holder form-holder-2">
+                                        <label class="form-row-inner">
+                                            <input type="text" name="nom" id="nom" class="form-control"
+                                                   style="margin-left: -4px;width: 200%;" required>
+                                            <span class="label" style="left:210px">Nom de test </span>
+                                            <span class="border"></span>
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </section>
-                </div>
-                <div class="panel">
-                    <section>
-                        <div class="inner" style="display: flex;align-items: stretch">
-                            <div class="form-row">
-                                <div class="form-holder form-holder-2">
-                                    <label class="form-row-inner">
-                                        <input type="text" name="nom" id="nom" class="form-control"
-                                               style="margin-left: -4px;width: 200%;" required>
-                                        <span class="label" style="left:210px">Nom de test </span>
-                                        <span class="border"></span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="inner" style="display: flex;align-items: stretch">
-                            <div class="form-row">
-                                <div class="form-holder form-holder-2">
-                                    <label class="form-row-inner">
+                            <div class="inner" style="display: flex;align-items: stretch">
+                                <div class="form-row">
+                                    <div class="form-holder form-holder-2">
+                                        <label class="form-row-inner">
                                         <textarea rows="8" cols="33" name="discription" id="discription"
                                                   class="form-control" style="margin-left: -4px;width: 200%;"
                                                   style='margin-bottom:-0px' required></textarea>
-                                        <span class="label" style="left:210px;top: -140px">Discription</span>
-                                        <span class="border"></span>
-                                    </label>
+                                            <span class="label" style="left:210px;top: -140px">Discription</span>
+                                            <span class="border"></span>
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </section>
-                </div>
+                        </section>
+                    </div>
 
-                <div class="panel">
-                    <section>
-                        <div class="inner" style="display:flex;">
-                            <div class="form-row">
-                                <div class="form-holder form-holder-2">
-                                    <label class="form-row-inner">
-                                        <input type="number" name="note" id="note" class="form-control" required>
-                                        <span class="label" style="left: 100px;">Note</span>
-                                        <span class="border"></span>
-                                    </label>
+                    <div class="panel">
+                        <section>
+                            <div class="inner" style="display:flex;">
+                                <div class="form-row">
+                                    <div class="form-holder form-holder-2">
+                                        <label class="form-row-inner">
+                                            <input type="number" name="note" id="note" class="form-control" required>
+                                            <span class="label" style="left: 100px;">Note</span>
+                                            <span class="border"></span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-holder form-holder-2 form-control">
+                                        <label class="form-row-inner">
+                                            <input type="number" name="duree" id="duree" class="form-control" required>
+                                            <span class="label" style="left: 100px;">Duree(minute)</span>
+                                            <span class="border"></span>
+
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
-
-                            <div class="form-row">
-                                <div class="form-holder form-holder-2 form-control">
-                                    <label class="form-row-inner">
-                                        <input type="number" name="duree" id="duree" class="form-control" required>
-                                        <span class="label" style="left: 100px;">Duree(minute)</span>
-                                        <span class="border"></span>
-
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
                             <div class="inner" style="display:flex;">
 
-                            <div class="form-row">
-                                <div class="form-holder form-holder-2">
-                                    <label class="form-row-inner">
-                                        <input type="text" name="salle" id="salle" class="form-control" required>
-                                        <span class="label" style="left: 100px;">Salle</span>
-                                        <span class="border"></span>
+                                <div class="form-row">
+                                    <div class="form-holder form-holder-2">
+                                        <label class="form-row-inner">
+                                            <input type="text" name="salle" id="salle" class="form-control" required>
+                                            <span class="label" style="left: 100px;">Salle</span>
+                                            <span class="border"></span>
 
-                                    </label>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-holder form-holder-2">
+                                        <label class="form-row-inner">
+                                            <input type="date" style="font-size: 14px;" name="date" id="date"
+                                                   class="form-control" required>
+
+
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-row">
-                                <div class="form-holder form-holder-2">
-                                    <label class="form-row-inner">
-                                        <input type="date" style="font-size: 14px;" name="date" id="date" class="form-control" required>
+                        </section>
 
-
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                    </section>
-
+                    </div>
                 </div>
-            </div>
-
-            <div class="wizard__footer" style="justify-content: space-between">
-                <button class="button previous">Précedent</button>
-                <button class="button next">Suivant
-                </button>
-            </div>
+                <div class="wizard__footer" style="justify-content: space-between">
+                    <button type="button" class="button previous">Précedent</button>
+                    <button type="button" id="save" class="button next">Suivant</button>
+                </div>
+            </form>
         </div>
-        </form>
 
         <h1 class="wizard__congrats-message">
             Un nouveau test est créé, n'oubliez pas de créer les questions!
         </h1>
     </div>
+
 </div>
 <script src="js/script.js"></script>
 
