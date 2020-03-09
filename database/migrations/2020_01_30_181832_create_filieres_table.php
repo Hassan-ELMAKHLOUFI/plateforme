@@ -24,7 +24,7 @@ class CreateFilieresTable extends Migration
             $table->date('datedebut');
             $table->date('datefin');
             $table->unsignedBigInteger('departement_id');
-             $table->foreign('departement_id')->references('departement_id')->on('departement')->onDelete('cascade');
+                 $table->foreign('departement_id')->references('departement_id')->on('departement')->onDelete('cascade');
 
             $table->timestamps();
         });
