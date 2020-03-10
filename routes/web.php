@@ -31,9 +31,17 @@ Route::Resource('niveau','NiveauController');
 Route::Resource('professeur','ProfesseurController');
 Route::Resource('create-test','TestController');
 Route::resource('Resultat','ResultatController');
-Route::get ('qcm/{test_id}','QcmController@question');
+Route::get ('question/{test_id}','TestController@question');
 Route::get ('result','ResultatController@test');
 Route::get('test','TestController@index1');
+Route::Resource('create-question','QCMController');
+Route::Resource('create-binaire/{test_id}','BinaireController');
+Route::get('create-binaire/{test_id}','BinaireController@store1');
+
+Route::get('create-qcm','QCMController@index1');
+
+
+
 Route::get('/session_pdf/{test}','TestController@export_pdf')->name('test.pdf');
 
 Auth::routes();

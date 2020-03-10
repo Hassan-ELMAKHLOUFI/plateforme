@@ -39,7 +39,7 @@ class ResultatController extends Controller
     public function store(Request $request)
     {
         $test_id = $request->test_id;
-        $qcms = DB::table('qcm')->where('test_id', '=', $test_id)->where('type', '=', 'multiple')->get();
+        $qcms = DB::table('question')->where('test_id', '=', $test_id)->where('type', '=', 'multiple')->get();
 
 
         $somme = 0;
@@ -130,14 +130,14 @@ class ResultatController extends Controller
     public function test($request)
     {
         $test_id = $request->test_id;
-        $qcm = DB::table('qcm')->where('test_id', '=', $test_id)->where('type', '=', 'multiple')->get();
+        $qcm = DB::table('question')->where('test_id', '=', $test_id)->where('type', '=', 'multiple')->get();
 
         $somme = 0;
         $somme3 = 0;
         $somme2 = 0;
         $choices = option::find(array_values($request->input('questions')));
         $choices1 = option::find(array_values($request->input('options')));
-        $qcms = DB::table('qcm')->where('test_id', $test_id);
+        $qcms = DB::table('question')->where('test_id', $test_id);
 
 
         foreach ($choices as $choice) {

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\departement;
+use App\Option;
 use App\Test;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use App\QCM;
 
 class QCMController extends Controller
 {
@@ -16,7 +18,11 @@ class QCMController extends Controller
      */
     public function index(Request $request)
     {
-
+       return view('create-question.index');
+    }
+    public function index1(Request $request)
+    {
+        return view('create-qcm.index');
     }
     /**
      * Show the form for creating a new resource.
@@ -36,7 +42,51 @@ class QCMController extends Controller
      */
     public function store(Request $request)
     {
+        $i=0;
+        $question =$request->question;
+        $options =$request->input('option_text');
+        $nbrs =$request->input('hidden');
 
+        $nbrs2=array($nbrs);
+        $point =$request->input('point');
+        $QCM = array(
+            'question_text' => $question,
+
+            'note'      =>'1',
+            'test_id'   =>'1' ,
+            'note'=>1
+        );
+        $id=qcm::create($QCM);
+
+   for( $i =1 ;$i<=count($nbrs);$i++){
+
+        $test= in_array($i+0,$point);
+        if($test==true){
+            $option = array(
+                'option_text' => $options[$i-1],
+                'question_id' => $id->question_id,
+                 'point'      =>'1'
+            );
+            option::create($option);
+
+        }
+       if($test==false){
+           $option = array(
+               'option_text' => $options[$i-1],
+               'question_id' => $id->question_id,
+               'point'      =>'0'
+           );
+           option::create($option);
+
+
+       }
+
+
+   }
+
+$count =count($nbrs);
+
+   return compact('count');
     }
 
     /**
@@ -88,15 +138,5 @@ class QCMController extends Controller
 
     }
 
-    public function question($test_id){
 
-
-
-        $test=Test::findOrfail($test_id);
-        $qcms['qcms']=$test->qcm;
-
-        return view ('qcm.index',compact('qcms','test')) ;
-
-
-    }
 }

@@ -16,7 +16,6 @@ class CreateQCMSTable extends Migration
         Schema::create('QCM', function (Blueprint $table) {
             $table->bigIncrements('question_id');
             $table->unsignedBigInteger('test_id');
-            $table->string('type');
             $table->string('question_text');
             $table->double('note');
 

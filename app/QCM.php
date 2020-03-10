@@ -9,7 +9,7 @@ use Maatwebsite\Excel\Concerns\WithHeadingRow;
 class QCM extends Model implements ToModel, WithHeadingRow
 {
     protected $table="qcm";
-    protected $fillable=['type','test_id','question_text','note'];
+    protected $fillable=['test_id','question_text','note'];
     protected $primaryKey='question_id';
 
     /**
@@ -22,6 +22,8 @@ class QCM extends Model implements ToModel, WithHeadingRow
         // TODO: Implement model() method.
         return new QCM(array(
             'type'     => $row['type'],
+            'question_text'=> $row['question_text'],
+            'note'=>$row['note'],
             'test_id'=> $row['test_id'],
 
         ));

@@ -15,19 +15,42 @@
 
 
       {{ $qcm->question_text }}<br>
-           <?php $opt=$qcm->options;  ?>
+           <?php $opt=$qcm->options;?>
          @foreach ($opt  as $option)
 
-            @if ($option->qcm->type=='vrai/faux')
 
-                       <input type="radio" name="questions[{{ $qcm->question_id }}]" id="option-{{$option->option_id}}" value="{{$option->option_id}}">{{$option->option_text}}<br>
-           @endif
 
-           @if ($option->qcm->type=='multiple')
+
                     <input type="checkbox" name="options[{{ $option->option_id }}]" id="option-{{$option->option_id}}" value="{{$option->option_id}}" >{{$option->option_text}}<br>
-           @endif
+
 
          @endforeach
+
+
+    @endforeach
+
+
+
+
+
+
+
+
+    @foreach ($binaires['binaires']  as $binaire)
+
+
+        {{ $binaire->question_text }}<br>
+        <?php $opt1=$binaire->options;?>
+        @foreach ($opt1  as $option)
+
+
+
+                <input type="radio" name="questions[{{ $binaire->binaire_id}}]" id="option-{{$option->option_id}}" value="{{$option->option_id}}">{{$option->option_text}}<br>
+
+
+
+
+        @endforeach
 
 
     @endforeach

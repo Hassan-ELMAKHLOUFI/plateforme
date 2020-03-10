@@ -199,4 +199,16 @@ class TestController extends Controller
         $tests['tests'] = Test::orderBy('test_id', 'asc');
         return view('quiz.index', $tests);
     }
+    public function question($test_id){
+
+
+
+        $test=Test::findOrfail($test_id);
+        $qcms['qcms']=$test->qcm;
+        $binaires['binaires']=$test->binaire;
+
+        return view ('question.index',compact('qcms','test','binaires')) ;
+
+
+    }
 }
