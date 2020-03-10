@@ -1,7 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Controller;
+use App\Admin;
+use App\Session;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -14,6 +17,7 @@ class AdminController extends Controller
     public function index()
     {
         //
+        return view('admin.login');
     }
 
     /**
@@ -80,5 +84,17 @@ class AdminController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function adminLogin(Request $request)
+    {
+        $admins = Admin::all();
+        foreach ($admins as $admin) {
+            if (strcmp($admin->username, $request->username)==0 && strcmp($admin->password , $request->password)) {
+                return redirect()->route('departement.index');
+            }
+        }
+
+        return redirect()->route('admin');
     }
 }

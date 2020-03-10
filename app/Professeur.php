@@ -33,7 +33,7 @@ class Professeur extends Authenticatable implements ToModel, WithHeadingRow
             'email' => $row['email'],
             'password' => $row['password'],
             'grade' => $row['grade'],
-            'departement_id' => $row['grade'],
+            'departement_id' => $row['departement_id'],
         ));
     }
 

@@ -18,7 +18,6 @@ Route::get('/', function () {
 });
 
 
-Route::Resource('admin','AdminController');
 Route::Resource('departement','DepartementController');
 Route::Resource('etudiant','EtudiantController');
 Route::Resource('filiere','FiliereController');
@@ -30,13 +29,20 @@ Route::Resource('moduleFiliere','ModuleFiliereController');
 Route::Resource('niveau','NiveauController');
 Route::Resource('professeur','ProfesseurController');
 Route::Resource('create-test','TestController');
+Route::get('profauth/create-test/{prof}','TestController@index2');
 Route::resource('Resultat','ResultatController');
 Route::get ('qcm/{test_id}','QcmController@question');
 Route::get ('result','ResultatController@test');
-Route::get('test','TestController@index1');
-Route::get('/session_pdf/{test}','TestController@export_pdf')->name('test.pdf');
+Route::get('test/{s}','TestController@index1')->name('tests');
+Route::get('/session_pdf/{test}','TestController@export_pdf')->name('create-test.pdf');
 
-Auth::routes();
+
+Route::get('session','Auth\SessionController@index')->name('session');
+Route::post('session/login','Auth\SessionController@sessionLogin')->name('session');
+Route::get('admin','Auth\AdminController@index')->name('admin');
+Route::post('admin/login','Auth\AdminController@adminLogin')->name('admin');
+Route::get('profauth/login','Auth\ProfauthController@index')->name('profauth.login');
+Route::post('profauth/test','Auth\ProfauthController@professeurLogin')->name('profauth.test');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('departement/import', 'departementController@import')->name('departement.import');
@@ -46,3 +52,7 @@ Route::post('matiere/import', 'MatiereController@import')->name('matiere.import'
 Route::post('module/import', 'ModuleController@import')->name('module.import');
 Route::post('niveau/import', 'NiveauController@import')->name('niveau.import');
 Route::post('professeur/import', 'ProfesseurController@import')->name('professeur.import');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

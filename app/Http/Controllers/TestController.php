@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Etudiant;
 use App\Groupe;
+use App\Professeur;
 use App\Session;
 use App\Test;
 use Illuminate\Http\Request;
@@ -49,9 +50,12 @@ class TestController extends Controller
             'duree' => $request->duree,
             'salle' => $request->salle,
             'date' => $request->date,
-            'discription' => $request->discription
+            'discription' => $request->discription,
+            'professeur_id' => $request->professeur_id,
+            'matiere_id' => $request->matiere_id
         );
 
+        $p = Professeur::query()->find($request->professeur_id)->get();
 
         $currentTest = Test::query()->create($test);
 
@@ -94,7 +98,7 @@ class TestController extends Controller
                 $session = array(
                     'etudiant_id' => $e->etudiant_id,
                     'test_id' => $currentTest->test_id,
-                    'username' => $e->nom . "." . $e->prenom,
+                    'username' => $e->nom,
                     'password' => $this->randomPassword(),
 
                 );
@@ -105,7 +109,7 @@ class TestController extends Controller
         }
 
 
-        return redirect()->route('create-test.index');
+        return redirect()->route('create-test.index',['p'=>$request->professeur_id]);
     }
 
     /**
@@ -175,7 +179,7 @@ class TestController extends Controller
         // Fetch all customers from database
         $sessions = Session::query()->get()->where('test_id', '=', $test_id);
         // Send data to the view using loadView function of PDF facade
-        $pdf = PDF::loadView('test.pdf', compact('sessions'));
+        $pdf = PDF::loadView('create-test.pdf', compact('sessions'));
         // If you want to store the generated pdf to the server then you can use the store function
         $pdf->save(storage_path() . '_filename.pdf');
         // Finally, you can download the file using download function
@@ -194,9 +198,24 @@ class TestController extends Controller
         return implode($pass); //turn the array into a string
     }
 
-    public function index1()
+    public function index1($s)
     {
-        $tests['tests'] = Test::orderBy('test_id', 'asc');
-        return view('quiz.index', $tests);
+        $session= Session::find(intval($s));
+        $tests = Test::orderBy('test_id', 'asc');
+        $data['s'] = $session;
+        $data['t'] = $tests;
+        return view('quiz.index')->with('data',$data);
+    }
+
+    public function index2($prof)
+    {
+        //$tests['tests'] = Test::OrderBy('test_id', 'asc')->paginate(10);
+        //return redirect()->route('create-test.index');
+        $professeur = Professeur::all();
+        foreach ($professeur as $p){
+            if($p->professeur_id == $prof)
+                return view('create-test.index',['p'=>$p]);
+        }
+
     }
 }

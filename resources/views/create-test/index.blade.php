@@ -2,9 +2,9 @@
 <html>
 <head>
 
-    <link rel="stylesheet" href="css/style.css"/>
-    <link rel="stylesheet" href="css/styleinput.css"/>
-
+    <link rel="stylesheet" href="{{asset("css/style.css")}}"/>
+    <link rel="stylesheet" href="{{asset("css/styleinput.css")}}"/>
+<title>{{$p->propfesseur_id}}</title>
     <script src="https://kit.fontawesome.com/2622940fba.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -84,6 +84,8 @@
 
             <form id='createTest' action="{{action('TestController@store')}}" method='POST'>
                 @csrf
+                <input type="hidden" value="{{$p->professeur_id}}" name="professeur_id">
+                <input type="hidden" value="1" name="matiere_id">
                 <div class="panels">
                     <div class="panel">
                         <section>
@@ -235,7 +237,7 @@
     </div>
 
 </div>
-<script src="js/script.js"></script>
+<script src="{{asset('js/script.js')}}"></script>
 
 </body>
 </html>
