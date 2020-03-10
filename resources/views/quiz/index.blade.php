@@ -5,7 +5,7 @@
 
     <title>Test</title>
 
-</head>
+   </head>
 
 
 <body>
@@ -24,11 +24,11 @@ use Illuminate\Support\Facades\DB;
 
 @foreach ($tests as $test)
 
-    <a href="/qcm/{{$test->test_id}}">{{ $test->nom }}</a>   ;
+    <a href="/question/{{$test->test_id}}">{{ $test->nom }}</a>   ;
 
 
 @endforeach
 
 
-</body>
+   </body>
 </html>

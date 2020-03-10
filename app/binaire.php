@@ -3,14 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Maatwebsite\Excel\Concerns\ToModel;
-use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class QCM extends Model implements ToModel, WithHeadingRow
+class binaire extends Model
 {
-    protected $table="qcm";
+    protected $table="binaire";
     protected $fillable=['test_id','question_text','note'];
-    protected $primaryKey='question_id';
+    protected $primaryKey='binaire_id';
 
     /**
      * @param array $row
@@ -20,16 +18,13 @@ class QCM extends Model implements ToModel, WithHeadingRow
     public function model(array $row)
     {
         // TODO: Implement model() method.
-        return new QCM(array(
-            'type'     => $row['type'],
-            'question_text'=> $row['question_text'],
+        return new binaire(array(
+            'question_text'=>$row['question_text'],
             'note'=>$row['note'],
-            'test_id'=> $row['test_id'],
-
-        ));
+            'test_id'=> $row['test_id'],));
     }
     public function options(){
-        return $this->hasMany('App\Option','question_id');
+        return $this->hasMany('App\Option','binaire_id');
     }
     public function test(){
         return $this->belongsTo('App\Test','test_id','test_id');

@@ -218,4 +218,16 @@ class TestController extends Controller
         }
 
     }
+    public function question($test_id){
+
+
+
+        $test=Test::findOrfail($test_id);
+        $qcms['qcms']=$test->qcm;
+        $binaires['binaires']=$test->binaire;
+
+        return view ('question.index',compact('qcms','test','binaires')) ;
+
+
+    }
 }

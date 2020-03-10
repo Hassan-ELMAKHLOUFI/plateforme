@@ -18,6 +18,7 @@ Route::get('/', function () {
 });
 
 
+Route::Resource('admin','AdminController');
 Route::Resource('departement','DepartementController');
 Route::Resource('etudiant','EtudiantController');
 Route::Resource('filiere','FiliereController');
@@ -31,8 +32,18 @@ Route::Resource('professeur','ProfesseurController');
 Route::Resource('create-test','TestController');
 Route::get('profauth/create-test/{prof}','TestController@index2');
 Route::resource('Resultat','ResultatController');
-Route::get ('qcm/{test_id}','QcmController@question');
+Route::get ('question/{test_id}','TestController@question');
 Route::get ('result','ResultatController@test');
+Route::get('test','TestController@index1');
+Route::Resource('create-question','QCMController');
+Route::Resource('create-binaire/{test_id}','BinaireController');
+Route::get('create-binaire/{test_id}','BinaireController@store1');
+
+Route::get('create-qcm','QCMController@index1');
+
+
+
+Route::get('/session_pdf/{test}','TestController@export_pdf')->name('test.pdf');
 Route::get('test/{s}','TestController@index1')->name('tests');
 Route::get('/session_pdf/{test}','TestController@export_pdf')->name('create-test.pdf');
 

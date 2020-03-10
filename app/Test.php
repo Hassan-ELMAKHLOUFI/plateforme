@@ -32,6 +32,10 @@ class Test extends Model implements ToModel, WithHeadingRow
     {
         return $this->hasMany('App\qcm', 'test_id', 'test_id');
     }
+    public function binaire()
+    {
+        return $this->hasMany('App\binaire', 'test_id', 'test_id');
+    }
 
     public function session()
     {

@@ -24,9 +24,8 @@ class CreateTestsTable extends Migration
                 $table->unsignedBigInteger('matiere_id');
                 $table->unsignedBigInteger('professeur_id');
                 $table->timestamps();
-
-            $table->foreign('professeur_id')->references('professeur_id')->on('professeur')->onDelete('cascade');
-            $table->foreign('matiere_id')->references('matiere_id')->on('matiere')->onDelete('cascade');
+                $table->foreign('professeur_id')->references('professeur_id')->on('professeur')->onDelete('cascade');
+                $table->foreign('matiere_id')->references('matiere_id')->on('matiere')->onDelete('cascade');
 
         });
     }
