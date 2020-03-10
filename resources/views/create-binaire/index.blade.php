@@ -9,14 +9,14 @@
 </head>
 <body>
 
-<form action="{{action('BinaireController@store1',$test_id)}}" method="post">
+<form action="{{action('BinaireController@store1')}}" method="post">
 @csrf
 
     <input type="text" name="question" >
 
     <input type="radio" name="choice" value="vrai">vrai
     <input type="radio" name="choice" value="faux">faux
-
+   <input type="hidden" name="test_id" value="{{$test_id}}}">
 
 </form>
 </body>

@@ -11,9 +11,12 @@ class BinaireController extends Controller
 
     public function index()
     {
-        return view('create-binaire.index');
-    }
 
+    }
+    public function index1($test_id)
+    {
+        return view('create-binaire.index','test_id');
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -30,13 +33,13 @@ class BinaireController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store1(Request $request)
+    public function store1(Request $request,$test_id)
     {
         $question =$request->question;
         $choice =$request->choice ;
         $question=array(
             'question_text'=> $question,
-            'test_id' =>'1',
+            'test_id' =>$test_id,
             'note' => '1'
         );
        $id= Binaire::create($question);

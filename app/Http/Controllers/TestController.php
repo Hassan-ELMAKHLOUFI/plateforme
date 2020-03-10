@@ -70,8 +70,8 @@ class TestController extends Controller
                     'filiere_id' => $request->filiere_id,
                     'niveau_id' => $request->niveau_id,
                     'nombre_etudiant' => $request->ng,
-                );
 
+                );
 
                 $g = new Groupe($groupe);
 
@@ -226,7 +226,7 @@ class TestController extends Controller
         $qcms['qcms']=$test->qcm;
         $binaires['binaires']=$test->binaire;
 
-        return view ('question.index',compact('qcms','test','binaires')) ;
+        return view ('question.index',compact('qcms','test','binaires',$test)) ;
 
 
     }

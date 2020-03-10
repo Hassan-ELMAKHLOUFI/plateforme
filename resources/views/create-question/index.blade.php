@@ -9,8 +9,8 @@
  </head>
 
       <body>
-        <a href="/create-binaire">vrai/faux</a>
+        <a href="/create-binaire/{{$test_id}}">vrai/faux</a>
         <a href="/create-text-libre">texte libre</a>
         <a href="/create-qcm">QCM</a>
-     </body>
+            </body>
 </html>

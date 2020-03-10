@@ -36,8 +36,11 @@ Route::get ('question/{test_id}','TestController@question');
 Route::get ('result','ResultatController@test');
 Route::get('test','TestController@index1');
 Route::Resource('create-question','QCMController');
-Route::Resource('create-binaire/{test_id}','BinaireController');
-Route::get('create-binaire/{test_id}','BinaireController@store1');
+Route::get('create-question/{test_id}','QCMController@');
+
+Route::Resource('create-binaire','BinaireController');
+Route::get('create-binaire','BinaireController@store1');
+Route::get('create-binaire/{$test_id}','BinaireController@index1');
 
 Route::get('create-qcm','QCMController@index1');
 
@@ -63,7 +66,3 @@ Route::post('matiere/import', 'MatiereController@import')->name('matiere.import'
 Route::post('module/import', 'ModuleController@import')->name('module.import');
 Route::post('niveau/import', 'NiveauController@import')->name('niveau.import');
 Route::post('professeur/import', 'ProfesseurController@import')->name('professeur.import');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

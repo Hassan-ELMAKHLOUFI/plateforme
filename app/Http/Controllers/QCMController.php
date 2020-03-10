@@ -18,7 +18,12 @@ class QCMController extends Controller
      */
     public function index(Request $request)
     {
-       return view('create-question.index');
+
+    }
+
+    public function index2(Request $request,$test_id)
+    {
+        return view('create-question.index',$test_id);
     }
     public function index1(Request $request)
     {
