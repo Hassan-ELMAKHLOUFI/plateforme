@@ -21,6 +21,7 @@ class AdminMiddleware
         if ($request->session()->get('a_username') === null) {
             return redirect()->route('admin.index');
         }
+
         return $next($request);
     }
 }

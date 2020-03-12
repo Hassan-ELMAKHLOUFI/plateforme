@@ -16,9 +16,9 @@ class ProfesseurMiddleware
      */
     public function handle($request, Closure $next)
     {
-        $session = Professeur::query()->find($request->session()->get('p_id'));
+        $professeur = Professeur::query()->find($request->session()->get('p_id'));
         if ($request->session()->get('p_username') === null) {
-            return view('profauth.login');
+            return response()->view('profauth.login');
         }
         return $next($request);
     }

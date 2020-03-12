@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\binaire;
 use App\Option;
+use App\Session;
 use Illuminate\Http\Request;
 
 
@@ -24,8 +25,9 @@ class question extends Controller
 
     public function index2($test_id)
     {
-        $test['test']=test::findOrfail($test_id) ;
-        return view('create-question.index',compact('test'));
+            $test['test'] = test::findOrfail($test_id);
+            return view('create-question.index', compact('test'));
+
     }
     public function index1(Request $request)
     {

@@ -93,7 +93,7 @@ return view ('create-question.index');
 
 $count =count($nbrs);
 
-   return compact('count');
+        return redirect()->back();
     }
 
     /**

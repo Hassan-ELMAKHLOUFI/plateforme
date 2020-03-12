@@ -11,6 +11,8 @@
 |
 */
 
+use App\Session;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -21,6 +23,9 @@ Route::get('/', function () {
 //Route::Resource('admin','Auth\AdminController');
 Route::group(['middleware'=>'admin.auth'],function(){
     Route::resource('departement','DepartementController');
+});
+Route::group(['middleware'=>'professeur'],function(){
+    Route::get('create-question1/{test_id}', 'question@index2');
 });
 Route::redirect('/profauth','/profauth/login');
 Route::Resource('etudiant','EtudiantController')->middleware('admin.auth');
@@ -39,7 +44,10 @@ Route::get ('question/{test_id}','TestController@question');
 Route::get ('result','ResultatController@test');
 Route::get('test','TestController@index1');
 Route::Resource('create-qcm','QCMController');
-Route::get('create-question1/{test_id}','question@index2');
+/*Route::get('/sessionUsers',function (){
+    return Session::orderBy(DB::raw('RAND()'))->where('test_id','=',1)->take(5)->get();
+});*/
+
 
 Route::Resource('create-question','question');
 Route::Resource('create-binaire','BinaireController');
