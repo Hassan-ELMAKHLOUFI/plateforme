@@ -109,7 +109,7 @@ class TestController extends Controller
         }
 
 
-        return redirect()->route('create-test.index',['p'=>$request->professeur_id]);
+        return view('profauth.test')->with('p',$p);
     }
 
     /**

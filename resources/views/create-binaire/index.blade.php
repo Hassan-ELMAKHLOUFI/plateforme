@@ -16,7 +16,7 @@
 
     <input type="radio" name="choice" value="vrai">vrai
     <input type="radio" name="choice" value="faux">faux
-   <input type="hidden" name="test_id" value="{{$test_id}}}">
+   <input type="hidden" name="test_id" value="{{$test->test_id}}">
 
 </form>
 </body>
