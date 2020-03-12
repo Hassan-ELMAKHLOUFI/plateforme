@@ -17,14 +17,34 @@ class SessionController extends Controller
 
     public function sessionLogin(Request $request)
     {
-        $sessions = Session::all();
+        /*$sessions = Session::all();
         foreach ($sessions as $session) {
             if (strcmp($session->username, $request->username)==0&& strcmp($session->password , $request->password)) {
                 return redirect()->action('TestController@index1', ['s' => $session->session_id]);
             }
         }
 
-        return redirect()->route('session');
+        return redirect()->route('session');*/
+        $username = $request->username;
+        $password = $request->password;
+        $etudiantSession = Session::query()->where('username','=',$request->username)->count();
+        if(intval($etudiantSession) > 0){
+            $etudiantSessionPass = Session::query()->where('username','=',$request->username)->first();
+            if(strcmp($password,$etudiantSessionPass->password)==0){
+                $request->session()->put('username',$username);
+                $request->session()->put('id',$etudiantSessionPass->session_id);
+                return redirect()->action('TestController@index1',['s'=>$etudiantSessionPass->session_id]);
+            }else{
+                return redirect()->route('session.index');
+            }
+        }else{
+            return redirect()->route('session.index');
+        }
+    }
+
+    public function SessionLogout(Request $request){
+        $request->session()->flush();
+        return redirect()->route('session.index');
     }
 
 

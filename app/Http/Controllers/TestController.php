@@ -109,7 +109,7 @@ class TestController extends Controller
         }
 
 
-        return redirect()->route('create-test.index',['p'=>$request->professeur_id]);
+        return redirect()->route('profauth.test');
     }
 
     /**
@@ -201,7 +201,7 @@ class TestController extends Controller
     public function index1($s)
     {
         $session= Session::find(intval($s));
-        $tests = Test::orderBy('test_id', 'asc');
+        $tests = Test::query()->orderBy('test_id', 'asc');
         $data['s'] = $session;
         $data['t'] = $tests;
         return view('quiz.index')->with('data',$data);

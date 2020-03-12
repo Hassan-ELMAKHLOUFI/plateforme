@@ -8,27 +8,28 @@
     <title>Document</title>
 </head>
 <body>
-
+<a href="{{route('profauth.logout')}}">Logout</a>
 <h1>Bonjour , {{$prof->username}}</h1>
 <a href="create-test/{{$prof->professeur_id}}">Ajouter test</a>
 <table>
     <thead>
     <tr>
         <th>My Tests</th>
+        <th>Action</th>
     </tr>
     </thead>
     <tbody>
     <?php
-    $tests = \App\Test::find($prof->professeur_id);
+    $tests = DB::table('test')->where('professeur_id','=', $prof->professeur_id)->get();
 
     ?>
-    @if(!empty($tests))
-        @foreach($tests as $test)
-            <tr>
-                <td>{{$test->nom}}</td>
-            </tr>
-        @endforeach
-    @endif
+
+    @foreach($tests as $test)
+        <tr>
+            <td>{{$test->nom}}</td>
+            <td><a href="/create-question1/{{$test->test_id}}">Ajouter question</a></td>
+        </tr>
+    @endforeach
     </tbody>
 </table>
 </body>

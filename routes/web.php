@@ -18,19 +18,22 @@ Route::get('/', function () {
 });
 
 
-Route::Resource('admin','AdminController');
-Route::Resource('departement','DepartementController');
-Route::Resource('etudiant','EtudiantController');
-Route::Resource('filiere','FiliereController');
-Route::Resource('filiereNiveau','FiliereNiveauController');
-Route::Resource('matiere','MatiereController');
-Route::Resource('matiereProf','MatiereProfController');
-Route::Resource('module','ModuleController');
-Route::Resource('moduleFiliere','ModuleFiliereController');
-Route::Resource('niveau','NiveauController');
-Route::Resource('professeur','ProfesseurController');
+//Route::Resource('admin','Auth\AdminController');
+Route::group(['middleware'=>'admin.auth'],function(){
+    Route::resource('departement','DepartementController');
+});
+Route::redirect('/profauth','/profauth/login');
+Route::Resource('etudiant','EtudiantController')->middleware('admin.auth');
+Route::Resource('filiere','FiliereController')->middleware('admin.auth');;
+Route::Resource('filiereNiveau','FiliereNiveauController')->middleware('admin.auth');;
+Route::Resource('matiere','MatiereController')->middleware('admin.auth');;
+Route::Resource('matiereProf','MatiereProfController')->middleware('admin.auth');;
+Route::Resource('module','ModuleController')->middleware('admin.auth');;
+Route::Resource('moduleFiliere','ModuleFiliereController')->middleware('admin.auth');;
+Route::Resource('niveau','NiveauController')->middleware('admin.auth');;
+Route::Resource('professeur','ProfesseurController')->middleware('admin.auth');;
 Route::Resource('create-test','TestController');
-Route::get('profauth/create-test/{prof}','TestController@index2');
+Route::get('profauth/create-test/{prof}','TestController@index2')->name('create-test.index')->middleware('professeur');
 Route::resource('Resultat','ResultatController');
 Route::get ('question/{test_id}','TestController@question');
 Route::get ('result','ResultatController@test');
@@ -47,16 +50,20 @@ Route::get('create-qcm','QCMController@index1');
 
 
 Route::get('/session_pdf/{test}','TestController@export_pdf')->name('test.pdf');
-Route::get('test/{s}','TestController@index1')->name('tests');
+Route::get('test/{s}','TestController@index1')->name('tests')->middleware('session');
 Route::get('/session_pdf/{test}','TestController@export_pdf')->name('create-test.pdf');
 
 
-Route::get('session','Auth\SessionController@index')->name('session');
-Route::post('session/login','Auth\SessionController@sessionLogin')->name('session');
-Route::get('admin','Auth\AdminController@index')->name('admin');
-Route::post('admin/login','Auth\AdminController@adminLogin')->name('admin');
+Route::get('session','Auth\SessionController@index')->name('session.index');
+Route::post('session/login','Auth\SessionController@sessionLogin')->name('session.login');
+Route::get('session/logout','Auth\SessionController@sessionLogout')->name('session.logout')->middleware('session');
+Route::get('admin','Auth\AdminController@index')->name('admin.index');
+Route::post('admin/login','Auth\AdminController@adminLogin')->name('admin.login');
+Route::get('admin/logout','Auth\AdminController@adminLogout')->name('admin.logout');
 Route::get('profauth/login','Auth\ProfauthController@index')->name('profauth.login');
 Route::post('profauth/test','Auth\ProfauthController@professeurLogin')->name('profauth.test');
+Route::get('profauth/test','Auth\ProfauthController@professeurLogin')->name('profauth.test');
+Route::get('profauth/logout','Auth\ProfauthController@professeurLogout')->name('profauth.logout')->middleware('professeur');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('departement/import', 'departementController@import')->name('departement.import');

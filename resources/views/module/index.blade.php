@@ -160,6 +160,14 @@
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('admin.logout')}}">
+                                <i class="material-icons">logout</i>
+                                <p class="d-lg-none d-md-block">
+                                    Account
+                                </p>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>

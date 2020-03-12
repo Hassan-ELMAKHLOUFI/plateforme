@@ -88,13 +88,40 @@ class AdminController extends Controller
 
     public function adminLogin(Request $request)
     {
-        $admins = Admin::all();
+        /*$admins = Admin::all();
         foreach ($admins as $admin) {
             if (strcmp($admin->username, $request->username)==0 && strcmp($admin->password , $request->password)) {
                 return redirect()->route('departement.index');
             }
         }
 
-        return redirect()->route('admin');
+        return redirect()->route('admin');*/
+        if ($request->session()->get('a_username') !== null) {
+            $username = $request->session()->get('a_username');
+            $password = $request->session()->get('a_password');
+        } else {
+            $username = $request->username;
+            $password = $request->password;
+        }
+        $admin = Admin::query()->where('username', '=', $username)->count();
+        if (intval($admin) > 0) {
+            $adminPass = Admin::query()->where('username', '=', $username)->first();
+            if (strcmp($password, $adminPass->password) == 0) {
+                $request->session()->put('a_username', $username);
+                $request->session()->put('a_password', $password);
+                $request->session()->put('a_id', $adminPass->admin_id);
+                return redirect()->route('departement.index');
+            } else {
+                return redirect()->route('admin.index');
+            }
+        } else {
+            return redirect()->route('admin.index');
+        }
+    }
+
+    public function adminLogout(Request $request)
+    {
+        $request->session()->flush();
+        return redirect()->route('admin.index');
     }
 }

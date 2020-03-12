@@ -41,4 +41,6 @@ class Test extends Model implements ToModel, WithHeadingRow
     {
         return $this->hasMany('App\Session', 'session_id');
     }
+
+
 }

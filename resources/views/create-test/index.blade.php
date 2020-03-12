@@ -85,7 +85,7 @@
             <form id='createTest' action="{{action('TestController@store')}}" method='POST'>
                 @csrf
                 <input type="hidden" value="{{$p->professeur_id}}" name="professeur_id">
-                <input type="hidden" value="1" name="matiere_id">
+
                 <div class="panels">
                     <div class="panel">
                         <section>
@@ -99,13 +99,32 @@
                                         </label>
                                     </div>
                                 </div>
+                                <div class="form-row">
+                                    <div class="form-holder form-holder-2 form-control">
+                                        <label class="form-row-inner">
+                                            <?php
+
+                                            use App\Matiere;
+                                            $matiere = $p->matiere;
+                                            echo "<select type='text' size='1' style='width: 235px;margin-bottom:-50px' name='matiere_id'>";
+                                            foreach ($matiere as $m) {
+                                                $matiere_id = $m->matiere_id;
+                                                echo "<option value=$matiere_id>$m->nom_matiere</option>";
+                                            }
+                                            echo "</select>";
+                                            ?>
+                                            <span class="label" style="top: -30px; left:85px"
+                                                  for="niveau_id">Matiere</span>
+                                            <span class="border"></span>
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
                             <div class="inner" style="display: flex">
                                 <div class="form-row">
                                     <div class="form-holder form-holder-2 form-control">
                                         <label class="form-row-inner">
                                             <?php
-
                                             use App\filiere;use App\Niveau;$niveaux = Niveau::all();
                                             echo "<select type='text' size='1' style='width: 235px;margin-bottom:-50px' name=niveau_id> ";
                                             foreach ($niveaux as $n) {
