@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\binaire;
 use App\option;
+use App\Test;
 use Illuminate\Http\Request;
 
 class BinaireController extends Controller
@@ -11,11 +12,12 @@ class BinaireController extends Controller
 
     public function index()
     {
-
+        return view('create-binaire.index');
     }
     public function index1($test_id)
     {
-        return view('create-binaire.index','test_id');
+        $test=test::find($test_id);
+        return view('create-binaire.index',compact('test'));
     }
     /**
      * Show the form for creating a new resource.
@@ -33,9 +35,10 @@ class BinaireController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store1(Request $request,$test_id)
+    public function store1(Request $request)
     {
         $question =$request->question;
+        $test_id=$request->test_id;
         $choice =$request->choice ;
         $question=array(
             'question_text'=> $question,
@@ -74,6 +77,7 @@ class BinaireController extends Controller
             );
             option::create($option1);
         }
+       return view('depatement.index');
     }
 
     /**

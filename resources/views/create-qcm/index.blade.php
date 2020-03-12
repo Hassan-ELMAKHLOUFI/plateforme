@@ -18,7 +18,7 @@
             <div class="table-responsive">
                 <table class="table table-bordered" id="dynamic_field">
                     <tr>
-<?php $i=0;?>
+                            <?php $i=0;?>
 
                         <td><input type="text" name="option_text[]" placeholder="Enter your Name" class="form-control name_list" /></td>
                             <input type="hidden" name="hidden[]" value="1">
@@ -29,7 +29,8 @@
                     </tr>
                 </table>
                 <input type="button" name="submit" id="submit" class="btn btn-info" value="Submit" />
-                <input type="submit" value="t">
+                <input type="hidden" name="test_id" value="{{$test['test']->test_id}}" >
+                <input type="submit" value="submit">
             </div>
 </form>
 </div>

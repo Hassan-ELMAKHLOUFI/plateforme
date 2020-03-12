@@ -38,15 +38,17 @@ Route::resource('Resultat','ResultatController');
 Route::get ('question/{test_id}','TestController@question');
 Route::get ('result','ResultatController@test');
 Route::get('test','TestController@index1');
-Route::Resource('create-question','QCMController');
-Route::get('create-question/{test_id}','QCMController@');
+Route::Resource('create-qcm','QCMController');
+Route::get('create-question1/{test_id}','question@index2');
 
+Route::Resource('create-question','question');
 Route::Resource('create-binaire','BinaireController');
-Route::get('create-binaire','BinaireController@store1');
-Route::get('create-binaire/{$test_id}','BinaireController@index1');
-
+Route::Post('create-binstore','BinaireController@store1');
+Route::get('create-bin/{test_id}','BinaireController@index1');
+Route::get('create-qcm1/{test_id}','QCMController@index2');
 Route::get('create-qcm','QCMController@index1');
-
+Route::get('select-question/{test_id}','question@select');
+Route::Post('StoreSelected','question@StoreSelected');
 
 
 Route::get('/session_pdf/{test}','TestController@export_pdf')->name('test.pdf');

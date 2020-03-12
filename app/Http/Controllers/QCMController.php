@@ -16,14 +16,15 @@ class QCMController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-
+return view ('create-question.index');
     }
 
-    public function index2(Request $request,$test_id)
+    public function index2($test_id)
     {
-        return view('create-question.index',$test_id);
+        $test['test']=test::findOrfail($test_id) ;
+        return view('create-qcm.index',compact('test'));
     }
     public function index1(Request $request)
     {
@@ -49,6 +50,7 @@ class QCMController extends Controller
     {
         $i=0;
         $question =$request->question;
+        $test_id=$request->test_id;
         $options =$request->input('option_text');
         $nbrs =$request->input('hidden');
 
@@ -58,7 +60,7 @@ class QCMController extends Controller
             'question_text' => $question,
 
             'note'      =>'1',
-            'test_id'   =>'1' ,
+            'test_id'   =>$test_id ,
             'note'=>1
         );
         $id=qcm::create($QCM);
