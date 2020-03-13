@@ -93,7 +93,7 @@
                                 <div class="form-row">
                                     <div class="form-holder form-holder-2">
                                         <label class="form-row-inner">
-                                            <input type="number" name="ng" id="ng" class="form-control" required>
+                                            <input type="number" name="ng" id="ng" class="form-control" min="1" required>
                                             <span class="label" style="left: 160px;">Nombre des etudiants </span>
                                             <span class="border"></span>
                                         </label>
@@ -198,7 +198,7 @@
                                 <div class="form-row">
                                     <div class="form-holder form-holder-2">
                                         <label class="form-row-inner">
-                                            <input type="number" name="note" id="note" class="form-control" required>
+                                            <input type="number" name="note" id="note" class="form-control" min="1" required>
                                             <span class="label" style="left: 100px;">Note</span>
                                             <span class="border"></span>
                                         </label>
@@ -208,7 +208,7 @@
                                 <div class="form-row">
                                     <div class="form-holder form-holder-2 form-control">
                                         <label class="form-row-inner">
-                                            <input type="number" name="duree" id="duree" class="form-control" required>
+                                            <input type="number" name="duree" id="duree" class="form-control" min="1" required>
                                             <span class="label" style="left: 100px;">Duree(minute)</span>
                                             <span class="border"></span>
 

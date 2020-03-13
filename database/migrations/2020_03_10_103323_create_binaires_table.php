@@ -16,7 +16,7 @@ class CreateBinairesTable extends Migration
         Schema::create('binaire', function (Blueprint $table) {
             $table->bigIncrements('binaire_id');
             $table->unsignedBigInteger('test_id');
-
+            $table->integer('difficulty');
             $table->string('question_text');
             $table->double('note');
 

@@ -17,7 +17,7 @@
         <option value="5">très difficile</option>
     </select>
 
-    <textarea name="question_text" cols="30" rows="10"> </textarea>
+    <textarea name="question_text" cols="30" rows="10" pattern="[a-z]{4,}" title="4 chars min"> </textarea>
     <input type="radio" name="choice" value="vrai">vrai
     <input type="radio" name="choice" value="faux">faux
 

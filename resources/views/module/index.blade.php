@@ -7,7 +7,7 @@
     <link rel="icon" type="image/png" href="../assets/img/favicon.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <title>
-        Module
+        Dashboard
     </title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
           name='viewport'/>
@@ -51,7 +51,7 @@
 
           Tip 2: you can also add an image using data-image tag
       -->
-        <div class="logo"><a href="http://www.creative-tim.com" class="simple-text logo-normal">
+        <div class="logo"><a href="javascript:void(0)" class="simple-text logo-normal">
                 Module
             </a></div>
         <div class="sidebar-wrapper">
@@ -188,8 +188,8 @@
                                     <form action={{ route('module.import') }} method="POST"
                                           enctype="multipart/form-data">
                                         @csrf
-                                        <input type="file" name="file">
-                                        <input class="btn btn-primary" type="submit" name="upload" value="upload">
+                                        <input required type="file" name="file">
+                                        <input required class="btn btn-primary" type="submit" name="upload" value="upload">
                                     </form>
                                 </div>
                                 <a href="" class="btn btn-info" data-toggle="modal"
@@ -250,7 +250,7 @@
                                     @csrf
                                     <div class="form-group">
                                         <label for="nom_module" style="color:#c21db7;">nom module</label>
-                                        <input type="text" name="nom_module" style="color:black;" class="form-control"
+                                        <input required type="text" name="nom_module" style="color:black;" class="form-control"
                                                placeholder="nom de module">
                                     </div>
 
@@ -297,10 +297,10 @@
                                     @csrf
                                     @method('PUT')
 
-                                    <input type="hidden" style="color:black;" name="module_id" id="module_id">
+                                    <input required type="hidden" style="color:black;" name="module_id" id="module_id">
                                     <div class="form-group">
                                         <label for="nom_module" style="color:#c21db7;">nom module</label>
-                                        <input type="text" name="nom_module" id="nom_module" style="color:black;"
+                                        <input required type="text" name="nom_module" id="nom_module" style="color:black;"
                                                class="form-control"
                                                placeholder="nom de module">
                                     </div>
@@ -346,7 +346,7 @@
                                     @csrf
                                     @method('DELETE')
 
-                                    <input type="hidden" name="module_id" id="module_id">
+                                    <input required type="hidden" name="module_id" id="module_id">
                                     <p class="text-center" width="50px"> vous ete sûre que vous voulez supprimer ce
                                         matiere</p>
 

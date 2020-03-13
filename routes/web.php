@@ -26,7 +26,13 @@ Route::group(['middleware'=>'admin.auth'],function(){
 });
 Route::group(['middleware'=>'professeur'],function(){
     Route::get('create-question1/{test_id}', 'question@index2');
+
+    Route::get('create-text-libre/{test_id}','Text_libreController@index2')->name('create-text-libre.index');
+    Route::resource('create-text-libre','Text_libreController');
+
 });
+
+
 Route::redirect('/profauth','/profauth/login');
 Route::Resource('etudiant','EtudiantController')->middleware('admin.auth');
 Route::Resource('filiere','FiliereController')->middleware('admin.auth');;

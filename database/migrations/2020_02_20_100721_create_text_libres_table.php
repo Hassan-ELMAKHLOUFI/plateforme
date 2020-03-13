@@ -17,6 +17,7 @@ class CreateTextLibresTable extends Migration
             $table->bigIncrements('question_id');
             $table->unsignedBigInteger('test_id');
             $table->string('question_text');
+            $table->integer('difficulty');
             $table->integer('note');
             $table->timestamps();
 

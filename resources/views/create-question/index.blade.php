@@ -11,7 +11,7 @@
       <body>
       <?php $test1 = $test['test']->test_id ;?>
         <a href="/create-bin/{{$test1}}">vrai/faux</a>
-        <a href="/create-text-libre">texte libre</a>
+        <a href="/create-text-libre/{{$test1}}">texte libre</a>
         <a href="/create-qcm1/{{$test1}}">QCM</a>
             </body>
 </html>

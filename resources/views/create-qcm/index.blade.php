@@ -13,24 +13,24 @@
     <div class="form-group">
         <form action="{{action('QCMController@store')}}" method="post">
 
-            <input type="text" name="question" >
+            <input required type="text" name="question" >
             @csrf
             <div class="table-responsive">
                 <table class="table table-bordered" id="dynamic_field">
                     <tr>
                             <?php $i=0;?>
 
-                        <td><input type="text" name="option_text[]" placeholder="Enter your Name" class="form-control name_list" /></td>
-                            <input type="hidden" name="hidden[]" value="1">
+                        <td><input required type="text" name="option_text[]" placeholder="Enter your Name" class="form-control name_list" pattern="[a-z]{4,}" title="4 chars min" /></td>
+                            <input required type="hidden" name="hidden[]" value="1">
 
-                       <td><input type="checkbox" name="point[]"  value="1" ></td><br>
+                       <td><input required type="checkbox" name="point[]"  value="1"></td><br>
 
                         <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>
                     </tr>
                 </table>
-                <input type="button" name="submit" id="submit" class="btn btn-info" value="Submit" />
-                <input type="hidden" name="test_id" value="{{$test['test']->test_id}}" >
-                <input type="submit" value="submit">
+                <input required type="button" name="submit" id="submit" class="btn btn-info" value="Submit" />
+                <input required type="hidden" name="test_id" value="{{$test['test']->test_id}}" >
+                <input required type="submit" value="submit">
             </div>
 </form>
 </div>

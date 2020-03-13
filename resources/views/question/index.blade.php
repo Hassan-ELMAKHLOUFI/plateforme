@@ -19,8 +19,6 @@
          @foreach ($opt  as $option)
 
 
-
-
                     <input type="checkbox" name="options[{{ $option->option_id }}]" id="option-{{$option->option_id}}" value="{{$option->option_id}}" >{{$option->option_text}}<br>
 
 

@@ -6,7 +6,7 @@
     <link rel="icon" type="image/png" href="../assets/img/favicon.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <title>
-        filiere
+        Dashboard
     </title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
           name='viewport'/>
@@ -50,7 +50,7 @@
 
           Tip 2: you can also add an image using data-image tag
       -->
-        <div class="logo"><a href="http://www.creative-tim.com" class="simple-text logo-normal">
+        <div class="logo"><a href="javascript:void(0)" class="simple-text logo-normal">
                 filiere
             </a></div>
         <div class="sidebar-wrapper">
@@ -203,9 +203,9 @@
                                             <th>#</th>
                                             <th>nom</th>
                                             <th>coordinateur</th>
-                                            <th>date de debut</th>
-                                            <th>date de fin</th>
-                                            <th>id departement</th>
+                                            <th>date_de_debut</th>
+                                            <th>date_de_fin</th>
+                                            <th>departement_id</th>
                                             <th class="exclude">Action</th>
                                         </tr>
                                         <tbody>
@@ -264,14 +264,14 @@
                                         <label for="" style="color:#c21db7;">nom de filiere</label>
 
 
-                                        <input style="color:black;" type="text" id="nom" name="nom" class="form-control"
+                                        <input required style="color:black;" type="text" id="nom" name="nom" class="form-control"
                                                placeholder="nom de departement">
                                     </div>
-                                    <input style="color:black;" type="hidden" name="filiere_id" id="filiere_id">
+                                    <input required style="color:black;" type="hidden" name="filiere_id" id="filiere_id">
                                     <br>
                                     <div class="form-group">
                                         <label for="" style="color:#c21db7;">coordinateur</label>
-                                        <input style="color:black;" type="text" id="coordinateur" name="coordinateur"
+                                        <input required style="color:black;" type="text" id="coordinateur" name="coordinateur"
                                                class="form-control"
                                                placeholder="coordinateur">
                                     </div>
@@ -279,7 +279,7 @@
 
                                     <div class="form-group">
                                         <label for="" style="color:#c21db7;">date de debut</label>
-                                        <input style="color:black;" type="date" id="datedebut" name="datedebut"
+                                        <input required style="color:black;" type="date" id="datedebut" name="datedebut"
                                                class="form-control"
                                                placeholder="date de debut">
                                     </div>
@@ -289,7 +289,7 @@
                                         <label for="" style="color:#c21db7;">date de fin</label>
 
 
-                                        <input style="color:black;" type="date" id="datefin" name="datefin"
+                                        <input required style="color:black;" type="date" id="datefin" name="datefin"
                                                class="form-control"
                                                placeholder="date de fin">
                                     </div>
@@ -353,14 +353,14 @@
                                         <label for="" style="color:#c21db7;">nom de filiere</label>
 
 
-                                        <input style="color:black;" type="text" id="nom" name="nom" class="form-control"
+                                        <input required style="color:black;" type="text" id="nom" name="nom" class="form-control"
                                                placeholder="nom de departement">
                                     </div>
-                                    <input type="hidden" name="filiere_id" id="filiere_id">
+                                    <input required type="hidden" name="filiere_id" id="filiere_id">
                                     <br>
                                     <div class="form-group">
                                         <label for="" style="color:#c21db7;">coordinateur</label>
-                                        <input style="color:black;" type="text" id="coordinateur" name="coordinateur"
+                                        <input required style="color:black;" type="text" id="coordinateur" name="coordinateur"
                                                class="form-control"
                                                placeholder="coordinateur">
                                     </div>
@@ -368,7 +368,7 @@
 
                                     <div class="form-group">
                                         <label for="" style="color:#c21db7;">date de debut</label>
-                                        <input style="color:black;" type="date" id="datedebut" name="datedebut"
+                                        <input required style="color:black;" type="date" id="datedebut" name="datedebut"
                                                class="form-control"
                                                placeholder="date de debut">
                                     </div>
@@ -378,7 +378,7 @@
                                         <label for="" style="color:#c21db7;">date de fin</label>
 
 
-                                        <input style="color:black;" type="date" id="datefin" name="datefin"
+                                        <input required style="color:black;" type="date" id="datefin" name="datefin"
                                                class="form-control"
                                                placeholder="date de fin">
                                     </div>
@@ -440,7 +440,7 @@
                                     @csrf
                                     @method('DELETE')
 
-                                    <input type="hidden" name="filiere_id" id="filiere_id">
+                                    <input required type="hidden" name="filiere_id" id="filiere_id">
                                     <p class="text-center" width="50px"> vous ete sur que vous voulez supprimer ce
                                         filiere</p>
 

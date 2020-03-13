@@ -6,7 +6,7 @@
     <link rel="icon" type="image/png" href="../assets/img/favicon.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <title>
-        departement
+        Dashboard
     </title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
           name='viewport'/>
@@ -50,7 +50,7 @@
 
           Tip 2: you can also add an image using data-image tag
       -->
-        <div class="logo"><a href="http://www.creative-tim.com" class="simple-text logo-normal">
+        <div class="logo"><a href="javascript:void(0)" class="simple-text logo-normal">
                 departement
             </a></div>
         <div class="sidebar-wrapper">
@@ -201,9 +201,9 @@
                                         <tr>
                                             <th class="exclude">#</th>
                                             <th>nom</th>
-                                            <th>date</th>
-                                            <th>chef departement</th>
-                                            <th>date de fin</th>
+                                            <th>date_de_creation</th>
+                                            <th>chef_departement</th>
+                                            <th>date_de_fin</th>
                                             <th class="exclude">Action</th>
                                         </tr>
                                         <tbody>
@@ -297,14 +297,14 @@
                                         <label for="nom" style="color:#c21db7;">nom</label>
 
 
-                                        <input type="text" name="nom" style="color:black;" class="form-control"
-                                               placeholder="nom de departement">
+                                        <input required type="text" name="nom" style="color:black;" class="form-control"
+                                               pattern="[a-z]{4,}" title="Le nom a 4 characters min" placeholder="nom de departement">
                                     </div>
                                     <br>
                                     <div class="form-group">
-                                        <label for="date" style="color:#c21db7;">date</label>
+                                        <label for="date" style="color:#c21db7;">date de creation</label>
 
-                                        <input type="date" name="date_cr" style="color:black;" class="form-control"
+                                        <input required type="date" name="date_cr" style="color:black;" class="form-control"
                                                placeholder="nom de departement">
                                     </div>
                                     <br>
@@ -313,14 +313,14 @@
 
                                         <label for="chef" style="color:#c21db7;">chef</label>
 
-                                        <input type="text" name="chef" style="color:black;" class="form-control"
-                                               placeholder="chef">
+                                        <input required type="text" name="chef" style="color:black;" class="form-control"
+                                               pattern="[A-Za-z]{3,}" title="Le chef a 4 characters min" placeholder="chef">
                                     </div>
                                     <div class="form-group">
 
                                         <label for="" style="color:#c21db7;">date de fin</label>
 
-                                        <input type="date" style="color:black;" name="date_fin" class="form-control"
+                                        <input required type="date" style="color:black;" name="date_fin" class="form-control"
                                                placeholder="date de fin">
                                     </div>
 
@@ -358,7 +358,7 @@
                                         <label for="" style="color:#c21db7;">nom</label>
 
                                         <input type="text" style="color:black;" id="nom" name="nom" class="form-control"
-                                               placeholder="nom de departement">
+                                               placeholder="nom de departement" pattern="[a-z]{4,}" title="Le nom a 4 characters min">
                                     </div>
                                     <input type="hidden" style="color:black;" name="departement_id" id="departement_id">
                                     <br>
@@ -377,7 +377,7 @@
                                         <label for="" style="color:#c21db7;">chef</label>
 
                                         <input type="text" id="chef" style="color:black;" name="chef"
-                                               class="form-control" placeholder="chef">
+                                               class="form-control" placeholder="chef" pattern="[a-z]{4,}" title="Le chef a 4 characters min">
                                     </div>
                                     <br>
 
@@ -419,12 +419,9 @@
                                 <form action="{{route('departement.destroy','departement_id')}}" method="POST">
                                     @csrf
                                     @method('DELETE')
-
                                     <input type="hidden" name="departement_id" id="departement_id">
                                     <p class="text-center" width="50px"> vous ete sûre que vous voulez supprimer ce
                                         departement</p>
-
-
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>

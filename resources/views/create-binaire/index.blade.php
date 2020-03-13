@@ -12,10 +12,16 @@
 <form action="{{action('BinaireController@store1')}}" method="post">
 @csrf
 
-    <input type="text" name="question" >
-
-    <input type="radio" name="choice" value="vrai">vrai
-    <input type="radio" name="choice" value="faux">faux
+    <input required type="text" name="question" >
+    <select name="difficulty">
+        <option value="1">trés facile</option>
+        <option value="2">facile</option>
+        <option value="3">moyenne</option>
+        <option value="4">difficile</option>
+        <option value="5">très difficile</option>
+    </select>
+    <input required type="radio" name="choice" value="vrai">vrai
+    <input required type="radio" name="choice" value="faux">faux
    <input type="hidden" name="test_id" value="{{$test->test_id}}">
 
 </form>
