@@ -6,8 +6,10 @@ namespace App\Http\Controllers;
 use App\Etudiant;
 use App\Groupe;
 use App\Professeur;
+use App\Reponse_text;
 use App\Session;
 use App\Test;
+use App\Text_libre;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Barryvdh\DomPDF\Facade as PDF;
@@ -141,19 +143,33 @@ class TestController extends Controller
      * @param int $id
      * @return Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        $test = array([
+        $test = array(
             'nom' => $request->nom,
             'note' => $request->note,
             'duree' => $request->duree,
             'salle' => $request->salle,
             'date' => $request->date,
             'discription' => $request->discription
-        ]);
-
+        );
+        $profid = Professeur::findOrFail($request->professeur_id)->first();
         Test::findOrFail($request->test_id)->update($test);
-        return redirect()->route('create-test.index');
+        return redirect()->route('create-test.index', $profid);
+    }
+
+    public function update1(Request $request)
+    {
+        $test = array(
+            'nom' => $request->nom,
+            'note' => $request->note,
+            'duree' => $request->duree,
+            'salle' => $request->salle,
+            'date' => $request->date,
+            'discription' => $request->discription
+        );
+        Test::find($request->test_id)->update($test);
+        return redirect()->back();
     }
 
     /**
@@ -165,8 +181,9 @@ class TestController extends Controller
     public function destroy(Request $test)
     {
         $deletetest = Test::findOrfail($test->test_id);
+        $profid = Professeur::findOrFail($test->professeur_id)->first();
         $deletetest->delete();
-        return redirect()->route('create-test.index');
+        return redirect()->route('create-test.index', $profid);
     }
 
     public function import(Request $request)
@@ -200,11 +217,11 @@ class TestController extends Controller
 
     public function index1($s)
     {
-        $session= Session::find(intval($s));
+        $session = Session::find(intval($s));
         $tests = Test::query()->orderBy('test_id', 'asc');
         $data['s'] = $session;
         $data['t'] = $tests;
-        return view('quiz.index')->with('data',$data);
+        return view('quiz.index')->with('data', $data);
     }
 
     public function index2($prof)
@@ -212,22 +229,68 @@ class TestController extends Controller
         //$tests['tests'] = Test::OrderBy('test_id', 'asc')->paginate(10);
         //return redirect()->route('create-test.index');
         $professeur = Professeur::all();
-        foreach ($professeur as $p){
-            if($p->professeur_id == $prof)
-                return view('create-test.index',['p'=>$p]);
+        foreach ($professeur as $p) {
+            if ($p->professeur_id == $prof)
+                return view('create-test.index', ['p' => $p]);
         }
 
     }
-    public function question($test_id){
+
+    public function question($test_id, $session)
+    {
 
 
+        $test = Test::findOrfail($test_id);
+        $qcms['qcms'] = $test->qcm;
+        $binaires['binaires'] = $test->binaire;
+        $text_libres['text_libre'] = $test->text_libre;
 
-        $test=Test::findOrfail($test_id);
-        $qcms['qcms']=$test->qcm;
-        $binaires['binaires']=$test->binaire;
-
-        return view ('question.index',compact('qcms','test','binaires',$test)) ;
+        return view('question.index', compact('qcms', 'test', 'binaires', 'text_libres', 'session', $test));
 
 
     }
+
+    public function reponses($test)
+    {
+        //$text_libre = Text_libre::query()->where('test_id','=',$test)->get();
+        $session = Session::query()->where('test_id', '=', $test)->get();
+        return view('reponses.index', compact('session'));
+        //return compact('text_libre');
+    }
+
+
+    public function setSession(Request $request)
+    {
+        if ($request->active == 0) {
+            $sessions = Session::query()->where('test_id', '=', $request->test_id)->get();
+
+            foreach ($sessions as $s) {
+                $s1 = array(
+                    'session_id' => $s->session_id,
+                    'etudiant_id' => $s->etudiant_id,
+                    'test_id' => $s->test_id,
+                    'username' => $s->username,
+                    'password' => $s->password,
+                    'active' => 1,
+                );
+                Session::findOrFail($s->session_id)->update($s1);
+            }
+        } else {
+            $sessions = Session::query()->where('test_id', '=', $request->test_id)->get();
+            foreach ($sessions as $s) {
+                $s1 = array(
+                    'session_id' => $s->session_id,
+                    'etudiant_id' => $s->etudiant_id,
+                    'test_id' => $s->test_id,
+                    'username' => $s->username,
+                    'password' => $s->password,
+                    'active' => 0,
+                );
+                Session::findOrFail($s->session_id)->update($s1);
+            }
+        }
+        return redirect()->back();
+    }
+
+
 }

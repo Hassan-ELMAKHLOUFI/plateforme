@@ -182,7 +182,7 @@
                                           enctype="multipart/form-data">
                                         @csrf
                                         <input required type="file" name="file">
-                                        <input required class="btn btn-primary" type="submit" name="upload" value="upload">
+                                        <input class="btn btn-primary" type="submit" name="upload" value="upload">
                                     </form>
                                 </div>
                                 <a href="" class="btn btn-info" data-toggle="modal"
@@ -242,10 +242,8 @@
                                     @csrf
                                     <div class="form-group">
                                         <label for="nom" style="color:#c21db7;">nom</label>
-
-
                                         <input required type="text" name="nom" style="color:black;" class="form-control"
-                                               pattern="[a-zA-Z]{3,}" placeholder="nom de niveau">
+                                               pattern="[a-zA-Z]{4,255}" title="aucun caractère spécial n'est autorisé 4 - 255 max" placeholder="nom de niveau">
                                     </div>
 
                             </div>
@@ -281,7 +279,7 @@
                                         <label for="">nom</label>
 
                                         <input required type="text" style="color:black;" id="nom" name="nom" class="form-control"
-                                               pattern="[a-zA-Z]{3,}" placeholder="nom de niveau">
+                                               pattern="[a-zA-Z]{4,255}" title="aucun caractère spécial n'est autorisé 4 - 255 max" placeholder="nom de niveau">
                                     </div>
                                     <input required type="hidden" style="color:black;" name="niveau_id" id="niveau_id">
 

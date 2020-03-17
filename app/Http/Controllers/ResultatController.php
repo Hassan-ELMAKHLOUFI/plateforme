@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Reponse_text;
 use App\Resultat;
 use App\Option;
 use App\qcm;
@@ -38,9 +39,8 @@ class ResultatController extends Controller
      */
     public function store(Request $request)
     {
-        $test_id = $request->test_id;
+        /*$test_id = $request->test_id;
         $qcms = DB::table('question')->where('test_id', '=', $test_id)->where('type', '=', 'multiple')->get();
-
 
         $somme = 0;
         $somme3 = 0;
@@ -79,7 +79,17 @@ class ResultatController extends Controller
         }
 
 
-        return compact('somme');
+        return compact('somme');*/
+        for ($i = 0 ; $i < $request->nb_ql ; $i++) {
+            $name = 'fichier'.strval($i);
+            $rp = array(
+                'question_id' => $request->question_id[$i],
+                'etudiant_id' => $request->etudiant_id,
+                'fichier' => $request->$name
+            );
+            $reponse_text = Reponse_text::query()->create($rp);
+        }
+        return redirect()->back();
     }
 
     /**

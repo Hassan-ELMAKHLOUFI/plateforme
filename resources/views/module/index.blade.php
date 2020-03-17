@@ -189,7 +189,7 @@
                                           enctype="multipart/form-data">
                                         @csrf
                                         <input required type="file" name="file">
-                                        <input required class="btn btn-primary" type="submit" name="upload" value="upload">
+                                        <input class="btn btn-primary" type="submit" name="upload" value="upload">
                                     </form>
                                 </div>
                                 <a href="" class="btn btn-info" data-toggle="modal"
@@ -250,7 +250,7 @@
                                     @csrf
                                     <div class="form-group">
                                         <label for="nom_module" style="color:#c21db7;">nom module</label>
-                                        <input required type="text" name="nom_module" style="color:black;" class="form-control"
+                                        <input pattern="[a-zA-Z]{4,255}" title="aucun caractère spécial n'est autorisé 4 - 255 max" required type="text" name="nom_module" style="color:black;" class="form-control"
                                                placeholder="nom de module">
                                     </div>
 
@@ -259,7 +259,7 @@
                                         <?php
                                         use App\filiere;
                                         $filieres = filiere::all();
-                                      echo "<select size='2' name=filiere_id>";
+                                      echo "<select size='1' name=filiere_id>";
                                             foreach($filieres as $f){
                                                 $id_filiere=$f->filiere_id;
                                                 echo "<option value=$id_filiere>$f->nom </option>";
@@ -300,7 +300,7 @@
                                     <input required type="hidden" style="color:black;" name="module_id" id="module_id">
                                     <div class="form-group">
                                         <label for="nom_module" style="color:#c21db7;">nom module</label>
-                                        <input required type="text" name="nom_module" id="nom_module" style="color:black;"
+                                        <input pattern="[a-zA-Z]{4,255}" title="aucun caractère spécial n'est autorisé 4 - 255 max" required type="text" name="nom_module" id="nom_module" style="color:black;"
                                                class="form-control"
                                                placeholder="nom de module">
                                     </div>
@@ -309,7 +309,7 @@
                                         <?php
 
                                         $filieres = filiere::all();
-                                        echo "<select size='2' name=filiere_id>";
+                                        echo "<select size='1' name=filiere_id>";
                                         foreach($filieres as $f){
                                             $id_filiere=$f->filiere_id;
                                             echo "<option value=$id_filiere>$f->nom</option>";

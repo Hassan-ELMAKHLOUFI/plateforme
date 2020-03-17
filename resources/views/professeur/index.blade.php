@@ -269,9 +269,8 @@
                                     <div class="form-group">
                                         <label for="cin_p" style="color:#c21db7;">cin</label>
 
-
                                         <input required type="text" name="cin_p" style="color:black;" class="form-control"
-                                               pattern="[A-Z]{1,2}[1-9]{2,5}" placeholder="Exemple: XX145">
+                                               pattern="[A-Z]{1,2}[0-9]{2,5}" placeholder="Exemple: XX145">
                                     </div>
 
                                     <div class="form-group">

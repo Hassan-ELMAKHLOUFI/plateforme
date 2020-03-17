@@ -187,7 +187,7 @@
                                     <form action={{ route('filiere.import') }} method="POST"
                                           enctype="multipart/form-data">
                                         @csrf
-                                        <input type="file" name="file">
+                                        <input required type="file" name="file">
                                         <input class="btn btn-primary" type="submit" name="upload" value="upload">
                                     </form>
                                 </div>
@@ -263,9 +263,8 @@
                                     <div class="form-group">
                                         <label for="" style="color:#c21db7;">nom de filiere</label>
 
-
                                         <input required style="color:black;" type="text" id="nom" name="nom" class="form-control"
-                                               placeholder="nom de departement">
+                                               placeholder="nom de filiere" pattern="[a-zA-Z]{4,255}" title="aucun caractère spécial n'est autorisé 4 - 255 max">
                                     </div>
                                     <input required style="color:black;" type="hidden" name="filiere_id" id="filiere_id">
                                     <br>
@@ -273,7 +272,7 @@
                                         <label for="" style="color:#c21db7;">coordinateur</label>
                                         <input required style="color:black;" type="text" id="coordinateur" name="coordinateur"
                                                class="form-control"
-                                               placeholder="coordinateur">
+                                               placeholder="coordinateur" pattern="[a-zA-Z]{4,255}" title="aucun caractère spécial n'est autorisé 4 - 255 max">
                                     </div>
                                     <br>
 
@@ -287,8 +286,6 @@
 
                                     <div class="form-group">
                                         <label for="" style="color:#c21db7;">date de fin</label>
-
-
                                         <input required style="color:black;" type="date" id="datefin" name="datefin"
                                                class="form-control"
                                                placeholder="date de fin">
@@ -299,7 +296,7 @@
 
                                         <label for="" style="color:#c21db7;"> id departemeent</label>
 
-                                        <select name="nom_dep" size="2">
+                                        <select name="nom_dep" size="1">
                                             <?php
                                             use App\departement;
                                             $departements = departement::all();
@@ -314,7 +311,7 @@
                                         <div class="form-group">
                                             <label for="niveau_id" style="color:#c21db7;">niveau</label>
                                             <?php $niveau = \App\Niveau::all()?>
-                                            <select name="niveau_id" size="2">
+                                            <select name="niveau_id" size="1">
                                                 @foreach($niveau as $n)
                                                     <option value="{{$n->niveau_id}}">{{$n->nom}}</option>
                                                 @endforeach
@@ -354,7 +351,7 @@
 
 
                                         <input required style="color:black;" type="text" id="nom" name="nom" class="form-control"
-                                               placeholder="nom de departement">
+                                               placeholder="nom de departement" pattern="[a-zA-Z]{4,255}" title="aucun caractère spécial n'est autorisé 4 - 255 max">
                                     </div>
                                     <input required type="hidden" name="filiere_id" id="filiere_id">
                                     <br>
@@ -362,7 +359,7 @@
                                         <label for="" style="color:#c21db7;">coordinateur</label>
                                         <input required style="color:black;" type="text" id="coordinateur" name="coordinateur"
                                                class="form-control"
-                                               placeholder="coordinateur">
+                                               placeholder="coordinateur" pattern="[a-zA-Z]{4,255}" title="aucun caractère spécial n'est autorisé 4 - 255 max">
                                     </div>
                                     <br>
 

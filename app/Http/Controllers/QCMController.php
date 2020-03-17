@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\departement;
 use App\Option;
+use App\Reponse_text;
 use App\Test;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
@@ -58,10 +59,9 @@ return view ('create-question.index');
         $point =$request->input('point');
         $QCM = array(
             'question_text' => $question,
-
-            'note'      =>'1',
+            'difficulty' => $request->difficulty,
             'test_id'   =>$test_id ,
-            'note'=>1
+            'note'=> $request->note
         );
         $id=qcm::create($QCM);
 
@@ -94,7 +94,9 @@ return view ('create-question.index');
 $count =count($nbrs);
 
         return redirect()->back();
+
     }
+
 
     /**
      * Display the specified resource.

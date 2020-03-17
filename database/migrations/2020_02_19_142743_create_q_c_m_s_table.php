@@ -17,7 +17,6 @@ class CreateQCMSTable extends Migration
             $table->bigIncrements('question_id');
             $table->unsignedBigInteger('test_id');
             $table->integer('difficulty');
-            $table->string('type');
             $table->string('question_text');
             $table->double('note');
 

@@ -168,7 +168,7 @@
                                 <div class="form-row">
                                     <div class="form-holder form-holder-2">
                                         <label class="form-row-inner">
-                                            <input type="text" name="nom" id="nom" class="form-control"
+                                            <input type="text" pattern=".[a-zA-Z0-9]{1,255}" title="aucun caractère spécial n'est autorisé 1 - 255 max" name="nom" id="nom" class="form-control"
                                                    style="margin-left: -4px;width: 200%;" required>
                                             <span class="label" style="left:210px">Nom de test </span>
                                             <span class="border"></span>
@@ -221,7 +221,7 @@
                                 <div class="form-row">
                                     <div class="form-holder form-holder-2">
                                         <label class="form-row-inner">
-                                            <input type="text" name="salle" id="salle" class="form-control" required>
+                                            <input pattern="[a-zA-Z0-9]{1,255}" title="aucun caractère spécial n'est autorisé 1 - 255 max" type="text" name="salle" id="salle" class="form-control" required>
                                             <span class="label" style="left: 100px;">Salle</span>
                                             <span class="border"></span>
 

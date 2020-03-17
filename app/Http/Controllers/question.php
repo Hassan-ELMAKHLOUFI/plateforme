@@ -54,8 +54,6 @@ class question extends Controller
                'question_text'=>$qcm->question_text,
                'note'=>$qcm->note,
                'test_id'=>$qcm->test_id
-
-
             );
            $id= qcm::create($qc);
             $options=DB::table('option')->where('question_id',$qcm->question_id)->get();

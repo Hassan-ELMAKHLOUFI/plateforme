@@ -110,5 +110,7 @@
     <orderEntry type="library" name="jquery.table2excel" level="application" />
     <orderEntry type="library" name="datatables" level="application" />
     <orderEntry type="library" name="2622940fba" level="application" />
+    <orderEntry type="library" name="quill" level="application" />
+    <orderEntry type="library" name="filesaver" level="application" />
   </component>
 </module>

@@ -32,7 +32,8 @@ Route::group(['middleware'=>'professeur'],function(){
 
 });
 
-
+Route::get('/count','TestController@count');
+Route::put('/setSession','TestController@setSession');
 Route::redirect('/profauth','/profauth/login');
 Route::Resource('etudiant','EtudiantController')->middleware('admin.auth');
 Route::Resource('filiere','FiliereController')->middleware('admin.auth');;
@@ -46,7 +47,8 @@ Route::Resource('professeur','ProfesseurController')->middleware('admin.auth');;
 Route::Resource('create-test','TestController');
 Route::get('profauth/create-test/{prof}','TestController@index2')->name('create-test.index')->middleware('professeur');
 Route::resource('Resultat','ResultatController');
-Route::get ('question/{test_id}','TestController@question');
+Route::get ('question/{test_id}/{session_id}','TestController@question');
+Route::get ('reponses/{test_id}','TestController@reponses');
 Route::get ('result','ResultatController@test');
 Route::get('test','TestController@index1');
 Route::Resource('create-qcm','QCMController');
@@ -89,3 +91,6 @@ Route::post('matiere/import', 'MatiereController@import')->name('matiere.import'
 Route::post('module/import', 'ModuleController@import')->name('module.import');
 Route::post('niveau/import', 'NiveauController@import')->name('niveau.import');
 Route::post('professeur/import', 'ProfesseurController@import')->name('professeur.import');
+
+Route::delete('/profauth/test/supprimer/{test}','TestController@destroy');
+Route::put('/profauth/test/modifier/{test_id}','TestController@update1');

@@ -186,7 +186,7 @@
                                 <div>
                                     <form action={{ route('departement.import') }} method="POST" enctype="multipart/form-data">
                                         @csrf
-                                        <input type="file" name="file">
+                                        <input required type="file" name="file">
                                         <input class="btn btn-primary" type="submit" name="upload" value="upload">
                                     </form>
                                 </div>
@@ -298,7 +298,7 @@
 
 
                                         <input required type="text" name="nom" style="color:black;" class="form-control"
-                                               pattern="[a-z]{4,}" title="Le nom a 4 characters min" placeholder="nom de departement">
+                                               pattern="[a-zA-Z]{4,}" title="aucun caractère spécial n'est autorisé" placeholder="nom de departement">
                                     </div>
                                     <br>
                                     <div class="form-group">
@@ -314,7 +314,7 @@
                                         <label for="chef" style="color:#c21db7;">chef</label>
 
                                         <input required type="text" name="chef" style="color:black;" class="form-control"
-                                               pattern="[A-Za-z]{3,}" title="Le chef a 4 characters min" placeholder="chef">
+                                               pattern="[a-zA-Z]{4,255}" title="aucun caractère spécial n'est autorisé 4 - 255 max" placeholder="chef">
                                     </div>
                                     <div class="form-group">
 
@@ -358,7 +358,7 @@
                                         <label for="" style="color:#c21db7;">nom</label>
 
                                         <input type="text" style="color:black;" id="nom" name="nom" class="form-control"
-                                               placeholder="nom de departement" pattern="[a-z]{4,}" title="Le nom a 4 characters min">
+                                               placeholder="nom de departement" pattern="[a-zA-Z]{4,255}" title="aucun caractère spécial n'est autorisé 4 - 255 max">
                                     </div>
                                     <input type="hidden" style="color:black;" name="departement_id" id="departement_id">
                                     <br>
@@ -366,7 +366,7 @@
 
                                         <label for="" style="color:#c21db7;">date de debut </label>
 
-                                        <input type="date" style="color:black;" id="date" name="date_cr"
+                                        <input required type="date" style="color:black;" id="date" name="date_cr"
                                                class="form-control"
                                                placeholder="nom de departement">
                                     </div>
@@ -377,7 +377,7 @@
                                         <label for="" style="color:#c21db7;">chef</label>
 
                                         <input type="text" id="chef" style="color:black;" name="chef"
-                                               class="form-control" placeholder="chef" pattern="[a-z]{4,}" title="Le chef a 4 characters min">
+                                               class="form-control" placeholder="chef" pattern="[a-zA-Z]{4,255}" title="aucun caractère spécial n'est autorisé 4 - 255 max">
                                     </div>
                                     <br>
 
@@ -386,7 +386,7 @@
 
                                         <label for="" style="color:#c21db7;">date de fin</label>
 
-                                        <input type="date" style="color:black;" id="date" name="date_fin"
+                                        <input required type="date" style="color:black;" id="date" name="date_fin"
                                                class="form-control"
                                                placeholder="date de fin">
                                     </div>

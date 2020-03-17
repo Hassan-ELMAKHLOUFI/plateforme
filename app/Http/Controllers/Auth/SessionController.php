@@ -27,7 +27,7 @@ class SessionController extends Controller
         return redirect()->route('session');*/
         $username = $request->username;
         $password = $request->password;
-        $etudiantSession = Session::query()->where('username','=',$request->username)->count();
+        $etudiantSession = Session::query()->where('username','=',$request->username)->where('active','=',true)->count();
         if(intval($etudiantSession) > 0){
             $etudiantSessionPass = Session::query()->where('username','=',$request->username)->first();
             if(strcmp($password,$etudiantSessionPass->password)==0){

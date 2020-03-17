@@ -188,7 +188,7 @@
                                     <form action={{ route('matiere.import') }} method="POST"
                                           enctype="multipart/form-data">
                                         @csrf
-                                        <input type="file" name="file">
+                                        <input required type="file" name="file">
                                         <input class="btn btn-primary" type="submit" name="upload" value="upload">
                                     </form>
                                 </div>
@@ -256,7 +256,7 @@
                                     @csrf
                                     <div class="form-group">
                                         <label for="nom_matiere" style="color:#c21db7;">nom matiere</label>
-                                        <input required type="text" name="nom_matiere" style="color:black;" class="form-control"
+                                        <input required pattern="[a-zA-Z]{4,255}" title="aucun caractère spécial n'est autorisé 4 - 255 max" type="text" name="nom_matiere" style="color:black;" class="form-control"
                                                placeholder="nom de matiere">
                                     </div>
                                     <br>
@@ -278,7 +278,7 @@
                                     <div class="form-group">
                                         <label for="professeur_id" style="color:#c21db7;">Professeur</label>
                                         <?php $professeur = \App\Professeur::all()?>
-                                        <select name="professeur_id" size="2">
+                                        <select name="professeur_id" size="1">
                                             @foreach($professeur as $p)
                                                 <option value={{$p->professeur_id}}>{{$p->nom}}</option>
                                             @endforeach
@@ -292,7 +292,7 @@
 
                                         <input required type="number" name="volume_horaire" style="color:black;"
                                                class="form-control"
-                                               placeholder="volume horaire">
+                                               placeholder="volume horaire" min="1">
                                     </div>
 
 
@@ -328,7 +328,7 @@
                                     <input required type="hidden" style="color:black;" name="matiere_id" id="matiere_id">
                                     <div class="form-group">
                                         <label for="nom_matiere" style="color:#c21db7;">nom matiere</label>
-                                        <input required type="text" name="nom_matiere" id="nom_matiere" style="color:black;" class="form-control"
+                                        <input pattern="[a-zA-Z]{4,255}" title="aucun caractère spécial n'est autorisé 4 - 255 max" required type="text" name="nom_matiere" id="nom_matiere" style="color:black;" class="form-control"
                                                placeholder="nom de matiere">
                                     </div>
                                     <br>
@@ -349,7 +349,7 @@
 
                                         <input required type="number" name="volume_horaire" id="volume_horaire" style="color:black;"
                                                class="form-control"
-                                               placeholder="volume horaire">
+                                               placeholder="volume horaire" min="1">
                                     </div>
                             </div>
                             <div class="modal-footer">

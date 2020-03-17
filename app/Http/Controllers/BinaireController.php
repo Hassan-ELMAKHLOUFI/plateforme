@@ -43,7 +43,8 @@ class BinaireController extends Controller
         $question=array(
             'question_text'=> $question,
             'test_id' =>$test_id,
-            'note' => '1'
+            'difficulty' => $request->difficulty,
+            'note' => $request->note
         );
        $id= Binaire::create($question);
        if($choice=='vrai') {

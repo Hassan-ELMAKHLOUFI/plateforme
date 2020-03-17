@@ -13,7 +13,7 @@
     <input type="hidden" name="test_id" value="{{$test['test_id']}}">
     <label>
         Question:
-        <input type="text" name="question_text" pattern="[a-z]{4,}" title="4 chars min">
+        <input required pattern=".{1,255}" title="le nombre maximum de caractères 1 - 2048" type="text" name="question_text" required>
     </label>
     <br>
     <select name="difficulty">
@@ -26,7 +26,7 @@
 
     <label>
         Note:
-        <input type="number" name="note">
+        <input required type="number" name="note" min="1">
     </label>
     <input type="submit" name="submit">
 </form>
