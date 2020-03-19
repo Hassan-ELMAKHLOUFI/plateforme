@@ -87,3 +87,4 @@ Route::post('professeur/import', 'ProfesseurController@import')->name('professeu
 
 Route::delete('/profauth/test/supprimer/{test}','TestController@destroy');
 Route::put('/profauth/test/modifier/{test_id}','TestController@update1');
+

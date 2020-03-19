@@ -88,17 +88,21 @@ class Text_libreController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $text_libre = array(
+            'question_text' => $request->question_text,
+            'difficulty' => $request->difficulty,
+            'test_id' => $request->test_id,
+            'note'  => $request->note,
+        );
+
+        Text_libre::query()->find($request->question_id)->update($text_libre);
+        return redirect()->back();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function destroy(Request $text_libre)
     {
-        //
+        $deletetextlibre = Text_libre::query()->find($text_libre->question_id);
+        $deletetextlibre->delete();
+        return redirect()->back();
     }
-
 }
