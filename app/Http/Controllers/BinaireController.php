@@ -85,7 +85,7 @@ class BinaireController extends Controller
             );
             option::create($option1);
         }
-       return view('depatement.index');
+       return redirect()->back();
     }
 
     /**

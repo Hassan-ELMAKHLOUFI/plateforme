@@ -11,6 +11,8 @@
 |
 */
 
+use App\Session;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -18,42 +20,40 @@ Route::get('/', function () {
 });
 
 
-Route::Resource('admin','AdminController');
-Route::Resource('departement','DepartementController');
-Route::Resource('etudiant','EtudiantController');
-Route::Resource('filiere','FiliereController');
-Route::Resource('filiereNiveau','FiliereNiveauController');
-Route::Resource('matiere','MatiereController');
-Route::Resource('matiereProf','MatiereProfController');
-Route::Resource('module','ModuleController');
-Route::Resource('moduleFiliere','ModuleFiliereController');
-Route::Resource('niveau','NiveauController');
-Route::Resource('professeur','ProfesseurController');
+//Route::Resource('admin','Auth\AdminController');
+Route::group(['middleware'=>'admin.auth'],function(){
+    Route::resource('departement','DepartementController');
+});
+Route::group(['middleware'=>'professeur'],function(){
+    Route::get('create-question1/{test_id}', 'question@index2');
+});
+Route::redirect('/profauth','/profauth/login');
+Route::Resource('etudiant','EtudiantController')->middleware('admin.auth');
+Route::Resource('filiere','FiliereController')->middleware('admin.auth');;
+Route::Resource('filiereNiveau','FiliereNiveauController')->middleware('admin.auth');;
+Route::Resource('matiere','MatiereController')->middleware('admin.auth');;
+Route::Resource('matiereProf','MatiereProfController')->middleware('admin.auth');;
+Route::Resource('module','ModuleController')->middleware('admin.auth');;
+Route::Resource('moduleFiliere','ModuleFiliereController')->middleware('admin.auth');;
+Route::Resource('niveau','NiveauController')->middleware('admin.auth');;
+Route::Resource('professeur','ProfesseurController')->middleware('admin.auth');;
 Route::Resource('create-test','TestController');
-Route::get('profauth/create-test/{prof}','TestController@index2');
+Route::get('profauth/create-test/{prof}','TestController@index2')->name('create-test.index')->middleware('professeur');
 Route::resource('Resultat','ResultatController');
 Route::get ('question/{test_id}','TestController@question');
 Route::get ('result','ResultatController@test');
 Route::get('test','TestController@index1');
 Route::Resource('create-qcm','QCMController');
 Route::get('create-question1/{test_id}','question@index2');
-Route::get('create-bin/option12/binaire/{binaire_id}','optionController@index1');
-Route::get('create-qcm1/option/qcm/{question_id}','optionController@index2');
-Route::get('option/{question_id}','BinaireController@index1');
-Route::Resource('option','optionController');
+
 Route::Resource('create-question','question');
 Route::Resource('create-binaire','BinaireController');
-Route::Resource('create-qcm','QCMController');
 Route::Post('create-binstore','BinaireController@store1');
 Route::get('create-bin/{test_id}','BinaireController@index1');
 Route::get('create-qcm1/{test_id}','QCMController@index2');
-Route::get('create-qcm2','QCMController@index1');
+Route::get('create-qcm','QCMController@index1');
 Route::get('select-question/{test_id}','question@select');
-
 Route::Post('StoreSelected','question@StoreSelected');
-Route::get('Random/{test_id}','question@Random');
-Route::get('Random','question@RandomStoring');
-
 
 
 Route::get('/session_pdf/{test}','TestController@export_pdf')->name('test.pdf');

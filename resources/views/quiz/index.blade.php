@@ -9,7 +9,8 @@
 
 
 <body>
-
+@csrf
+<a href="{{route('session.logout')}}">Logout</a>
 <h1>Bienvenue {{$data['s']->username}}</h1>
 <?php
 use Illuminate\Support\Facades\DB;

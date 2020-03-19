@@ -8,7 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-
+<a href="{{route('profauth.logout')}}">Logout</a>
 <h1>Bonjour , {{$prof->username}}</h1>
 <a href="create-test/{{$prof->professeur_id}}">Ajouter test</a>
 <table>
@@ -19,18 +19,16 @@
     </thead>
     <tbody>
     <?php
-    //$tests = \App\Test::find($prof->professeur_id);
-    $tests = DB::table('test')->where('professeur_id', '=', $prof->professeur_id)->get();
+    $tests = DB::table('test')->where('professeur_id','=', $prof->professeur_id)->get();
 
     ?>
-
+    @if(!empty($tests))
         @foreach($tests as $test)
-            <?php $test1=$test->nom?>
             <tr>
-                <td>{{$test1}}</td>
+                <td>{{$test->nom}}</td>
             </tr>
         @endforeach
-
+    @endif
     </tbody>
 </table>
 </body>
