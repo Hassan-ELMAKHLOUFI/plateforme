@@ -25,7 +25,7 @@ class QCM extends Model implements ToModel, WithHeadingRow
             'question_text'=> $row['question_text'],
             'note'=>$row['note'],
             'test_id'=> $row['test_id'],
-            'difficulty'=> $row['difficulty'],
+
         ));
     }
     public function options(){

@@ -52,10 +52,7 @@ Route::get ('reponses/{test_id}','TestController@reponses');
 Route::get ('result','ResultatController@test');
 Route::get('test','TestController@index1');
 Route::Resource('create-qcm','QCMController');
-/*Route::get('/sessionUsers',function (){
-    return Session::orderBy(DB::raw('RAND()'))->where('test_id','=',1)->take(5)->get();
-});*/
-
+Route::get('create-question1/{test_id}','question@index2');
 
 Route::Resource('create-question','question');
 Route::Resource('create-binaire','BinaireController');
@@ -68,20 +65,16 @@ Route::Post('StoreSelected','question@StoreSelected');
 
 
 Route::get('/session_pdf/{test}','TestController@export_pdf')->name('test.pdf');
-Route::get('test/{s}','TestController@index1')->name('tests')->middleware('session');
+Route::get('test/{s}','TestController@index1')->name('tests');
 Route::get('/session_pdf/{test}','TestController@export_pdf')->name('create-test.pdf');
 
 
-Route::get('session','Auth\SessionController@index')->name('session.index');
-Route::post('session/login','Auth\SessionController@sessionLogin')->name('session.login');
-Route::get('session/logout','Auth\SessionController@sessionLogout')->name('session.logout')->middleware('session');
-Route::get('admin','Auth\AdminController@index')->name('admin.index');
-Route::post('admin/login','Auth\AdminController@adminLogin')->name('admin.login');
-Route::get('admin/logout','Auth\AdminController@adminLogout')->name('admin.logout');
+Route::get('session','Auth\SessionController@index')->name('session');
+Route::post('session/login','Auth\SessionController@sessionLogin')->name('session');
+Route::get('admin','Auth\AdminController@index')->name('admin');
+Route::post('admin/login','Auth\AdminController@adminLogin')->name('admin');
 Route::get('profauth/login','Auth\ProfauthController@index')->name('profauth.login');
 Route::post('profauth/test','Auth\ProfauthController@professeurLogin')->name('profauth.test');
-Route::get('profauth/test','Auth\ProfauthController@professeurLogin')->name('profauth.test');
-Route::get('profauth/logout','Auth\ProfauthController@professeurLogout')->name('profauth.logout')->middleware('professeur');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('departement/import', 'departementController@import')->name('departement.import');

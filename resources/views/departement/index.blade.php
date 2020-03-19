@@ -6,7 +6,7 @@
     <link rel="icon" type="image/png" href="../assets/img/favicon.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <title>
-        Dashboard
+        departement
     </title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
           name='viewport'/>
@@ -201,9 +201,9 @@
                                         <tr>
                                             <th class="exclude">#</th>
                                             <th>nom</th>
-                                            <th>date_de_creation</th>
-                                            <th>chef_departement</th>
-                                            <th>date_de_fin</th>
+                                            <th>date</th>
+                                            <th>chef departement</th>
+                                            <th>date de fin</th>
                                             <th class="exclude">Action</th>
                                         </tr>
                                         <tbody>
@@ -419,9 +419,12 @@
                                 <form action="{{route('departement.destroy','departement_id')}}" method="POST">
                                     @csrf
                                     @method('DELETE')
+
                                     <input type="hidden" name="departement_id" id="departement_id">
                                     <p class="text-center" width="50px"> vous ete sûre que vous voulez supprimer ce
                                         departement</p>
+
+
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>

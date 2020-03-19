@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\binaire;
+use App\option;
 use App\departement;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\DB;
 
 class OptionController extends Controller
 {
@@ -16,6 +19,16 @@ class OptionController extends Controller
     public function index(Request $request)
     {
 
+    }
+    public function index1($binaire_id)
+    {
+        $options['options']=DB::table('option')->where('binaire_id', $binaire_id)->get();
+      return view('option.index',compact('options'));
+    }
+    public function index2($question_id)
+    {
+        $options['options']=DB::table('option')->where('question_id', $question_id)->get();
+        return view('option.indexQCM',compact('options'));
     }
 
     /**
@@ -70,7 +83,32 @@ class OptionController extends Controller
      */
     public function update(Request $request)
     {
+        if($request->question_id!=null){
+        $option = array(
 
+
+            'option_text' => $request->option_text,
+            'point' => $request->point,
+            'question_id' => $request->question_id,
+
+
+        );
+        }else{
+            $option = array(
+
+
+                'option_text' => $request->option_text,
+                'point' => $request->point,
+                'binaire_id' => $request->binaire_id,
+
+
+            );
+        }
+
+
+        option::findOrfail($request->option_id)->update($option);
+
+        return redirect()->back();
     }
 
     /**
@@ -81,7 +119,10 @@ class OptionController extends Controller
      */
     public function destroy(Request $option)
     {
-
+        $delete = $option->all();
+        $deleteoption = option::find($option->option_id);
+        $deleteoption->delete();
+        return redirect()->back();
     }
 
     public function import(Request $request){
