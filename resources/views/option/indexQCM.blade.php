@@ -1,11 +1,6 @@
-<!doctype html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Webslesson Demo - Dynamically Add or Remove input fields in PHP with JQuery</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
@@ -42,61 +37,35 @@
 </head>
 <body>
 
-<form action="{{action('BinaireController@store1')}}" method="post">
-@csrf
-
-    <input type="text" name="question" >
-
-    <input type="radio" name="choice" value="vrai">vrai
-    <input type="radio" name="choice" value="faux">faux
-    <select name="difficulty" id="difficulty">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">45/option>
-    </select>
-   <input type="hidden" name="test_id" value="{{$test->test_id}}">
-    <label for="" >note</label>
-
-    <input type="number" id="note" style="color:black;" name="note" placeholder="note">
-    <input type="submit"  value="salam">
-</form>
-@php
-    //  use \App
-        $binaires = App\binaire::OrderBy('binaire_id','asc')->where('test_id',$test->test_id)->get(); @endphp
 <div class="table-responsive">
     <table class="table table-bordered" id="myTable">
         <thead>
         <tr>
             <th class="exclude">#</th>
-            <th>question text</th>
-            <th>note</th>
-            <th>difficultes</th>
-            <th>id test</th>
+            <th>option text</th>
+            <th>point</th>
+            <th>question id</th>
+
             <th class="exclude">Action</th>
         </tr>
         <tbody>
-
-        @foreach($binaires as $key=>$binaire)
+        @foreach($options['options'] as $key=>$option)
             <tr>
                 <td class="exclude">{{++$key}}</td>
-                <td>{{$binaire->question_text}}</td>
-                <td>{{$binaire->note}}</td>
-                <td>{{$binaire->difficulty}}</td>
-                <td>{{$binaire->test_id}}</td>
+                <td>{{$option->option_text}}</td>
+                <td>{{$option->point}}</td>
+                <td>{{$option->question_id}}</td>
+
                 <td class="exclude">
-                    <a data-binaire_id="{{$binaire->binaire_id}}"
-                       data-question_text="{{$binaire->question_text}}"
-                       data-note="{{$binaire->note}}"
-                       data-difficulty="{{$binaire->difficulty}}"
-                       data-test_id="{{$binaire->test_id}}" data-toggle="modal"
+                    <a data-option_id="{{$option->option_id}}"
+                       data-option_text="{{$option->option_text}}"
+                       data-point="{{$option->point}}"
+                       data-question_id="{{$option->question_id}}"
+                       data-toggle="modal"
                        data-target="#exampleModal-edit" class="edit" title="modifier"><i class="material-icons">&#xE254;</i></a>
-                    <a data-binaire_id="{{$binaire->binaire_id}}"
+                    <a data-option_id="{{$option->option_id}}"
                        data-toggle="modal"
                        data-target="#exampleModal-delete" class="delete" title="supprimer"><i class="material-icons">&#xE872;</i></a>
-
-                    <a href="option/binaire/{{$binaire->binaire_id}}"><i class="material-icons">&#xE872;</i></a>
                 </td>
             </tr>
         @endforeach
@@ -123,50 +92,38 @@
             </div>
             <div class="modal-body">
 
-                <form action="{{route('create-binaire.update','binaire_id')}}" method="POST">
+                <form action="{{route('option.update','option_id')}}" method="POST">
                     @csrf
                     @method('PUT')
                     <div class="form-group">
 
-                        <label for="" style="color:#c21db7;">question text</label>
+                        <label for="" style="color:#c21db7;">nom</label>
 
-                        <input type="text" style="color:black;" id="question_text" name="question_text" class="form-control"
-                               placeholder="question">
+                        <input type="text" style="color:black;" id="option_text" name="option_text" class="form-control"
+                               placeholder="option">
                     </div>
-                    <input type="hidden" style="color:black;" name="binaire_id" id="binaire_id">
+                    <input type="hidden" style="color:black;" name="option_id" id="option_id">
                     <br>
                     <div class="form-group">
 
-                        <label for="" style="color:#c21db7;">difficultes </label>
+                        <label for="" style="color:#c21db7;">point</label>
 
 
-                        <select name="difficulty" id="difficulty"  class="form-control">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">45</option>
-                        </select>
+                        <input type="number" style="color:black;" id="point" name="point" class="form-control"
+                               placeholder="option">
                     </div>
                     <br>
 
-                    <div class="form-group">
 
-                        <label for="" style="color:#c21db7;">note</label>
-
-                        <input type="text" id="note" style="color:black;" name="note"
-                               class="form-control" placeholder="note">
-                    </div>
-                    <br>
 
                     <div class="form-group">
 
 
-                        <label for="" style="color:#c21db7;">id test</label>
+                        <label for="" style="color:#c21db7;">QCM id</label>
 
-                        <input type="number" style="color:black;" id="test_id" name="test_id"
+                        <input type="number" style="color:black;" id="question_id" name="question_id"
                                class="form-control"
-                               placeholder="test id">
+                               placeholder="question id">
                     </div>
                     <br>
             </div>
@@ -192,12 +149,12 @@
             </div>
             <div class="modal-body">
 
-                <form action="{{route('create-binaire.destroy','binaire_id')}}" method="POST">
+                <form action="{{route('option.destroy','option_id')}}" method="POST">
                     @csrf
                     @method('DELETE')
 
-                    <input type="hidden" name="binaire_id" id="binaire_id">
-                    <p class="text-center" width="50px"> vous ete sûre que vous voulez supprimer cette question</p>
+                    <input type="hidden" name="option_id" id="option_id">
+                    <p class="text-center" width="50px"> vous ete sûre que vous voulez supprimer cette option</p>
 
 
             </div>
@@ -226,21 +183,19 @@
     $('#exampleModal-edit').on('show.bs.modal', function (event) {
 
         var button = $(event.relatedTarget)
-        var question_text = button.data('question_text')
-        var note = button.data('note')
-        var difficulty = button.data('difficulty')
-        var test_id = button.data('test_id')
-        var binaire_id =  button.data('binaire_id')
+        var option_text = button.data('option_text')
+        var point = button.data('point')
+        var question_id = button.data('question_id')
+        var option_id =  button.data('option_id')
 
 
         var modal = $(this)
 
         modal.find('.modal-title').text('modifier');
-        modal.find('.modal-body #question_text').val(question_text);
-        modal.find('.modal-body #note').val(note);
-        modal.find('.modal-body #difficulty').val(difficulty);
-        modal.find('.modal-body #test_id').val(test_id);
-        modal.find('.modal-body #binaire_id').val(binaire_id);
+        modal.find('.modal-body #option_text').val(option_text);
+        modal.find('.modal-body #point').val(point);
+        modal.find('.modal-body #question_id').val(question_id);
+        modal.find('.modal-body #option_id').val(option_id);
     });
 
 
@@ -248,17 +203,16 @@
 
         var button = $(event.relatedTarget)
 
-        var binaire_id = button.data('binaire_id')
+        var option_id = button.data('option_id')
 
 
         var modal = $(this)
 
         modal.find('.modal-title').text('supprimer');
 
-        modal.find('.modal-body #binaire_id').val(binaire_id);
+        modal.find('.modal-body #option_id').val(option_id);
     });
 
 </script>
-
 
 

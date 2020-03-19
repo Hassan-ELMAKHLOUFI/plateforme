@@ -30,7 +30,7 @@ class Test extends Model implements ToModel, WithHeadingRow
 
     public function qcm()
     {
-        return $this->hasMany('App\qcm', 'test_id', 'test_id');
+        return $this->hasMany('App\qcm', 'test_id');
     }
     public function binaire()
     {

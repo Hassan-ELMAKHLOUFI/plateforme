@@ -38,8 +38,8 @@ class ResultatController extends Controller
      */
     public function store(Request $request)
     {
-        $test_id = $request->test_id;
-        $qcms = DB::table('question')->where('test_id', '=', $test_id)->where('type', '=', 'multiple')->get();
+        $test_id = '1';
+        $qcms = DB::table('qcm')->where('test_id', '=', $test_id)->get();
 
 
         $somme = 0;
@@ -50,32 +50,40 @@ class ResultatController extends Controller
 
 
         foreach ($choices as $choice) {
-            $somme = $somme + $choice->point;
+            if($choice->point==1){
+                $t=$choice->binaire ;
+            $somme = $somme + $t->note;
+        }
         }
 
         foreach ($qcms as $qcm) {
-            $erreur = false;
+            $er = false;
+            $somme2=0;
+            $somme3=0;
+
+
             $option = DB::table('option')->where('question_id', '=', $qcm->question_id)->get();
             foreach ($option as $opt) {
 
-                $somme2 = $somme2 + $opt->point;
-            }
+                $somme2 = $somme2 + $opt->point;}
 
             foreach ($choices1 as $ch) {
+
                 if ($ch->question_id == $qcm->question_id) {
                     $somme3 = $somme3 + $ch->point;
                     if ($ch->point == 0) {
-                        $erreur = true;
+                        $er = true;
                     }
                 }
 
             }
 
-            if ($somme2 == $somme3 && $erreur == false) {
+            if ($somme2 == $somme3 && $er == false) {
 
-                $somme = $somme + 1;
+                $somme = $somme +$qcm->note;
 
             }
+
         }
 
 
@@ -130,14 +138,14 @@ class ResultatController extends Controller
     public function test($request)
     {
         $test_id = $request->test_id;
-        $qcm = DB::table('question')->where('test_id', '=', $test_id)->where('type', '=', 'multiple')->get();
+        $qcm = DB::table('qcm')->where('test_id', '=', $test_id)->get();
 
         $somme = 0;
         $somme3 = 0;
         $somme2 = 0;
         $choices = option::find(array_values($request->input('questions')));
         $choices1 = option::find(array_values($request->input('options')));
-        $qcms = DB::table('question')->where('test_id', $test_id);
+        $qcms = DB::table('qcm')->where('test_id', $test_id);
 
 
         foreach ($choices as $choice) {

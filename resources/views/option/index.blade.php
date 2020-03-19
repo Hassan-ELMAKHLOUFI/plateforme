@@ -36,75 +36,36 @@
     <link rel='stylesheet prefetch' href='http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css'>
 </head>
 <body>
-<div class="container">
-    <br />
-    <br />
-    <h2 align="center"><a href="http://www.webslesson.info/2016/02/dynamically-add-remove-input-fields-in-php-with-jquery-ajax.html" title="Dynamically Add or Remove input fields in PHP with JQuery">Dynamically Add or Remove input fields in PHP with JQuery</a></h2><br />
-    <div class="form-group">
-        <form action="{{action('QCMController@store')}}" method="post">
 
-
-            @csrf
-            <input type="text" name="question" >
-            <select name="difficulty" id="difficulty"  class="form-control">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">45</option>
-            </select>
-
-            <div class="table-responsive">
-                <table class="table table-bordered" id="dynamic_field">
-                    <tr>
-                            <?php $i=0;?>
-
-                        <td><input type="text" name="option_text[]" placeholder="Enter your Name" class="form-control name_list" /></td>
-                            <input type="hidden" name="hidden[]" value="1">
-
-                       <td><input type="checkbox" name="point[]"  value="1" ></td><br>
-
-                        <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>
-                    </tr>
-                </table>
-                <input type="button" name="submit" id="submit" class="btn btn-info" value="Submit" />
-                <input type="hidden" name="test_id" value="{{$test['test']->test_id}}" >
-                <input type="submit" value="submit">
-            </div>
-</form>
-        @php
-        //  use \App
-            $qcms = App\qcm::OrderBy('question_id','asc')->where('test_id',$test['test']->test_id)->get(); @endphp
         <div class="table-responsive">
             <table class="table table-bordered" id="myTable">
                 <thead>
                 <tr>
                     <th class="exclude">#</th>
-                    <th>question text</th>
-                    <th>note</th>
-                    <th>difficultes</th>
-                    <th>id test</th>
+                    <th>option text</th>
+                    <th>point</th>
+                    <th>id binaire</th>
+
                     <th class="exclude">Action</th>
                 </tr>
                 <tbody>
-                @foreach($qcms as $key=>$qcm)
+                @foreach($options['options'] as $key=>$option)
                     <tr>
                         <td class="exclude">{{++$key}}</td>
-                        <td>{{$qcm->question_text}}</td>
-                        <td>{{$qcm->note}}</td>
-                        <td>{{$qcm->difficulty}}</td>
-                        <td>{{$qcm->test_id}}</td>
+                        <td>{{$option->option_text}}</td>
+                        <td>{{$option->point}}</td>
+                        <td>{{$option->binaire_id}}</td>
+
                         <td class="exclude">
-                            <a data-question_id="{{$qcm->question_id}}"
-                               data-question_text="{{$qcm->question_text}}"
-                               data-note="{{$qcm->note}}"
-                               data-difficulty="{{$qcm->difficulty}}"
-                               data-test_id="{{$qcm->test_id}}" data-toggle="modal"
+                            <a data-option_id="{{$option->option_id}}"
+                               data-option_text="{{$option->option_text}}"
+                               data-point="{{$option->point}}"
+                               data-binaire_id="{{$option->binaire_id}}"
+                               data-toggle="modal"
                                data-target="#exampleModal-edit" class="edit" title="modifier"><i class="material-icons">&#xE254;</i></a>
-                            <a data-question_id="{{$qcm->question_id}}"
+                            <a data-option_id="{{$option->option_id}}"
                                data-toggle="modal"
                                data-target="#exampleModal-delete" class="delete" title="supprimer"><i class="material-icons">&#xE872;</i></a>
-                            <a href="option/qcm/{{$qcm->question_id}}"><i class="material-icons">&#xE872;</i></a>
                         </td>
                     </tr>
                 @endforeach
@@ -114,7 +75,7 @@
 
             </table>
         </div>
-</div>
+    </div>
 </div>
 
 
@@ -131,51 +92,45 @@
             </div>
             <div class="modal-body">
 
-                <form action="{{route('create-qcm.update','question_id')}}" method="POST">
+                <form action="{{route('option.update','option_id')}}" method="POST">
                     @csrf
                     @method('PUT')
                     <div class="form-group">
 
                         <label for="" style="color:#c21db7;">nom</label>
 
-                        <input type="text" style="color:black;" id="question_text" name="question_text" class="form-control"
-                               placeholder="question">
+                        <input type="text" style="color:black;" id="option_text" name="option_text" class="form-control"
+                               placeholder="option">
                     </div>
-                    <input type="hidden" style="color:black;" name="question_id" id="question_id">
+                    <input type="hidden" style="color:black;" name="option_id" id="option_id">
                     <br>
                     <div class="form-group">
 
-                        <label for="" style="color:#c21db7;">difficultes </label>
+                        <label for="" style="color:#c21db7;">point</label>
 
 
-                        <select name="difficulty" id="difficulty"  class="form-control">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">45</option>
-                        </select>
-
+                        <input type="number" style="color:black;" id="point" name="point" class="form-control"
+                               placeholder="option">
                     </div>
                     <br>
 
                     <div class="form-group">
 
-                        <label for="" style="color:#c21db7;">note</label>
+                        <label for="" style="color:#c21db7;">id binaire</label>
 
-                        <input type="text" id="note" style="color:black;" name="note"
-                               class="form-control" placeholder="note">
+                        <input type="text" id="binaire_id" style="color:black;" name="binaire_id"
+                               class="form-control" placeholder="binaire id">
                     </div>
                     <br>
 
                     <div class="form-group">
 
 
-                        <label for="" style="color:#c21db7;">id test</label>
+                        <label for="" style="color:#c21db7;">QCM id</label>
 
-                        <input type="number" style="color:black;" id="test_id" name="test_id"
+                        <input type="number" style="color:black;" id="question_id" name="question_id"
                                class="form-control"
-                               placeholder="test id">
+                               placeholder="question id">
                     </div>
                     <br>
             </div>
@@ -201,11 +156,11 @@
             </div>
             <div class="modal-body">
 
-                <form action="{{route('create-qcm.destroy','question_id')}}" method="POST">
+                <form action="{{route('option.destroy','option_id')}}" method="POST">
                     @csrf
                     @method('DELETE')
 
-                    <input type="hidden" name="question_id" id="question_id">
+                    <input type="hidden" name="option_id" id="option_id">
                     <p class="text-center" width="50px"> vous ete sûre que vous voulez supprimer cette question</p>
 
 
@@ -230,51 +185,24 @@
 
 
 <script>
-    $(document).ready(function(){
-        var i=1;
-        $('#add').click(function(){
-            i++;
-            $('#dynamic_field').append('<tr id="row'+i+'"><td><input type="text" name="option_text[]" placeholder="Enter your Name" class="form-control name_list" /></td><input type="hidden" name="hidden[]" value="'+i+'" ><td><input type="checkbox" name="point[]"  value="'+i+'"></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
-        });
 
-        $(document).on('click', '.btn_remove', function(){
-            var button_id = $(this).attr("id");
-            $('#row'+button_id+'').remove();
-        });
-
-        $('#submit').click(function(){
-            $.ajax({
-                url:"name.php",
-                method:"POST",
-                data:$('#add_name').serialize(),
-                success:function(data)
-                {
-                    alert(data);
-                    $('#add_name')[0].reset();
-                }
-            });
-        });
-
-    });
 
     $('#exampleModal-edit').on('show.bs.modal', function (event) {
 
         var button = $(event.relatedTarget)
-        var question_text = button.data('question_text')
-        var note = button.data('note')
-        var difficulty = button.data('difficulty')
-        var test_id = button.data('test_id')
-        var question_id =  button.data('question_id')
+        var option_text = button.data('option_text')
+        var point = button.data('point')
+        var binaire_id = button.data('binaire_id')
+        var option_id =  button.data('option_id')
 
 
         var modal = $(this)
 
         modal.find('.modal-title').text('modifier');
-        modal.find('.modal-body #question_text').val(question_text);
-        modal.find('.modal-body #note').val(note);
-        modal.find('.modal-body #difficulty').val(difficulty);
-        modal.find('.modal-body #test_id').val(test_id);
-        modal.find('.modal-body #question_id').val(question_id);
+        modal.find('.modal-body #option_text').val(option_text);
+        modal.find('.modal-body #point').val(point);
+        modal.find('.modal-body #binaire_id').val(binaire_id);
+        modal.find('.modal-body #option_id').val(option_id);
     });
 
 
@@ -282,14 +210,14 @@
 
         var button = $(event.relatedTarget)
 
-        var question_id = button.data('question_id')
+        var option_id = button.data('option_id')
 
 
         var modal = $(this)
 
         modal.find('.modal-title').text('supprimer');
 
-        modal.find('.modal-body #question_id').val(question_id);
+        modal.find('.modal-body #option_id').val(option_id);
     });
 
 </script>

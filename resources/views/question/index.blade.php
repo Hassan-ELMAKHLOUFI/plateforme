@@ -18,38 +18,20 @@
            <?php $opt=$qcm->options;?>
          @foreach ($opt  as $option)
 
-
-
-
-                    <input type="checkbox" name="options[{{ $option->option_id }}]" id="option-{{$option->option_id}}" value="{{$option->option_id}}" >{{$option->option_text}}<br>
+ <input type="checkbox" name="options[{{ $option->option_id }}]" id="option-{{$option->option_id}}" value="{{$option->option_id}}"">{{$option->option_text}}<br>
 
 
          @endforeach
 
 
     @endforeach
-
-
-
-
-
-
-
-
-    @foreach ($binaires['binaires']  as $binaire)
+ @foreach ($binaires['binaires']  as $binaire)
 
 
         {{ $binaire->question_text }}<br>
         <?php $opt1=$binaire->options;?>
         @foreach ($opt1  as $option)
-
-
-
-                <input type="radio" name="questions[{{ $binaire->binaire_id}}]" id="option-{{$option->option_id}}" value="{{$option->option_id}}">{{$option->option_text}}<br>
-
-
-
-
+              <input type="radio" name="questions[{{ $binaire->binaire_id}}]" id="option-{{$option->option_id}}" value="{{$option->option_id}}">{{$option->option_text}}<br>
         @endforeach
 
 

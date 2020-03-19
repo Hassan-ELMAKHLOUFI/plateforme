@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\binaire;
+use App\departement;
 use App\option;
+use App\QCM;
 use App\Test;
 use Illuminate\Http\Request;
 
@@ -19,6 +21,11 @@ class BinaireController extends Controller
         $test=test::find($test_id);
         return view('create-binaire.index',compact('test'));
     }
+
+    public function index2(){
+    $binaires['binaires'] = binaire::OrderBy('binaire_id', 'asc')->paginate(10);
+        return view('binaire.index',compact('binaires'));
+}
     /**
      * Show the form for creating a new resource.
      *
@@ -42,8 +49,9 @@ class BinaireController extends Controller
         $choice =$request->choice ;
         $question=array(
             'question_text'=> $question,
+            'difficulty' =>$request->difficulty ,
             'test_id' =>$test_id,
-            'note' => '1'
+            'note' => $request->note
         );
        $id= Binaire::create($question);
        if($choice=='vrai') {
@@ -111,7 +119,19 @@ class BinaireController extends Controller
      */
     public function update(Request $request, binaire $binaire)
     {
-        //
+        $binaire = array(
+
+
+            'question_text' => $request->question_text,
+            'note' => $request->note,
+            'difficulty' => $request->difficulty,
+            'test_id' => $request->test_id,
+
+        );
+
+        binaire::findOrfail($request->binaire_id)->update($binaire);
+
+        return redirect()->back();
     }
 
     /**
@@ -120,8 +140,11 @@ class BinaireController extends Controller
      * @param  \App\binaire  $binaire
      * @return \Illuminate\Http\Response
      */
-    public function destroy(binaire $binaire)
+    public function destroy(Request $binaire)
     {
-        //
+        $delete = $binaire->all();
+        $deletebinaire = binaire::find($binaire->binaire_id);
+        $deletebinaire->delete();
+        return redirect()->back();
     }
 }

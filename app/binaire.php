@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class binaire extends Model
 {
     protected $table="binaire";
-    protected $fillable=['test_id','question_text','note'];
+    protected $fillable=['test_id','question_text','difficulty','note'];
     protected $primaryKey='binaire_id';
 
     /**

@@ -19,16 +19,18 @@
     </thead>
     <tbody>
     <?php
-    $tests = \App\Test::find($prof->professeur_id);
+    //$tests = \App\Test::find($prof->professeur_id);
+    $tests = DB::table('test')->where('professeur_id', '=', $prof->professeur_id)->get();
 
     ?>
-    @if(!empty($tests))
+
         @foreach($tests as $test)
+            <?php $test1=$test->nom?>
             <tr>
-                <td>{{$test->nom}}</td>
+                <td>{{$test1}}</td>
             </tr>
         @endforeach
-    @endif
+
     </tbody>
 </table>
 </body>

@@ -58,7 +58,8 @@ return view ('create-question.index');
         $point =$request->input('point');
         $QCM = array(
             'question_text' => $question,
-
+            'difficulty'=>'1',
+            'type'=>'1',
             'note'      =>'1',
             'test_id'   =>$test_id ,
             'note'=>1
@@ -72,6 +73,7 @@ return view ('create-question.index');
             $option = array(
                 'option_text' => $options[$i-1],
                 'question_id' => $id->question_id,
+
                  'point'      =>'1'
             );
             option::create($option);
@@ -127,7 +129,19 @@ $count =count($nbrs);
      */
     public function update(Request $request)
     {
+        $qcm = array(
 
+
+            'question_text' => $request->question_text,
+            'note' => $request->note,
+            'difficulty' => $request->difficulty,
+            'test_id' => $request->test_id,
+
+        );
+
+        qcm::findOrfail($request->question_id)->update($qcm);
+
+        return redirect()->back();
     }
 
     /**
@@ -138,7 +152,11 @@ $count =count($nbrs);
      */
     public function destroy(Request $QCM)
     {
-
+        $delete = $QCM->all();
+        $deleteQCM = QCM::find($QCM->question_id);
+        $deleteQCM->delete();
+        //
+        return redirect()->back();
     }
 
     public function import(Request $request){

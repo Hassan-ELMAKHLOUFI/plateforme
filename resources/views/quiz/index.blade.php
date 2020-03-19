@@ -23,10 +23,7 @@ use Illuminate\Support\Facades\DB;
 <?php  $tests = DB::table('test')->where('test_id', '=', $data['s']->test_id)->get()?>
 
 @foreach ($tests as $test)
-
     <a href="/question/{{$test->test_id}}">{{ $test->nom }}</a>   ;
-
-
 @endforeach
 
 

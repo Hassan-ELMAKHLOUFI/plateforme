@@ -82,7 +82,7 @@
                 </div>
             </header>
 
-            <form id='createTest' action="{{action('TestController@store')}}" method='POST'>
+            <form id='createTest' action="{{action('TestController@store')}}" method='GET'>
                 @csrf
                 <input type="hidden" value="{{$p->professeur_id}}" name="professeur_id">
                 <input type="hidden" value="1" name="matiere_id">

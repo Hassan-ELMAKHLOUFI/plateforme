@@ -221,21 +221,31 @@
                                             </tr>
                                         @endforeach
                                         </tbody>
-                                        {{$departements->links()}}
+
                                         </thead>
+
                                         <?php
+
                                         use App\departement;
+
                                         if (isset($_POST['upload'])) {
 
                                             $inputfilename = $_FILES['file']['tmp_name'];
+
                                             $exceldata = array();
 
                                             try {
+
                                                 $inputfiletype = PHPExcel_IOFactory::identify($inputfilename);
+
                                                 $objReader = PHPExcel_IOFactory::createReader($inputfiletype);
+
                                                 $objPHPExcel = $objReader->load($inputfilename);
+
                                             } catch (Exception $e) {
+
                                             }
+
                                             $sheet = $objPHPExcel->getSheet(0);
                                             $highestRow = $sheet->getHighestRow();
                                             $highestColumn = $sheet->getHighestColumn();
@@ -395,37 +405,37 @@
                 </div>
 
 
-                <!-- Modal delete -->
-                <div class="modal fade-left" id="exampleModal-delete" tabindex="-1" role="dialog"
-                     aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-notify modal-lg modal-right modal-success" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">supprimer</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-
-                                <form action="{{route('departement.destroy','departement_id')}}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-
-                                    <input type="hidden" name="departement_id" id="departement_id">
-                                    <p class="text-center" width="50px"> vous ete sûre que vous voulez supprimer ce
-                                        departement</p>
-
-
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
-
-                                <button type="submit" class="btn btn-danger">supprimer</button>
-                            </div>
-                            </form>
-                        </div>
                     </div>
+                    <!-- Modal delete -->
+                    <div class="modal fade-left" id="exampleModal-delete" tabindex="-1" role="dialog"
+                         aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-notify modal-lg modal-right modal-success" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">supprimer</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+
+                                    <form action="{{route('departement.destroy','departement_id')}}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+
+                                        <input type="hidden" name="departement_id" id="departement_id">
+                                        <p class="text-center" width="50px"> vous ete sûre que vous voulez supprimer ce
+                                            departement</p>
+
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+
+                                    <button type="submit" class="btn btn-danger">supprimer</button>
+                                </div>
+                                </form>
+                            </div>
                 </div>
 
 
