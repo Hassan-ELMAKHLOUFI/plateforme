@@ -66,15 +66,15 @@ Route::Post('StoreSelected','question@StoreSelected');
 
 Route::get('/session_pdf/{test}','TestController@export_pdf')->name('test.pdf');
 Route::get('test/{s}','TestController@index1')->name('tests');
-Route::get('/session_pdf/{test}','TestController@export_pdf')->name('create-test.pdf');
 
 
-Route::get('session','Auth\SessionController@index')->name('session');
-Route::post('session/login','Auth\SessionController@sessionLogin')->name('session');
-Route::get('admin','Auth\AdminController@index')->name('admin');
-Route::post('admin/login','Auth\AdminController@adminLogin')->name('admin');
+
+Route::get('session','Auth\SessionController@index')->name('session.index');
+Route::post('session/login','Auth\SessionController@sessionLogin')->name('session.login');
+Route::get('admin','Auth\AdminController@index')->name('admin.index');
+Route::post('admin/login','Auth\AdminController@adminLogin')->name('admin.login');
 Route::get('profauth/login','Auth\ProfauthController@index')->name('profauth.login');
-Route::post('profauth/test','Auth\ProfauthController@professeurLogin')->name('profauth.test');
+Route::get('profauth/test','Auth\ProfauthController@professeurLogin')->name('profauth.test')->middleware('professeur');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('departement/import', 'departementController@import')->name('departement.import');

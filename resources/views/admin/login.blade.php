@@ -29,13 +29,11 @@
                                 <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                                 <div class="col-md-6">
-                                    <input pattern="[A-Za-z0-9]{4,60}" title="tous les caractères spéciaux ne sont pas autorisés , [4-60] caractères max" id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                    <input pattern="[A-Za-z0-9]{4,60}" title="tous les caractères spéciaux ne sont pas autorisés , [4-60] caractères max" id="password" type="password" class="form-control @if(!empty(Session::get('error'))) is-invalid @endif" name="password" required autocomplete="current-password">
 
-                                    @error('password')
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
+                                        <strong>{{ Session::get('error') }}</strong>
                                     </span>
-                                    @enderror
                                 </div>
                             </div>
 

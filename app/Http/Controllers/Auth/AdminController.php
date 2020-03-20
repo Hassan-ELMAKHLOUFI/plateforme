@@ -112,10 +112,12 @@ class AdminController extends Controller
                 $request->session()->put('a_id', $adminPass->admin_id);
                 return redirect()->route('departement.index');
             } else {
-                return redirect()->route('admin.index');
+                $error = "le nom d'utilisateur ou le mot de passe sont incorrects";
+                return redirect()->route('admin.index')->with('error',$error);
             }
         } else {
-            return redirect()->route('admin.index');
+            $error = "le nom d'utilisateur ou le mot de passe sont incorrects";
+            return redirect()->route('admin.index')->with('error',$error);
         }
     }
 

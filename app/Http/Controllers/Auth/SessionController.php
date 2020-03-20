@@ -35,10 +35,12 @@ class SessionController extends Controller
                 $request->session()->put('id',$etudiantSessionPass->session_id);
                 return redirect()->action('TestController@index1',['s'=>$etudiantSessionPass->session_id]);
             }else{
-                return redirect()->route('session.index');
+                $error = "le nom d'utilisateur ou le mot de passe sont incorrects";
+                return redirect()->route('session.index')->with('error',$error);
             }
         }else{
-            return redirect()->route('session.index');
+            $error = "le nom d'utilisateur ou le mot de passe sont incorrects";
+            return redirect()->route('session.index')->with('error',$error);
         }
     }
 
