@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Reponse_text;
+use App\Reponse_QCM;
+use App\ReponsebinaireController;
 use App\Resultat;
 use App\Option;
 use App\qcm;
@@ -39,8 +40,9 @@ class ResultatController extends Controller
      */
     public function store(Request $request)
     {
-        $test_id = '1';
-        $qcms = DB::table('qcm')->where('test_id', '=', $test_id)->get();
+        $test_id = $request->test_id;
+        $qcms = qcm::find(array_values($request->input('qcms')));
+
 
         $somme = 0;
         $somme3 = 0;
@@ -50,6 +52,7 @@ class ResultatController extends Controller
 
 
         foreach ($choices as $choice) {
+
             if($choice->point==1){
                 $t=$choice->binaire ;
             $somme = $somme + $t->note;
@@ -68,12 +71,11 @@ class ResultatController extends Controller
                 $somme2 = $somme2 + $opt->point;}
 
             foreach ($choices1 as $ch) {
+                $reponse1=array(
+                    'etudiant_id'=>$request ,
+                    'option_id'=>$choice->option_id,
+                );
 
-                if ($ch->question_id == $qcm->question_id) {
-                    $somme3 = $somme3 + $ch->point;
-                    if ($ch->point == 0) {
-                        $er = true;
-                    }
                 }
 
             }
@@ -83,22 +85,12 @@ class ResultatController extends Controller
                 $somme = $somme +$qcm->note;
 
             }
-
-        }
-
-
         return compact('somme');
-        for ($i = 0 ; $i < $request->nb_ql ; $i++) {
-            $name = 'fichier'.strval($i);
-            $rp = array(
-                'question_id' => $request->question_id[$i],
-                'etudiant_id' => $request->etudiant_id,
-                'fichier' => $request->$name
-            );
-            $reponse_text = Reponse_text::query()->create($rp);
         }
-        return redirect()->back();
-    }
+
+
+
+
 
     /**
      * Display the specified resource.

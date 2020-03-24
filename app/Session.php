@@ -8,7 +8,7 @@ class Session extends Model
 {
     //
     protected $table="session";
-    protected $fillable=['etudiant_id','test_id','username','password','active'];
+    protected $fillable=['etudiant_id','test_id','username','password'];
     protected $primaryKey='session_id';
 
     public function etudiant(){

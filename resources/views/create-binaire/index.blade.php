@@ -96,7 +96,7 @@
                        data-toggle="modal"
                        data-target="#exampleModal-delete" class="delete" title="supprimer"><i class="material-icons">&#xE872;</i></a>
 
-                    <a href="option/binaire/{{$binaire->binaire_id}}"><i class="material-icons">&#xE872;</i></a>
+                    <a href="option12/binaire/{{$binaire->binaire_id}}"><i class="material-icons">&#xE872;</i></a>
                 </td>
             </tr>
         @endforeach

@@ -22,10 +22,11 @@ class filiere extends Model implements ToModel, WithHeadingRow
     {
         // TODO: Implement model() method.
         return new filiere(array(
+            'filiere_id' => $row['filiere_id'],
             'nom' => $row['nom'],
             'coordinateur' => $row['coordinateur'],
-            'datedebut' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['date_de_debut']),
-            'datefin' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['date_de_fin']),
+            'datedebut' => $row['datedebut'],
+            'datefin' => $row['datefin'],
             'departement_id' => $row['departement_id']
         ));
     }

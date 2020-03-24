@@ -19,7 +19,6 @@ class CreateSessionsTable extends Migration
             $table->unsignedBigInteger('test_id');
             $table->string('username');
             $table->string('password');
-            $table->boolean('active')->default(false);
             $table->timestamps();
 
             $table->foreign('etudiant_id')->references('etudiant_id')->on('etudiant')->onDelete('cascade');

@@ -6,7 +6,7 @@
     <link rel="icon" type="image/png" href="../assets/img/favicon.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <title>
-        Dashboard
+        filiere
     </title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
           name='viewport'/>
@@ -50,7 +50,7 @@
 
           Tip 2: you can also add an image using data-image tag
       -->
-        <div class="logo"><a href="javascript:void(0)" class="simple-text logo-normal">
+        <div class="logo"><a href="http://www.creative-tim.com" class="simple-text logo-normal">
                 filiere
             </a></div>
         <div class="sidebar-wrapper">
@@ -187,7 +187,7 @@
                                     <form action={{ route('filiere.import') }} method="POST"
                                           enctype="multipart/form-data">
                                         @csrf
-                                        <input required type="file" name="file">
+                                        <input type="file" name="file">
                                         <input class="btn btn-primary" type="submit" name="upload" value="upload">
                                     </form>
                                 </div>
@@ -203,9 +203,9 @@
                                             <th>#</th>
                                             <th>nom</th>
                                             <th>coordinateur</th>
-                                            <th>date_de_debut</th>
-                                            <th>date_de_fin</th>
-                                            <th>departement_id</th>
+                                            <th>date de debut</th>
+                                            <th>date de fin</th>
+                                            <th>id departement</th>
                                             <th class="exclude">Action</th>
                                         </tr>
                                         <tbody>
@@ -263,22 +263,23 @@
                                     <div class="form-group">
                                         <label for="" style="color:#c21db7;">nom de filiere</label>
 
-                                        <input required style="color:black;" type="text" id="nom" name="nom" class="form-control"
-                                               placeholder="nom de filiere" pattern="[a-zA-Z]{4,255}" title="aucun caractère spécial n'est autorisé 4 - 255 max">
+
+                                        <input style="color:black;" type="text" id="nom" name="nom" class="form-control"
+                                               placeholder="nom de departement">
                                     </div>
-                                    <input required style="color:black;" type="hidden" name="filiere_id" id="filiere_id">
+                                    <input style="color:black;" type="hidden" name="filiere_id" id="filiere_id">
                                     <br>
                                     <div class="form-group">
                                         <label for="" style="color:#c21db7;">coordinateur</label>
-                                        <input required style="color:black;" type="text" id="coordinateur" name="coordinateur"
+                                        <input style="color:black;" type="text" id="coordinateur" name="coordinateur"
                                                class="form-control"
-                                               placeholder="coordinateur" pattern="[a-zA-Z]{4,255}" title="aucun caractère spécial n'est autorisé 4 - 255 max">
+                                               placeholder="coordinateur">
                                     </div>
                                     <br>
 
                                     <div class="form-group">
                                         <label for="" style="color:#c21db7;">date de debut</label>
-                                        <input required style="color:black;" type="date" id="datedebut" name="datedebut"
+                                        <input style="color:black;" type="date" id="datedebut" name="datedebut"
                                                class="form-control"
                                                placeholder="date de debut">
                                     </div>
@@ -286,7 +287,9 @@
 
                                     <div class="form-group">
                                         <label for="" style="color:#c21db7;">date de fin</label>
-                                        <input required style="color:black;" type="date" id="datefin" name="datefin"
+
+
+                                        <input style="color:black;" type="date" id="datefin" name="datefin"
                                                class="form-control"
                                                placeholder="date de fin">
                                     </div>
@@ -296,7 +299,7 @@
 
                                         <label for="" style="color:#c21db7;"> id departemeent</label>
 
-                                        <select name="nom_dep" size="1">
+                                        <select name="nom_dep" size="2">
                                             <?php
                                             use App\departement;
                                             $departements = departement::all();
@@ -311,7 +314,7 @@
                                         <div class="form-group">
                                             <label for="niveau_id" style="color:#c21db7;">niveau</label>
                                             <?php $niveau = \App\Niveau::all()?>
-                                            <select name="niveau_id" size="1">
+                                            <select name="niveau_id" size="2">
                                                 @foreach($niveau as $n)
                                                     <option value="{{$n->niveau_id}}">{{$n->nom}}</option>
                                                 @endforeach
@@ -350,22 +353,22 @@
                                         <label for="" style="color:#c21db7;">nom de filiere</label>
 
 
-                                        <input required style="color:black;" type="text" id="nom" name="nom" class="form-control"
-                                               placeholder="nom de departement" pattern="[a-zA-Z]{4,255}" title="aucun caractère spécial n'est autorisé 4 - 255 max">
+                                        <input style="color:black;" type="text" id="nom" name="nom" class="form-control"
+                                               placeholder="nom de departement">
                                     </div>
-                                    <input required type="hidden" name="filiere_id" id="filiere_id">
+                                    <input type="hidden" name="filiere_id" id="filiere_id">
                                     <br>
                                     <div class="form-group">
                                         <label for="" style="color:#c21db7;">coordinateur</label>
-                                        <input required style="color:black;" type="text" id="coordinateur" name="coordinateur"
+                                        <input style="color:black;" type="text" id="coordinateur" name="coordinateur"
                                                class="form-control"
-                                               placeholder="coordinateur" pattern="[a-zA-Z]{4,255}" title="aucun caractère spécial n'est autorisé 4 - 255 max">
+                                               placeholder="coordinateur">
                                     </div>
                                     <br>
 
                                     <div class="form-group">
                                         <label for="" style="color:#c21db7;">date de debut</label>
-                                        <input required style="color:black;" type="date" id="datedebut" name="datedebut"
+                                        <input style="color:black;" type="date" id="datedebut" name="datedebut"
                                                class="form-control"
                                                placeholder="date de debut">
                                     </div>
@@ -375,7 +378,7 @@
                                         <label for="" style="color:#c21db7;">date de fin</label>
 
 
-                                        <input required style="color:black;" type="date" id="datefin" name="datefin"
+                                        <input style="color:black;" type="date" id="datefin" name="datefin"
                                                class="form-control"
                                                placeholder="date de fin">
                                     </div>
@@ -437,7 +440,7 @@
                                     @csrf
                                     @method('DELETE')
 
-                                    <input required type="hidden" name="filiere_id" id="filiere_id">
+                                    <input type="hidden" name="filiere_id" id="filiere_id">
                                     <p class="text-center" width="50px"> vous ete sur que vous voulez supprimer ce
                                         filiere</p>
 

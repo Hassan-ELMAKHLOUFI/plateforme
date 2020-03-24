@@ -38,14 +38,12 @@ class ProfauthController extends Controller
                 $request->session()->put('p_username', $username);
                 $request->session()->put('p_password', $password);
                 $request->session()->put('p_id', $professeurPass->professeur_id);
-                return view('profauth.test')->with('prof',$professeurPass);
+                return view('profauth.test')->with('prof', $professeurPass);
             } else {
-                $error = "le nom d'utilisateur ou le mot de passe sont incorrects";
-                return redirect()->route('profauth.login')->with('error',$error);
+                return redirect()->route('profauth.login');
             }
         } else {
-            $error = "le nom d'utilisateur ou le mot de passe sont incorrects";
-            return redirect()->route('profauth.login')->with('error',$error);
+            return redirect()->route('profauth.login');
         }
     }
 

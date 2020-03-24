@@ -26,14 +26,7 @@ Route::group(['middleware'=>'admin.auth'],function(){
 });
 Route::group(['middleware'=>'professeur'],function(){
     Route::get('create-question1/{test_id}', 'question@index2');
-
-    Route::get('create-text-libre/{test_id}','Text_libreController@index2')->name('create-text-libre.index');
-    Route::resource('create-text-libre','Text_libreController');
-
 });
-
-Route::get('/count','TestController@count');
-Route::put('/setSession','TestController@setSession');
 Route::redirect('/profauth','/profauth/login');
 Route::Resource('etudiant','EtudiantController')->middleware('admin.auth');
 Route::Resource('filiere','FiliereController')->middleware('admin.auth');;
@@ -47,34 +40,46 @@ Route::Resource('professeur','ProfesseurController')->middleware('admin.auth');;
 Route::Resource('create-test','TestController');
 Route::get('profauth/create-test/{prof}','TestController@index2')->name('create-test.index')->middleware('professeur');
 Route::resource('Resultat','ResultatController');
-Route::get ('question/{test_id}/{session_id}','TestController@question');
-Route::get ('reponses/{test_id}','TestController@reponses');
+Route::get ('question/{test_id}','TestController@question');
 Route::get ('result','ResultatController@test');
 Route::get('test','TestController@index1');
 Route::Resource('create-qcm','QCMController');
 Route::get('create-question1/{test_id}','question@index2');
+Route::get('create-bin/option12/binaire/{binaire_id}','optionController@index1');
+Route::get('create-qcm1/option/qcm/{question_id}','optionController@index2');
+Route::get('option/{question_id}','BinaireController@index1');
+Route::Resource('option','optionController');
 
 Route::Resource('create-question','question');
 Route::Resource('create-binaire','BinaireController');
+Route::Resource('create-qcm','QCMController');
 Route::Post('create-binstore','BinaireController@store1');
 Route::get('create-bin/{test_id}','BinaireController@index1');
 Route::get('create-qcm1/{test_id}','QCMController@index2');
-Route::get('create-qcm','QCMController@index1');
+Route::get('create-qcm2','QCMController@index1');
 Route::get('select-question/{test_id}','question@select');
+
 Route::Post('StoreSelected','question@StoreSelected');
+Route::get('Random/{test_id}','question@Random');
+Route::get('Random','question@RandomStoring');
+
 
 
 Route::get('/session_pdf/{test}','TestController@export_pdf')->name('test.pdf');
-Route::get('test/{s}','TestController@index1')->name('tests');
-
+Route::get('test/{s}','TestController@index1')->name('tests')->middleware('session');
+Route::get('/session_pdf/{test}','TestController@export_pdf')->name('create-test.pdf');
 
 
 Route::get('session','Auth\SessionController@index')->name('session.index');
 Route::post('session/login','Auth\SessionController@sessionLogin')->name('session.login');
+Route::get('session/logout','Auth\SessionController@sessionLogout')->name('session.logout')->middleware('session');
 Route::get('admin','Auth\AdminController@index')->name('admin.index');
 Route::post('admin/login','Auth\AdminController@adminLogin')->name('admin.login');
+Route::get('admin/logout','Auth\AdminController@adminLogout')->name('admin.logout');
 Route::get('profauth/login','Auth\ProfauthController@index')->name('profauth.login');
-Route::get('profauth/test','Auth\ProfauthController@professeurLogin')->name('profauth.test')->middleware('professeur');
+Route::post('profauth/test','Auth\ProfauthController@professeurLogin')->name('profauth.test');
+Route::get('profauth/test','Auth\ProfauthController@professeurLogin')->name('profauth.test');
+Route::get('profauth/logout','Auth\ProfauthController@professeurLogout')->name('profauth.logout')->middleware('professeur');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('departement/import', 'departementController@import')->name('departement.import');
@@ -84,7 +89,3 @@ Route::post('matiere/import', 'MatiereController@import')->name('matiere.import'
 Route::post('module/import', 'ModuleController@import')->name('module.import');
 Route::post('niveau/import', 'NiveauController@import')->name('niveau.import');
 Route::post('professeur/import', 'ProfesseurController@import')->name('professeur.import');
-
-Route::delete('/profauth/test/supprimer/{test}','TestController@destroy');
-Route::put('/profauth/test/modifier/{test_id}','TestController@update1');
-

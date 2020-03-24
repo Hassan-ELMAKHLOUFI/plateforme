@@ -9,6 +9,8 @@ use Maatwebsite\Excel\Concerns\WithHeadingRow;
 class departement extends Model implements ToModel, WithHeadingRow
 {
 
+
+
     protected $table="departement";
     protected $fillable=['nom','date_cr','chef','date_fin'];
     protected $primaryKey='departement_id';
@@ -24,9 +26,10 @@ class departement extends Model implements ToModel, WithHeadingRow
         // TODO: Implement model() method.
         return new departement(array(
             'nom'     => $row['nom'],
-            'chef'    => $row['chef_departement'],
-            'date_cr'    => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['date_de_creation']),
-            'date_fin'    => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['date_de_fin']),
+            'chef'    => $row['chef'],
+            'date_cr'    => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['date_cr']),
+            'date_fin'    => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['date_fin']),
         ));
     }
+
 }

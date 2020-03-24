@@ -16,14 +16,10 @@
         <option value="4">difficile</option>
         <option value="5">très difficile</option>
     </select>
-    <label>
-        Note:
-        <input type="number" name="note" min="1">
-    </label>
-    <textarea name="question_text" cols="30" rows="10" pattern="[a-z]{4,}" title="4 chars min"> </textarea>
+
+    <textarea name="question_text" cols="30" rows="10"> </textarea>
     <input type="radio" name="choice" value="vrai">vrai
     <input type="radio" name="choice" value="faux">faux
-
 
 </form>
 </body>

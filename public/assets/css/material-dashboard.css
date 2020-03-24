@@ -20753,7 +20753,7 @@ Copyright (c) 2015 Daniel Eden
 }
 
 .dark-edition .form-control {
-  color: #000000;
+  color: #fff;
 }
 
 .dark-edition .form-control::-moz-placeholder {

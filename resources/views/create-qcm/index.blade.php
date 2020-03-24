@@ -43,6 +43,7 @@
     <div class="form-group">
         <form action="{{action('QCMController@store')}}" method="post">
 
+
             @csrf
             <input type="text" name="question" >
             <select name="difficulty" id="difficulty"  class="form-control">
@@ -57,15 +58,18 @@
                 <table class="table table-bordered" id="dynamic_field">
                     <tr>
                             <?php $i=0;?>
-                        <td><input required pattern=".{1,255}" title="le nombre maximum de caractères 1 - 255" type="text" name="option_text[]" placeholder="Enter your Name" class="form-control name_list" /></td>
-                            <input required type="hidden" name="hidden[]" value="1">
-                       <td><input type="checkbox" name="point[]"  value="1"></td><br>
+
+                        <td><input type="text" name="option_text[]" placeholder="Enter your Name" class="form-control name_list" /></td>
+                            <input type="hidden" name="hidden[]" value="1">
+
+                       <td><input type="checkbox" name="point[]"  value="1" ></td><br>
+
                         <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>
                     </tr>
                 </table>
-                <input required type="button" name="submit" id="submit" class="btn btn-info" value="Submit" />
-                <input required type="hidden" name="test_id" value="{{$test['test']->test_id}}" >
-                <input id="btn" required type="submit" value="submit">
+                <input type="button" name="submit" id="submit" class="btn btn-info" value="Submit" />
+                <input type="hidden" name="test_id" value="{{$test['test']->test_id}}" >
+                <input type="submit" value="submit">
             </div>
 </form>
         @php
@@ -221,20 +225,6 @@
 
 </body>
 </html>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#btn').click(function() {
-            checked = $("input[type=checkbox]:checked").length;
-
-            if(!checked) {
-                alert("You must check at least one checkbox.");
-                return false;
-            }
-
-        });
-    });
-
-</script>
 
 
 
@@ -244,7 +234,7 @@
         var i=1;
         $('#add').click(function(){
             i++;
-            $('#dynamic_field').append('<tr id="row'+i+'"><td><input required pattern=".{1,255}" title="le nombre maximum de caractères 1 - 255" type="text" name="option_text[]" placeholder="Enter your Name" class="form-control name_list" /></td><input type="hidden" name="hidden[]" value="'+i+'" ><td><input type="checkbox" name="point[]"  value="'+i+'"></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
+            $('#dynamic_field').append('<tr id="row'+i+'"><td><input type="text" name="option_text[]" placeholder="Enter your Name" class="form-control name_list" /></td><input type="hidden" name="hidden[]" value="'+i+'" ><td><input type="checkbox" name="point[]"  value="'+i+'"></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
         });
 
         $(document).on('click', '.btn_remove', function(){
@@ -303,7 +293,5 @@
     });
 
 </script>
-
-
 
 

@@ -8,7 +8,16 @@ class Reponse_QCM extends Model
 {
     //
     protected $table="reponse_qcm";
-    protected $fillable=[];
+    protected $fillable=['option_id','etudiant_id'];
     protected $primaryKey='reponse_id';
+
+
+
+
+
+
+
+
+
 
 }

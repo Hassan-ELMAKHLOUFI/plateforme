@@ -10,17 +10,17 @@
 <body>
 <?php $matiere_id=$test->matiere_id; ?>
 <?php $professeur_id=$test->professeur_id; ?>
-<?php $tests =DB::table('test')->where('matiere_id',$matiere_id)->where('professeur_id',$professeur_id)->get();?>
+<?php $tests =DB::table('test')->where('matiere_id',$matiere_id)->where('test_id','!=',$test->test_id)->where('professeur_id',$professeur_id)->get();?>
 <form action="{{action('question@StoreSelected')}}" method="POST">
     @csrf
-      @foreach($tests as $test)
+      @foreach($tests as $test1)
 
-          <?php $qcms['qcms'] =DB::table('qcm')->where('test_id',$test->test_id)->get();?>
+          <?php $qcms['qcms'] =DB::table('qcm')->where('test_id',$test1->test_id)->get();?>
        @foreach($qcms['qcms'] as $qcm)
            <input type="checkbox" name="qcm[]"  value="{{$qcm->question_id}}"> {{$qcm->question_text}}<br>
        @endforeach
 
-          <?php $binaires['binaires'] =DB::table('binaire')->where('test_id',$test->test_id)->get();?>
+          <?php $binaires['binaires'] =DB::table('binaire')->where('test_id',$test1->test_id)->get();?>
           @foreach($binaires['binaires'] as $binaire)
               <input type="checkbox" name="bin[]"  value="{{$binaire->binaire_id}}"> {{$binaire->question_text}}<br>
           @endforeach

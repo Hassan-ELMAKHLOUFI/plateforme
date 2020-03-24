@@ -7,7 +7,7 @@
     <link rel="icon" type="image/png" href="../assets/img/favicon.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <title>
-        Dashboard
+        Module
     </title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
           name='viewport'/>
@@ -51,7 +51,7 @@
 
           Tip 2: you can also add an image using data-image tag
       -->
-        <div class="logo"><a href="javascript:void(0)" class="simple-text logo-normal">
+        <div class="logo"><a href="http://www.creative-tim.com" class="simple-text logo-normal">
                 Module
             </a></div>
         <div class="sidebar-wrapper">
@@ -188,7 +188,7 @@
                                     <form action={{ route('module.import') }} method="POST"
                                           enctype="multipart/form-data">
                                         @csrf
-                                        <input required type="file" name="file">
+                                        <input type="file" name="file">
                                         <input class="btn btn-primary" type="submit" name="upload" value="upload">
                                     </form>
                                 </div>
@@ -250,7 +250,7 @@
                                     @csrf
                                     <div class="form-group">
                                         <label for="nom_module" style="color:#c21db7;">nom module</label>
-                                        <input pattern="[a-zA-Z]{4,255}" title="aucun caractère spécial n'est autorisé 4 - 255 max" required type="text" name="nom_module" style="color:black;" class="form-control"
+                                        <input type="text" name="nom_module" style="color:black;" class="form-control"
                                                placeholder="nom de module">
                                     </div>
 
@@ -259,7 +259,7 @@
                                         <?php
                                         use App\filiere;
                                         $filieres = filiere::all();
-                                      echo "<select size='1' name=filiere_id>";
+                                      echo "<select size='2' name=filiere_id>";
                                             foreach($filieres as $f){
                                                 $id_filiere=$f->filiere_id;
                                                 echo "<option value=$id_filiere>$f->nom </option>";
@@ -297,10 +297,10 @@
                                     @csrf
                                     @method('PUT')
 
-                                    <input required type="hidden" style="color:black;" name="module_id" id="module_id">
+                                    <input type="hidden" style="color:black;" name="module_id" id="module_id">
                                     <div class="form-group">
                                         <label for="nom_module" style="color:#c21db7;">nom module</label>
-                                        <input pattern="[a-zA-Z]{4,255}" title="aucun caractère spécial n'est autorisé 4 - 255 max" required type="text" name="nom_module" id="nom_module" style="color:black;"
+                                        <input type="text" name="nom_module" id="nom_module" style="color:black;"
                                                class="form-control"
                                                placeholder="nom de module">
                                     </div>
@@ -309,7 +309,7 @@
                                         <?php
 
                                         $filieres = filiere::all();
-                                        echo "<select size='1' name=filiere_id>";
+                                        echo "<select size='2' name=filiere_id>";
                                         foreach($filieres as $f){
                                             $id_filiere=$f->filiere_id;
                                             echo "<option value=$id_filiere>$f->nom</option>";
@@ -346,7 +346,7 @@
                                     @csrf
                                     @method('DELETE')
 
-                                    <input required type="hidden" name="module_id" id="module_id">
+                                    <input type="hidden" name="module_id" id="module_id">
                                     <p class="text-center" width="50px"> vous ete sûre que vous voulez supprimer ce
                                         matiere</p>
 
