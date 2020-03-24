@@ -45,6 +45,7 @@ class ResultatController extends Controller
 
 
         $somme = 0;
+
         $somme3 = 0;
         $somme2 = 0;
         $choices = option::find(array_values($request->input('questions')));
