@@ -45,7 +45,6 @@ class ResultatController extends Controller
 
 
         $somme = 0;
-
         $somme3 = 0;
         $somme2 = 0;
         $choices = option::find(array_values($request->input('questions')));
@@ -53,7 +52,7 @@ class ResultatController extends Controller
 
 
         foreach ($choices as $choice) {
-
+            $er = false;
             if($choice->point==1){
                 $t=$choice->binaire ;
             $somme = $somme + $t->note;
@@ -71,21 +70,21 @@ class ResultatController extends Controller
 
                 $somme2 = $somme2 + $opt->point;}
 
-            foreach ($choices1 as $ch) {
-                $reponse1=array(
-                    'etudiant_id'=>$request ,
-                    'option_id'=>$choice->option_id,
-                );
 
+
+
+        foreach ($choices1 as $ch) {
+            if ($ch->question_id == $qcm->question_id) {
+                $somme3 = $somme3 + $ch->point;
+                if ($ch->point == 0) {
+                    $er = true;
                 }
-
-            }
-
+            }}
             if ($somme2 == $somme3 && $er == false) {
 
                 $somme = $somme +$qcm->note;
 
-            }
+            }}
         return compact('somme');
         }
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\binaire;
 use App\Option;
 use App\Session;
+use App\Text_libre;
 use Illuminate\Http\Request;
 
 
@@ -228,7 +229,56 @@ $k=[];
             }
         }else{session()->flash('notif','le nombre que vous avez choisi est plus grands que les question de type Binaire qui existe');}
 
+
+
+
     }
+
+
+
+        if ($type == 'text_libre'){
+            $j=0;
+            $k=[];
+            $shiit2['shiit2']= DB::table('text_libre')->where('test_id',$request->test_id)->where('difficulty',$difficulty)->get();
+            foreach( $shiit2['shiit2'] as $text_libre1){
+                $k[$j]=$text_libre1->question_text ;
+                $j++;
+            }
+
+            $text_libre= text_libre::orderByRaw("RAND()")->where('test_id','<>',$request->test_id)->where('difficulty',$difficulty)->whereNotIn('question_text',$k)->whereIn('test_id',$test1)->take($nbr)->get();
+            $count1= text_libre::orderByRaw("RAND()")->where('test_id','<>',$request->test_id)->where('difficulty',$difficulty)->whereNotIn('question_text',$k)->whereIn('test_id',$test1)->take($nbr)->get()->count();
+
+            if($nbr==$count1){
+                ;
+                foreach($text_libre as $text){
+                    $test1 =test::find($text->test_id);
+
+                    if($test1->matiere_id == $test->matiere_id && $test1->professeur_id == $test->professeur_id ){
+
+
+                        $insert2 =array(
+                            'question_text' => $text->question_text ,
+                            'test_id' => $request->test_id ,
+                            'note' => $text->note,
+                            'difficulty' => $text->difficulty
+                        );
+
+
+                       text_libre::create($insert2);
+
+
+
+
+
+                    }
+
+                }
+            }else{session()->flash('notif','le nombre que vous avez choisi est plus grands que les question de type text libre qui existe');}
+
+
+
+
+        }
 return  redirect()->back();
 
     }

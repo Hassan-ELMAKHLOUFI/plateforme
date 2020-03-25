@@ -227,7 +227,5 @@ class TestController extends Controller
         $binaires['binaires']=$test->binaire;
 
         return view ('question.index',compact('qcms','test','binaires',$test)) ;
-
-
     }
 }

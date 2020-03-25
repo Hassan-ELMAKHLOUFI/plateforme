@@ -8,7 +8,7 @@ class Text_libre extends Model
 {
     //
     protected $table="text_libre";
-    protected $fillable=['question_text','note','difficulty'];
+    protected $fillable=['question_text','note','test_id','difficulty'];
     protected $primaryKey='question_id';
 
     public function reponse_text(){
