@@ -1,262 +1,380 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Webslesson Demo - Dynamically Add or Remove input fields in PHP with JQuery</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <meta charset="utf-8">
+    <title>Regna Bootstrap Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
 
-    <script src="https://kit.fontawesome.com/2622940fba.js" crossorigin="anonymous"></script>
     <!-- Favicons -->
-    <link href="img/favicon.png" rel="icon">
-    <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="/create-qcm/img/favicon.png" rel="icon">
+    <link href="/create-qcm/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Poppins:300,400,500,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Poppins:300,400,500,700"
+          rel="stylesheet">
 
     <!-- Bootstrap CSS File -->
-    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <link href="/create-qcm/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Libraries CSS Files -->
-    <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="/create-qcm/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/create-qcm/lib/animate/animate.min.css" rel="stylesheet">
 
     <!-- Main Stylesheet File -->
-    <link href="style.css" rel="stylesheet">
-    <script src=" https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+    <link href="/create-qcm/css/style.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <!-- level-->
+    <link rel="stylesheet" href="/create-qcm/css/form.css">
+
+    <link rel="stylesheet" href="/create-qcm/css/themes/bars-movie.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-    <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Roboto:400,700'>
-    <link rel='stylesheet prefetch' href='http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css'>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <!-- =======================================================
+      Theme Name: Regna
+      Theme URL: https://bootstrapmade.com/regna-bootstrap-onepage-template/
+      Author: BootstrapMade.com
+      License: https://bootstrapmade.com/license/
+    ======================================================= -->
 </head>
+
 <body>
-<div class="container">
-    <br />
-    <br />
-    <h2 align="center"><a href="http://www.webslesson.info/2016/02/dynamically-add-remove-input-fields-in-php-with-jquery-ajax.html" title="Dynamically Add or Remove input fields in PHP with JQuery">Dynamically Add or Remove input fields in PHP with JQuery</a></h2><br />
-    <div class="form-group">
-        <form action="{{action('QCMController@store')}}" method="post">
 
+<!--==========================
+Header
+============================-->
+<header id="header">
+    <div class="container">
 
-            @csrf
-            <input type="text" name="question" >
-            <select name="difficulty" id="difficulty"  class="form-control">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">45</option>
-            </select>
-
-            <div class="table-responsive">
-                <table class="table table-bordered" id="dynamic_field">
-                    <tr>
-                            <?php $i=0;?>
-
-                        <td><input type="text" name="option_text[]" placeholder="Enter your Name" class="form-control name_list" /></td>
-                            <input type="hidden" name="hidden[]" value="1">
-
-                       <td><input type="checkbox" name="point[]"  value="1" ></td><br>
-
-                        <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>
-                    </tr>
-                </table>
-                <input type="button" name="submit" id="submit" class="btn btn-info" value="Submit" />
-                <input type="hidden" name="test_id" value="{{$test['test']->test_id}}" >
-                <input type="submit" value="submit">
-            </div>
-</form>
-        @php
-        //  use \App
-            $qcms = App\qcm::OrderBy('question_id','asc')->where('test_id',$test['test']->test_id)->get(); @endphp
-        <div class="table-responsive">
-            <table class="table table-bordered" id="myTable">
-                <thead>
-                <tr>
-                    <th class="exclude">#</th>
-                    <th>question text</th>
-                    <th>note</th>
-                    <th>difficultes</th>
-                    <th>id test</th>
-                    <th class="exclude">Action</th>
-                </tr>
-                <tbody>
-                @foreach($qcms as $key=>$qcm)
-                    <tr>
-                        <td class="exclude">{{++$key}}</td>
-                        <td>{{$qcm->question_text}}</td>
-                        <td>{{$qcm->note}}</td>
-                        <td>{{$qcm->difficulty}}</td>
-                        <td>{{$qcm->test_id}}</td>
-                        <td class="exclude">
-                            <a data-question_id="{{$qcm->question_id}}"
-                               data-question_text="{{$qcm->question_text}}"
-                               data-note="{{$qcm->note}}"
-                               data-difficulty="{{$qcm->difficulty}}"
-                               data-test_id="{{$qcm->test_id}}" data-toggle="modal"
-                               data-target="#exampleModal-edit" class="edit" title="modifier"><i class="material-icons">&#xE254;</i></a>
-                            <a data-question_id="{{$qcm->question_id}}"
-                               data-toggle="modal"
-                               data-target="#exampleModal-delete" class="delete" title="supprimer"><i class="material-icons">&#xE872;</i></a>
-                            <a href="option/qcm/{{$qcm->question_id}}"><i class="material-icons">&#xE872;</i></a>
-                        </td>
-                    </tr>
-                @endforeach
-                </tbody>
-
-                </thead>
-
-            </table>
+        <div id="logo" class="pull-left">
+            <a href="#hero"><img src="/create-qcm/img/logo.png" alt="" title=""/></img></a>
+            <!-- Uncomment below if you prefer to use a text logo -->
+            <!--<h1><a href="#hero">Regna</a></h1>-->
         </div>
-</div>
-</div>
 
+        <nav id="nav-menu-container">
+            <ul class="nav-menu">
+                <li class="menu-active"><a href="#hero">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#team">Team</a></li>
+                <li class="menu-has-children"><a href="">Drop Down</a>
+                    <ul>
+                        <li><a href="#">Drop Down 1</a></li>
+                        <li class="menu-has-children"><a href="#">Drop Down 2</a>
+                            <ul>
+                                <li><a href="#">Deep Drop Down 1</a></li>
+                                <li><a href="#">Deep Drop Down 2</a></li>
+                                <li><a href="#">Deep Drop Down 3</a></li>
+                                <li><a href="#">Deep Drop Down 4</a></li>
+                                <li><a href="#">Deep Drop Down 5</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Drop Down 3</a></li>
+                        <li><a href="#">Drop Down 4</a></li>
+                        <li><a href="#">Drop Down 5</a></li>
+                    </ul>
+                </li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ul>
+        </nav><!-- #nav-menu-container -->
+    </div>
+</header><!-- #header -->
 
-<!-- Modal edit -->
-<div class="modal fade-left" id="exampleModal-edit" tabindex="-1" role="dialog"
-     aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-notify modal-lg modal-right modal-success" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">modifier</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+<!--==========================
+  Hero Section
+============================-->
+<section id="hero">
+
+</section><!-- #hero -->
+
+<main id="main">
+
+    <!--==========================
+      Services Section
+    ============================-->
+    <div class="container d-flex align-items-stretch" style="margin-left: 0rem;">
+        <nav id="sidebar" class="img" style="background-image: url(/create-qcm/images/stu.jpg);">
+            <div class="p-4">
+                <h1><a class="logo">Services</a></h1>
+                <ul class="list-unstyled components mb-5">
+                    <li class="active">
+                        <a href="index.html"><span class="fa fa-home mr-3"></span> Acceuil</a>
+                    </li>
+                    <li>
+                        <a href="#"><span class="fa fa-user mr-3"></span> Création des test</a>
+                    </li>
+                    <li>
+                        <a href="#"><span class="fa fa-plane mr-3"></span> table des test</a>
+                    </li>
+                    <li>
+                        <a href="#"><span class="fa fa-sticky-note mr-3"></span> création question qcm</a>
+                    </li>
+                    <li>
+                        <a href="#"><span class="fa fa-cogs mr-3"></span> Création question binaire </a>
+                    </li>
+                    <li>
+                        <a href="#"><span class="fa fa-paper-plane mr-3"></span> Création question text </a>
+                    </li>
+
+                    </li>
+                </ul>
+
             </div>
-            <div class="modal-body">
+        </nav>
 
-                <form action="{{route('create-qcm.update','question_id')}}" method="POST">
-                    @csrf
-                    @method('PUT')
-                    <div class="form-group">
-
-                        <label for="" style="color:#c21db7;">nom</label>
-
-                        <input type="text" style="color:black;" id="question_text" name="question_text" class="form-control"
-                               placeholder="question">
-                    </div>
-                    <input type="hidden" style="color:black;" name="question_id" id="question_id">
-                    <br>
-                    <div class="form-group">
-
-                        <label for="" style="color:#c21db7;">difficultes </label>
-
-
-                        <select name="difficulty" id="difficulty"  class="form-control">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">45</option>
-                        </select>
+        <!-- Page Content  -->
+        <div id="content" class="p-4 p-md-5 pt-5">
+            <h2 class="mb-4">Création des questions</h2>
+            <section id="services">
+                <div class="container wow fadeIn">
+                    <div class="section-header">
 
                     </div>
-                    <br>
 
-                    <div class="form-group">
 
-                        <label for="" style="color:#c21db7;">note</label>
+                    <div class=" card-6" style="margin-left: -3.75rem;">
+                        <div class="">
+                            <form action="{{action('QCMController@store')}}" method="post">
+                                @csrf
 
-                        <input type="text" id="note" style="color:black;" name="note"
-                               class="form-control" placeholder="note">
+                                <div class="form-row">
+                                    <div class="name" style="height: 1.25rem;line-height: 0rem;">Difficulté</div>
+                                    <div class="value">
+                                        <div class="input-group">
+                                            <select id="example-movie" name="rating" autocomplete="off">
+                                                <option value="1">Trés facile</option>
+                                                <option value="2">Facile</option>
+                                                <option value="3" selected="selected">Moyenne</option>
+                                                <option value="4">Difficile</option>
+                                                <option value="5">Trés difficile</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="name">Question</div>
+                                    <div class="value">
+                                        <div class="input-group">
+                                            <textarea class="textarea--style-6" name="question" style="width:96.6%;"
+                                                      placeholder=""></textarea>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class=" form-row ">
+
+                                    <div class="name">Option</div>
+                                    <div class="value">
+                                        <div class="input-group " id="dynamic_field">
+                                            <tr>
+
+                                                <?php $i = 0;?>
+                                                <input type="checkbox"
+                                                       style="height: 17rem;width: 1.6rem;margin-right: 0.625rem"
+                                                       name="point[]" value="1">
+                                                <textarea class="textarea--style-6" name="option_text[]"
+                                                          style=" margin-bottom: 1.25rem;" placeholder=""></textarea>
+                                                <input type="hidden" name="hidden[]" value="1">
+                                            </tr>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <td>
+                                    <button type="button" name="add" id="add" style="margin-left: 85rem"
+                                            class="btn btn-warning">Ajouter option
+                                    </button>
+                                </td>
+                                <br>
+                                <br>
+                                <input name="submit" id="submit" style="width: 17rem; margin-left:7rem; "
+                                       class="btn btn-info" value="Ajouter et enregistrer"/>
+                                <input type="hidden" name="test_id" value="{{$test['test']->test_id}}">
+                                <input class="btn btn-success" style="width: 17rem" value="ajouter et quitter">
+
+                        </div>
+                        </form>
                     </div>
-                    <br>
+                </div>
+                @php
+                    //  use \App
+                        $qcms = App\qcm::OrderBy('question_id','asc')->where('test_id',$test['test']->test_id)->get(); @endphp
+                <div class="table-wrapper" style="width: 100rem; margin-top: 3.125rem">
+                    <table class="table table-bordered" id="myTable">
+                        <thead>
+                        <tr>
+                            <th class="exclude">#</th>
+                            <th>question text</th>
+                            <th>note</th>
+                            <th>difficultes</th>
+                            <th>id test</th>
+                            <th class="exclude">Action</th>
+                        </tr>
+                        <tbody>
+                        @foreach($qcms as $key=>$qcm)
+                            <tr>
+                                <td class="exclude">{{++$key}}</td>
+                                <td>{{$qcm->question_text}}</td>
+                                <td>{{$qcm->note}}</td>
+                                <td>{{$qcm->difficulty}}</td>
+                                <td>{{$qcm->test_id}}</td>
+                                <td class="exclude">
+                                    <a data-question_id="{{$qcm->question_id}}"
+                                       data-question_text="{{$qcm->question_text}}"
+                                       data-note="{{$qcm->note}}"
+                                       data-difficulty="{{$qcm->difficulty}}"
+                                       data-test_id="{{$qcm->test_id}}" data-toggle="modal"
+                                       data-target="#exampleModal-edit" class="edit" title="modifier"><i
+                                            class="material-icons">&#xE254;</i></a>
+                                    <a data-question_id="{{$qcm->question_id}}"
+                                       data-toggle="modal"
+                                       data-target="#exampleModal-delete" class="delete" title="supprimer"><button><i
+                                            class="material-icons">&#xE872;</i></button></a>
+                                    <a href="option/qcm/{{$qcm->question_id}}" class="option" title="Les options"><button><i
+                                            class="material-icons">list</i></button></a>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
 
-                    <div class="form-group">
+                        </thead>
 
-
-                        <label for="" style="color:#c21db7;">id test</label>
-
-                        <input type="number" style="color:black;" id="test_id" name="test_id"
-                               class="form-control"
-                               placeholder="test id">
-                    </div>
-                    <br>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">fermer</button>
-
-                <button type="submit" class="btn btn-success">modifier</button>
-            </div>
-            </form>
+                    </table>
+                </div>
         </div>
     </div>
-</div>
-<!-- Modal delete -->
-<div class="modal fade-left" id="exampleModal-delete" tabindex="-1" role="dialog"
-     aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-notify modal-lg modal-right modal-success" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">supprimer</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+
+
+    <!-- Modal edit -->
+    <div class="modal fade-left" id="exampleModal-edit" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-notify modal-lg modal-right modal-success" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">modifier</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <form action="{{route('create-qcm.update','question_id')}}" method="POST">
+                        @csrf
+                        @method('PUT')
+                        <div class="form-group">
+
+                            <label for="" style="color:#c21db7;">nom</label>
+
+                            <input type="text" style="color:black;" id="question_text" name="question_text"
+                                   class="form-control"
+                                   placeholder="question">
+                        </div>
+                        <input type="hidden" style="color:black;" name="question_id" id="question_id">
+                        <br>
+                        <div class="form-group">
+
+                            <label for="" style="color:#c21db7;">difficultes </label>
+
+
+                            <select name="difficulty" id="difficulty" class="form-control">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">45</option>
+                            </select>
+
+                        </div>
+                        <br>
+
+                        <div class="form-group">
+
+                            <label for="" style="color:#c21db7;">note</label>
+
+                            <input type="text" id="note" style="color:black;" name="note"
+                                   class="form-control" placeholder="note">
+                        </div>
+                        <br>
+
+                        <div class="form-group">
+
+
+                            <label for="" style="color:#c21db7;">id test</label>
+
+                            <input type="number" style="color:black;" id="test_id" name="test_id"
+                                   class="form-control"
+                                   placeholder="test id">
+                        </div>
+                        <br>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">fermer</button>
+
+                    <button type="submit" class="btn btn-success">modifier</button>
+                </div>
+                </form>
             </div>
-            <div class="modal-body">
+        </div>
+    </div>
+    <!-- Modal delete -->
+    <div class="modal fade-left" id="exampleModal-delete" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-notify modal-lg modal-right modal-success" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">supprimer</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
 
-                <form action="{{route('create-qcm.destroy','question_id')}}" method="POST">
-                    @csrf
-                    @method('DELETE')
+                    <form action="{{route('create-qcm.destroy','question_id')}}" method="POST">
+                        @csrf
+                        @method('DELETE')
 
-                    <input type="hidden" name="question_id" id="question_id">
-                    <p class="text-center" width="50px"> vous ete sûre que vous voulez supprimer cette question</p>
-
-
+                        <input type="hidden" name="question_id" id="question_id">
+                        <p class="text-center" width="50px"> vous ete sûre que vous voulez supprimer cette question</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-danger">supprimer</button>
+                </div>
+                </form>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
-
-                <button type="submit" class="btn btn-danger">supprimer</button>
-            </div>
-            </form>
         </div>
     </div>
 
-
-</div>
-
-
-</body>
-</html>
+    </div>
+    </section><!-- #services -->
 
 
+    </div>
+
+    </div>
 
 
+</main>
+
+<!--==========================
+  Footer
+============================-->
 <script>
-    $(document).ready(function(){
-        var i=1;
-        $('#add').click(function(){
-            i++;
-            $('#dynamic_field').append('<tr id="row'+i+'"><td><input type="text" name="option_text[]" placeholder="Enter your Name" class="form-control name_list" /></td><input type="hidden" name="hidden[]" value="'+i+'" ><td><input type="checkbox" name="point[]"  value="'+i+'"></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
-        });
-
-        $(document).on('click', '.btn_remove', function(){
-            var button_id = $(this).attr("id");
-            $('#row'+button_id+'').remove();
-        });
-
-        $('#submit').click(function(){
-            $.ajax({
-                url:"name.php",
-                method:"POST",
-                data:$('#add_name').serialize(),
-                success:function(data)
-                {
-                    alert(data);
-                    $('#add_name')[0].reset();
-                }
-            });
-        });
-
-    });
-
     $('#exampleModal-edit').on('show.bs.modal', function (event) {
 
         var button = $(event.relatedTarget)
@@ -284,7 +402,6 @@
 
         var question_id = button.data('question_id')
 
-
         var modal = $(this)
 
         modal.find('.modal-title').text('supprimer');
@@ -294,4 +411,61 @@
 
 </script>
 
+<a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+<script>
+    $(document).ready(function () {
+        var i = 1;
+        $('#add').click(function () {
+            i++;
+            $('#dynamic_field').append('<tr id="row' + i + '"><td><input type="checkbox" style="height: 17rem;width: 1.6rem;margin-right: 0.375rem"  name="point[]"  value="' + i + '" > <textarea  placeholder="" class="textarea--style-6 "name="option_text[]" style=" margin-bottom: 1.25rem;"></textarea><input type="hidden" name="hidden[]" value="' + i + '" ><i type="button" name="remove" id="' + i + '" style="top:-7.8rem;left:0.625rem" class="glyphicon glyphicon-trash btn_remove"></i></td></tr>');
+        });
 
+        $(document).on('click', '.btn_remove', function () {
+            var button_id = $(this).attr("id");
+            $('#row' + button_id + '').remove();
+        });
+
+        $('#submit').click(function () {
+            $.ajax({
+                url: "name.php",
+                method: "POST",
+                data: $('#add_name').serialize(),
+                success: function (data) {
+                    alert(data);
+                    $('#add_name')[0].reset();
+                }
+            });
+        });
+
+    });
+</script>
+<!-- JavaScript Libraries -->
+<script src="/create-qcm/lib/jquery/jquery.min.js"></script>
+<script src="/create-qcm/lib/jquery/jquery-migrate.min.js"></script>
+<script src="/create-qcm/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/create-qcm/lib/easing/easing.min.js"></script>
+<script src="/create-qcm/lib/wow/wow.min.js"></script>
+<script src="/create-qcm/lib/waypoints/waypoints.min.js"></script>
+<script src="/create-qcm/lib/counterup/counterup.min.js"></script>
+<script src="/create-qcm/lib/superfish/hoverIntent.js"></script>
+<script src="/create-qcm/lib/superfish/superfish.min.js"></script>
+
+<!-- Contact Form JavaScript File -->
+<script src="contactform/contactform.js"></script>
+
+<!-- Template Main Javascript File -->
+<script src="/create-qcm/js/main.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="jquery.barrating.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('#example').barrating({
+            theme: 'fontawesome-stars'
+        });
+    });
+</script>
+<script>window.jQuery || document.write('<script src="/create-qcm/js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+<script src="/create-qcm/js/jquery.barrating.min.js"></script>
+<script src="/create-qcm/js/examples.js"></script>
+</body>
+</html>

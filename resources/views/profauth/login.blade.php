@@ -1,55 +1,101 @@
-@extends('layouts.app')
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <title>{{ config('app.name', 'Laravel') }}</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="keywords"
+          content="Fashion Designer Login Form Responsive Widget,Login form widgets, Sign up Web forms , Login signup Responsive web form,Flat Pricing table,Flat Drop downs,Registration Forms,News letter Forms,Elements"/>
+    <link rel="stylesheet" href="/professeurLogin/css/flexslider.css" type="text/css" media="screen"/>
+    <!-- Flexslider-CSS -->
+    <link href="/professeurLogin/css/font-awesome.css" rel="stylesheet"><!-- Font-awesome-CSS -->
+    <link href="/professeurLogin/css/style.css" rel='stylesheet' type='text/css'/><!-- Stylesheet-CSS -->
+    <link href="//fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Josefin+Sans:100,300,400,600,700" rel="stylesheet">
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script type="application/x-javascript"> addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
 
-@section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">{{ __('Login') }}</div>
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        } </script>
+</head>
+<body>
+<h1>Professeur authentification</h1>
+<div class="main-agile">
 
-                    <div class="card-body">
-                        <form method="POST" action="{{ action('Auth\ProfauthController@professeurLogin') }}">
-                            @csrf
-
-                            <div class="form-group row">
-                                <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
-
-                                    @error('username')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
+    <div class="content-wthree">
+        <div class="about-middle">
+            <section class="slider">
+                <div class="flexslider">
+                    <ul class="slides">
+                        <li>
+                            <div class="banner-bottom-2">
+                                <div class="about-midd-main">
+                                    <img class="agile-img" src="/professeurLogin/images/t1.jpg" alt=" "
+                                         class="img-responsive">
+                                </div>
+                                <div class="new-account-form">
+                                    <h2 class="heading-w3-agile">Login</h2>
+                                    <form method="POST" action="{{ action('Auth\ProfauthController@professeurLogin') }}">
+                                        @csrf
+                                        <div class="inputs-w3ls">
+                                            <p>Username</p>
+                                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                                            <input pattern="[a-zA-Z]{4,255}"
+                                                   title="aucun caractère spécial n'est autorisé 4 - 255 max"
+                                                   id="username" type="text" name="username"
+                                                   required autocomplete="off" autofocus
+                                                   placeholder="Username">
+                                        </div>
+                                        <div class="inputs-w3ls">
+                                            <p>Password</p>
+                                            <i class="fa fa-unlock-alt" aria-hidden="true"></i>
+                                            <input pattern="[a-zA-Z0-9]{4,255}"
+                                                   title="aucun caractère spécial n'est autorisé 4 - 255 max"
+                                                   id="password" type="password"
+                                                   class="@if(!empty(Session::get('error'))) is-invalid @endif"
+                                                   name="password" required autocomplete="off" placeholder="Password">
+                                        </div>
+                                        <button type="submit">s'identifier</button>
+                                    </form>
                                 </div>
                             </div>
 
-                            <div class="form-group row">
-                                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                    @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="form-group row mb-0">
-                                <div class="col-md-8 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        {{ __('Login') }}
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+                        </li>
+                    </ul>
                 </div>
-            </div>
+            </section>
         </div>
     </div>
-@endsection
+</div>
+<script src="/professeurLogin/js/jquery.min.js"></script>
+
+<!-- FlexSlider -->
+<script defer src="/professeurLogin/js/jquery.flexslider.js"></script>
+<script type="text/javascript">
+    $(function () {
+
+    });
+    $(window).load(function () {
+        $('.flexslider').flexslider({
+            animation: "slide",
+            start: function (slider) {
+                $('body').removeClass('loading');
+            }
+        });
+    });
+</script>
+<!-- FlexSlider -->
+
+
+</body>
+</html>

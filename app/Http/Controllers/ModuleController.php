@@ -90,6 +90,7 @@ class ModuleController extends Controller
         return redirect()->route('module.index');
     }
 
+
     /**
      * Remove the specified resource from storage.
      *

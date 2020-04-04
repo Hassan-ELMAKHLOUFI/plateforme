@@ -7,11 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Text_libre extends Model
 {
     //
-    protected $table="text_libre";
-    protected $fillable=['question_text','note','difficulty'];
-    protected $primaryKey='question_id';
+    protected $table = "text_libre";
+    protected $fillable = ['question_text','test_id','note','difficulty'];
+    protected $primaryKey = 'question_id';
 
-    public function reponse_text(){
-        return $this->hasMany('App\Reponse_text','question_id','question_id');
-}
+    public function reponse_text()
+    {
+        return $this->hasMany('App\Reponse_text', 'question_id', 'question_id');
+    }
 }

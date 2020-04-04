@@ -7,7 +7,7 @@
     <link rel="icon" type="image/png" href="../assets/img/favicon.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <title>
-        Material Dashboard Dark Edition by Creative Tim
+        Dashboard
     </title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
           name='viewport'/>
@@ -51,7 +51,7 @@
 
           Tip 2: you can also add an image using data-image tag
       -->
-        <div class="logo"><a href="http://www.creative-tim.com" class="simple-text logo-normal">
+        <div class="logo"><a href="javascript:void(0)" class="simple-text logo-normal">
                 Niveau
             </a></div>
         <div class="sidebar-wrapper">
@@ -87,9 +87,8 @@
                         <p>matiere</p>
                     </a>
                 </li>
-                <li class="nav-item ">
-
-                    <a class="nav-link active" href="{{route("niveau.index")}}">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{route("niveau.index")}}">
                         <i class="material-icons">content_paste</i>
                         <p>niveau</p>
                     </a>
@@ -182,7 +181,7 @@
                                     <form action={{ route('niveau.import') }} method="POST"
                                           enctype="multipart/form-data">
                                         @csrf
-                                        <input type="file" name="file">
+                                        <input required type="file" name="file">
                                         <input class="btn btn-primary" type="submit" name="upload" value="upload">
                                     </form>
                                 </div>
@@ -243,10 +242,8 @@
                                     @csrf
                                     <div class="form-group">
                                         <label for="nom" style="color:#c21db7;">nom</label>
-
-
-                                        <input type="text" name="nom" style="color:black;" class="form-control"
-                                               pattern="[a-zA-Z]{3,}" placeholder="nom de niveau">
+                                        <input required type="text" name="nom" style="color:black;" class="form-control"
+                                               pattern="[a-zA-Z]{4,255}" title="aucun caractère spécial n'est autorisé 4 - 255 max" placeholder="nom de niveau">
                                     </div>
 
                             </div>
@@ -281,10 +278,10 @@
 
                                         <label for="">nom</label>
 
-                                        <input type="text" style="color:black;" id="nom" name="nom" class="form-control"
-                                               pattern="[a-zA-Z]{3,}" placeholder="nom de niveau">
+                                        <input required type="text" style="color:black;" id="nom" name="nom" class="form-control"
+                                               pattern="[a-zA-Z]{4,255}" title="aucun caractère spécial n'est autorisé 4 - 255 max" placeholder="nom de niveau">
                                     </div>
-                                    <input type="hidden" style="color:black;" name="niveau_id" id="niveau_id">
+                                    <input required type="hidden" style="color:black;" name="niveau_id" id="niveau_id">
 
                             </div>
                             <div class="modal-footer">
@@ -315,7 +312,7 @@
                                     @csrf
                                     @method('DELETE')
 
-                                    <input type="hidden" name="niveau_id" id="niveau_id">
+                                    <input required type="hidden" name="niveau_id" id="niveau_id">
                                     <p class="text-center" width="50px"> vous ete sûre que vous voulez supprimer ce
                                         niveau</p>
 

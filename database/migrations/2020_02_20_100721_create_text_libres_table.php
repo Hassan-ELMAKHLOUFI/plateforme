@@ -16,7 +16,8 @@ class CreateTextLibresTable extends Migration
         Schema::create('text_libre', function (Blueprint $table) {
             $table->bigIncrements('question_id');
             $table->unsignedBigInteger('test_id');
-            $table->string('question_text');
+            $table->string('question_text',2048);
+            $table->integer('difficulty');
             $table->integer('note');
             $table->timestamps();
 

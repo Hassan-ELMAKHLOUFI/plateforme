@@ -7,7 +7,7 @@
     <link rel="icon" type="image/png" href="../assets/img/favicon.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <title>
-        Material Dashboard Dark Edition by Creative Tim
+        Dashboard
     </title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
           name='viewport'/>
@@ -53,8 +53,8 @@
 
           Tip 2: you can also add an image using data-image tag
       -->
-        <div class="logo"><a href="http://www.creative-tim.com" class="simple-text logo-normal">
-                Creative Tim
+        <div class="logo"><a href="javascript:void(0)" class="simple-text logo-normal">
+                PROFESSEUR
             </a></div>
         <div class="sidebar-wrapper">
             <ul class="nav">
@@ -204,7 +204,7 @@
                                             <th>prenom</th>
                                             <th>username</th>
                                             <th>email</th>
-                                            <th>mot de passe</th>
+                                            <th>password</th>
                                             <th>grade</th>
                                             <th>departement_id</th>
                                             <th class="exclude">Action</th>
@@ -269,16 +269,15 @@
                                     <div class="form-group">
                                         <label for="cin_p" style="color:#c21db7;">cin</label>
 
-
-                                        <input type="text" name="cin_p" style="color:black;" class="form-control"
-                                               pattern="[A-Z]{1,2}[1-9]{2,5}" placeholder="Exemple: XX145">
+                                        <input required type="text" name="cin_p" style="color:black;" class="form-control"
+                                               pattern="[A-Z]{1,2}[0-9]{2,5}" placeholder="Exemple: XX145">
                                     </div>
 
                                     <div class="form-group">
                                         <label for="nom_p" style="color:#c21db7;">nom</label>
 
 
-                                        <input type="text" name="nom_p" style="color:black;" class="form-control"
+                                        <input required type="text" name="nom_p" style="color:black;" class="form-control"
                                                pattern="[a-zA-Z]*" placeholder="nom de professeur">
                                     </div>
 
@@ -286,7 +285,7 @@
                                         <label for="prenom_p" style="color:#c21db7;">prenom</label>
 
 
-                                        <input type="text" name="prenom_p" style="color:black;" class="form-control"
+                                        <input required type="text" name="prenom_p" style="color:black;" class="form-control"
                                                pattern="[a-zA-Z]*" placeholder="prenom de professeur">
                                     </div>
 
@@ -294,21 +293,21 @@
                                         <label for="username_p" style="color:#c21db7;">nom d'utilsateur</label>
 
 
-                                        <input type="text" name="username_p" style="color:black;" class="form-control"
+                                        <input required type="text" name="username_p" style="color:black;" class="form-control"
                                                pattern="[a-zA-Z1-9]*" placeholder="username">
                                     </div>
                                     <div class="form-group">
                                         <label for="email_p" style="color:#c21db7;">email</label>
 
 
-                                        <input type="text" name="email_p" style="color:black;" class="form-control"
+                                        <input required type="text" name="email_p" style="color:black;" class="form-control"
                                                pattern="[a-zA-Z1-9]*@ests.ac.ma"
                                                placeholder="Exemple: XXX111@ests.ac.ma">
                                     </div>
                                     <div class="form-group">
                                         <label for="password_p" style="color:#c21db7;">mot de passe</label>
                                         <div>
-                                            <input type="password" id="eye" name="password_p" style="color:black;"
+                                            <input required type="password" id="eye" name="password_p" style="color:black;"
                                                    class="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
                                                    placeholder="Utiliser au moin 6 cratctéres contient des lettre en MAJ et des lettre en MIN et des chiffres">
                                             <span toggle="#eye" class="fa fa-fw fa-eye field-icon toggle-password"
@@ -319,7 +318,7 @@
                                     <div class="form-group">
                                         <label for="grade_p" style="color:#c21db7;">grade</label>
 
-                                        <input type="text" name="grade_p" style="color:black;" class="form-control"
+                                        <input required type="text" name="grade_p" style="color:black;" class="form-control"
                                                pattern="[1-9]{1,2}" placeholder="grade de professeur">
                                     </div>
 
@@ -365,16 +364,16 @@
 
                                         <label for="">cin</label>
 
-                                        <input type="text" style="color:black;" id="cin_p" name="cin_p"
+                                        <input required type="text" style="color:black;" id="cin_p" name="cin_p"
                                                class="form-control"
                                                pattern="[A-Z]{1,2}[1-9]{2,5}" placeholder="Exemple: XX154">
                                     </div>
-                                    <input type="hidden" style="color:black;" name="professeur_id" id="professeur_id">
+                                    <input required type="hidden" style="color:black;" name="professeur_id" id="professeur_id">
                                     <div class="form-group">
 
                                         <label for="">nom</label>
 
-                                        <input type="text" style="color:black;" id="nom_p" name="nom_p"
+                                        <input required type="text" style="color:black;" id="nom_p" name="nom_p"
                                                class="form-control"
                                                pattern="[a-zA-Z]*" placeholder="nom de professeur">
                                     </div>
@@ -382,7 +381,7 @@
 
                                         <label for="">prenom</label>
 
-                                        <input type="text" style="color:black;" id="prenom_p" name="prenom_p"
+                                        <input required type="text" style="color:black;" id="prenom_p" name="prenom_p"
                                                class="form-control"
                                                pattern="[a-zA-Z]*" placeholder="prenom de professeur">
                                     </div>
@@ -390,7 +389,7 @@
 
                                         <label for="">nom d'utilsateur</label>
 
-                                        <input type="text" style="color:black;" id="username_p" name="username_p"
+                                        <input required type="text" style="color:black;" id="username_p" name="username_p"
                                                class="form-control"
                                                pattern="[a-zA-Z1-9]*" placeholder="username">
                                     </div>
@@ -398,7 +397,7 @@
 
                                         <label for="">email</label>
 
-                                        <input type="text" style="color:black;" id="email_p" name="email_p"
+                                        <input required type="text" style="color:black;" id="email_p" name="email_p"
                                                class="form-control"
                                                pattern="[a-zA-Z1-9]*@ests.ac.ma"
                                                placeholder="Exemple: XXX111@ests.ac.ma">
@@ -407,7 +406,7 @@
 
                                         <label for="">mot de passe</label>
                                         <div>
-                                            <input type="password" style="color:black;" id="password_p"
+                                            <input required type="password" style="color:black;" id="password_p"
                                                    name="password_p" class="form-control"
                                                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
                                                    placeholder="Utiliser au moin 6 cratctéres contient des lettre en MAJ et des lettre en min et des chiffres">
@@ -420,7 +419,7 @@
 
                                         <label for="">grade</label>
 
-                                        <input type="text" style="color:black;" id="grade_p" name="grade_p"
+                                        <input required type="text" style="color:black;" id="grade_p" name="grade_p"
                                                class="form-control"
                                                pattern="[1-9]{1,2}" placeholder="grade de professeur">
                                     </div>
@@ -463,7 +462,7 @@
                                     @csrf
                                     @method('DELETE')
 
-                                    <input type="hidden" name="professeur_id" id="professeur_id">
+                                    <input required type="hidden" name="professeur_id" id="professeur_id">
                                     <p class="text-center" width="50px"> vous ete sûre que vous voulez supprimer ce
                                         professeur</p>
 

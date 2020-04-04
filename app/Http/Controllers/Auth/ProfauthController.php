@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Professeur;
 use App\Session;
+use App\Test;
 use Illuminate\Http\Request;
 use phpDocumentor\Reflection\DocBlock\Tags\Reference\Reference;
 
@@ -24,9 +25,11 @@ class ProfauthController extends Controller
             }
         }
         return redirect()->route('profauth.login');*/
+        //$request->session()->flush();
         if ($request->session()->get('p_username') !== null) {
             $username = $request->session()->get('p_username');
             $password = $request->session()->get('p_password');
+
         } else {
             $username = $request->username;
             $password = $request->password;
@@ -38,12 +41,19 @@ class ProfauthController extends Controller
                 $request->session()->put('p_username', $username);
                 $request->session()->put('p_password', $password);
                 $request->session()->put('p_id', $professeurPass->professeur_id);
-                return view('profauth.test')->with('prof', $professeurPass);
+                $tests = Test::query()->where('professeur_id',$professeurPass->professeur_id)->count();
+                if($tests > 0) {
+                    return view('profauth.test')->with('prof', $professeurPass);
+                }else{
+                    return view('create-test.index')->with(['p'=>$professeurPass]);
+                }
             } else {
-                return redirect()->route('profauth.login');
+                $error = "le nom d'utilisateur ou le mot de passe sont incorrects";
+                return redirect()->route('profauth.login')->with('error',$error);
             }
         } else {
-            return redirect()->route('profauth.login');
+            $error = "le nom d'utilisateur ou le mot de passe sont incorrects";
+            return redirect()->route('profauth.login')->with('error',$error);
         }
     }
 

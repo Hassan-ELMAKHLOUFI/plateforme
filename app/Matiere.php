@@ -20,12 +20,10 @@ class Matiere extends Model implements ToModel, WithHeadingRow
     public function model(array $row)
     {
         // TODO: Implement model() method.
-        return new filiere(array(
+        return new matiere(array(
+            'module_id' => $row['module_id'],
             'nom_matiere' => $row['nom_matiere'],
             'volume_horaire' => $row['volume_horaire'],
-            'module_id' => $row['module_id'],
-            'datefin' => $row['datefin'],
-            'departement_id' => $row['departement_id']
         ));
     }
 

@@ -7,13 +7,10 @@ body, html {
 }
 
 .wrapper {
-  position: relative;
-  max-width: 1080px;
-  margin: 50px auto;
+  max-width: 100%;
 }
 
 .wizard {
-  max-width: 620px;
   margin: 0 auto;
 }
 .wizard__header {
@@ -24,7 +21,7 @@ body, html {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
   text-align: center;
-  height: 100px;
+  height: 170px;
   background: url("https://www.studyrama.com/local/cache-vignettes/L990xH363/arton104495-82a98.jpg?1524842425");
   background-color: #4D637B;
   background-position: center;
@@ -138,6 +135,7 @@ body, html {
 
 .panel {
   position: absolute;
+  margin-left: 25%;
   top: 0;
   left: 0;
   transition: .5s all;
@@ -161,10 +159,10 @@ body, html {
   margin: 0;
 }
 .panel.movingOutBackward {
-  transform: translateX(-620px);
+  transform: translateX(-1500px);
 }
 .panel.movingOutFoward {
-  transform: translateX(620px);
+  transform: translateX(1500px);
 }
 .panel.movingIn {
   transform: translateX(0);
@@ -268,7 +266,7 @@ body, html {
   background: #7baee6;
 }
 .button.previous {
-  margin-right: 303.4px;
+  margin-right: 1033.3px;
 }
 .button.disabled {
   background: #c3c3c3;

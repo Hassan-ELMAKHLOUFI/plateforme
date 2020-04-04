@@ -15,8 +15,12 @@ class CreateResultatsTable extends Migration
     {
         Schema::create('resultat', function (Blueprint $table) {
             $table->bigIncrements('resultat_id');
+            $table->unsignedBigInteger('session_id');
             $table->double('note_total');
             $table->timestamps();
+
+            $table->foreign('session_id')->references('session_id')->on('session')->onDelete('cascade');
+
         });
     }
 

@@ -1,24 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-
     <link rel="stylesheet" href="{{asset("css/style.css")}}"/>
     <link rel="stylesheet" href="{{asset("css/styleinput.css")}}"/>
-<title>{{$p->propfesseur_id}}</title>
+    <title></title>
     <script src="https://kit.fontawesome.com/2622940fba.js" crossorigin="anonymous"></script>
 </head>
 <body>
+<?php $p1 = $p->professeur_id ?>
 <div class="wrapper">
 
     <div id="wizard" class="wizard">
         <div class="wizard__content">
             <header class="wizard__header">
                 <div class="wizard__header-overlay"></div>
-
                 <div class="wizard__header-content">
-                    <h1 class="wizard__title">créer</h1>
                 </div>
-
                 <div class="wizard__steps">
                     <nav class="steps">
                         <div class="step">
@@ -78,50 +75,79 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="step">
+                            <div class="step__content">
+                                <p class="step__number">4</p>
+                                <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                                    <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
+                                    <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                                </svg>
+
+                                <div class="lines">
+                                    <div class="line -background">
+                                    </div>
+
+                                    <div class="line -progress">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </nav>
                 </div>
             </header>
 
-            <form id='createTest' action="{{action('TestController@store')}}" method='GET'>
+            <form id='createTest' action="{{action('TestController@store')}}" method='POST'>
                 @csrf
-                <input type="hidden" value="{{$p->professeur_id}}" name="professeur_id">
+                <input type="hidden" value="{{$p1}}" name="professeur_id">
 
                 <div class="panels">
-                    <div class="panel">
+                    <div class="panel" style="margin-left: 10%;">
                         <section>
                             <div class="inner">
                                 <div class="form-row">
                                     <div class="form-holder form-holder-2">
                                         <label class="form-row-inner">
-                                            <input type="number" name="ng" id="ng" class="form-control" required>
-                                            <span class="label" style="left: 160px;">Nombre des etudiants </span>
+                                            <input type="number" style=';margin-left: 220px;width: 50%;' name="ng"
+                                                   id="ng" class="form-control" required>
+                                            <span class="label" style="left: 400px;">Nombre des étudiants </span>
                                             <span class="border"></span>
                                         </label>
                                     </div>
                                 </div>
-                                <div class="form-row">
+
+                            </div>
+                            <div class="inner" style="display: flex;">
+                                <div class="form-row" style="padding-right: 100px;">
                                     <div class="form-holder form-holder-2 form-control">
                                         <label class="form-row-inner">
                                             <?php
 
                                             use App\Matiere;
-                                            $matiere = $p->matiere;
-                                            echo "<select type='text' size='1' style='width: 235px;margin-bottom:-50px' name='matiere_id'>";
-                                            foreach ($matiere as $m) {
-                                                $matiere_id = $m->matiere_id;
-                                                echo "<option value=$matiere_id>$m->nom_matiere</option>";
-                                            }
-                                            echo "</select>";
-                                            ?>
+                                            use App\Matiere_prof;
+                                            $id = [];
+                                            $i = 0;
+                                            $mtrs = DB::table('matiere_prof')->where('professeur_id', $p1)->get();?>
+                                            @foreach($mtrs as $mtr)
+                                                <?php $id[$i] = $mtr->matiere_id;
+                                                $i++;
+                                                ?>
+                                            @endforeach
+                                            <?php   $matiere = DB::table('matiere')->whereIn('matiere_id', $id)->get();?>
+
+                                            <select type='text' size='1' style='width: 235px;' name="matiere_id">
+                                                @foreach ($matiere as $m)
+                                                    <?php $matiere_id = intval($m->matiere_id);?>
+                                                    <option value="{{$matiere_id}}">{{$m->nom_matiere}}</option>
+                                                @endforeach
+                                            </select>
+
                                             <span class="label" style="top: -30px; left:85px"
                                                   for="niveau_id">Matiere</span>
                                             <span class="border"></span>
                                         </label>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="inner" style="display: flex">
-                                <div class="form-row">
+                                <div class="form-row" style="padding-right: 100px;">
                                     <div class="form-holder form-holder-2 form-control">
                                         <label class="form-row-inner">
                                             <?php
@@ -140,7 +166,7 @@
                                     </div>
                                 </div>
 
-                                <div class="form-row">
+                                <div class="form-row" style="padding-right: 100px;">
                                     <div class="form-holder form-holder-2">
                                         <label class="form-row-inner">
                                             <?php
@@ -181,8 +207,8 @@
                                     <div class="form-holder form-holder-2">
                                         <label class="form-row-inner">
                                         <textarea rows="8" cols="33" name="discription" id="discription"
-                                                  class="form-control" style="margin-left: -4px;width: 200%;"
-                                                  style='margin-bottom:-0px' required></textarea>
+                                                  class="form-control" style="width: 200%;"
+                                                  required></textarea>
                                             <span class="label" style="left:210px;top: -140px">Discription</span>
                                             <span class="border"></span>
                                         </label>
@@ -192,7 +218,7 @@
                         </section>
                     </div>
 
-                    <div class="panel">
+                    <div class="panel" style="margin-left: 18%;">
                         <section>
                             <div class="inner" style="display:flex;">
                                 <div class="form-row">
@@ -205,11 +231,11 @@
                                     </div>
                                 </div>
 
-                                <div class="form-row">
+                                <div class="form-row" style="padding-left: 200px;">
                                     <div class="form-holder form-holder-2 form-control">
                                         <label class="form-row-inner">
                                             <input type="number" name="duree" id="duree" class="form-control" required>
-                                            <span class="label" style="left: 100px;">Duree(minute)</span>
+                                            <span class="label" style="left: 70px;">Duree(minute)</span>
                                             <span class="border"></span>
 
                                         </label>
@@ -228,10 +254,11 @@
                                         </label>
                                     </div>
                                 </div>
-                                <div class="form-row">
+                                <div class="form-row" style="padding-left: 200px;">
                                     <div class="form-holder form-holder-2">
                                         <label class="form-row-inner">
-                                            <input type="date" style="font-size: 14px;" name="date" id="date"
+                                            <input type="date" style="font-size: 16px;width: 260px" name="date"
+                                                   id="date"
                                                    class="form-control" required>
 
 
@@ -240,7 +267,74 @@
                                 </div>
                             </div>
                         </section>
+                    </div>
 
+                    <div class="panel" style="margin-left: 18%;">
+                        <section>
+                            <div class="inner" style="display:flex;">
+                                <div class="form-row">
+                                    <div class="form-holder form-holder-2">
+                                        <label class="form-row-inner">
+                                            <input type="number" name="d1" id="d1" class="form-control" min="0"
+                                                   required>
+                                            <span class="label" style="left: 100px;">Difficulté 1</span>
+                                            <span class="border"></span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-row" style="padding-left: 200px;">
+                                    <div class="form-holder form-holder-2 form-control">
+                                        <label class="form-row-inner">
+                                            <input type="number" name="d2" id="d2" class="form-control" min="0"
+                                                   required>
+                                            <span class="label" style="left: 100px;">Difficulté 2</span>
+                                            <span class="border"></span>
+
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="inner" style="display:flex;">
+
+                                <div class="form-row">
+                                    <div class="form-holder form-holder-2">
+                                        <label class="form-row-inner">
+                                            <input type="number" name="d3" id="d3" class="form-control" min="0"
+                                                   required>
+                                            <span class="label" style="left: 100px;">Difficulté 3</span>
+                                            <span class="border"></span>
+
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-row" style="padding-left: 200px;">
+                                    <div class="form-holder form-holder-2">
+                                        <label class="form-row-inner">
+                                            <input type="number" name="d4" id="d4" class="form-control" min="0"
+                                                   required>
+                                            <span class="label" style="left: 100px;">Difficulté 4</span>
+                                            <span class="border"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="inner" style="display:flex;">
+
+                                <div class="form-row">
+                                    <div class="form-holder form-holder-2">
+                                        <label class="form-row-inner">
+                                            <input type="number" name="d5" id="d5" class="form-control" min="0"
+                                                   required>
+                                            <span class="label" style="left: 100px;">Difficulté 5</span>
+                                            <span class="border"></span>
+
+                                        </label>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </section>
                     </div>
                 </div>
                 <div class="wizard__footer" style="justify-content: space-between">

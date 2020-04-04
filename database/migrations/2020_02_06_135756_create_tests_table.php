@@ -14,18 +14,23 @@ class CreateTestsTable extends Migration
     public function up()
     {
         Schema::create('test', function (Blueprint $table) {
-                $table->bigIncrements('test_id');
-                $table->string('nom');
-                $table->double('note');
-                $table->string('duree');
-                $table->string('salle');
-                $table->date('date');
-                $table->string('discription');
-                $table->unsignedBigInteger('matiere_id');
-                $table->unsignedBigInteger('professeur_id');
-                $table->timestamps();
-                $table->foreign('professeur_id')->references('professeur_id')->on('professeur')->onDelete('cascade');
-                $table->foreign('matiere_id')->references('matiere_id')->on('matiere')->onDelete('cascade');
+            $table->bigIncrements('test_id');
+            $table->string('nom');
+            $table->double('note');
+            $table->string('duree');
+            $table->string('salle');
+            $table->date('date');
+            $table->string('discription');
+            $table->unsignedBigInteger('matiere_id');
+            $table->unsignedBigInteger('professeur_id');
+            $table->integer('d1');
+            $table->integer('d2');
+            $table->integer('d3');
+            $table->integer('d4');
+            $table->integer('d5');
+            $table->timestamps();
+            $table->foreign('professeur_id')->references('professeur_id')->on('professeur')->onDelete('cascade');
+            $table->foreign('matiere_id')->references('matiere_id')->on('matiere')->onDelete('cascade');
 
         });
     }

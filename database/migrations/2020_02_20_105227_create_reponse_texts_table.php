@@ -17,11 +17,11 @@ class CreateReponseTextsTable extends Migration
             $table->bigIncrements('reponse_text_id');
             $table->unsignedBigInteger('question_id');
             $table->unsignedBigInteger('etudiant_id');
-            $table->binary('fichier');
+            $table->string('fichier');
             $table->timestamps();
 
             $table->foreign('question_id')->references('question_id')->on('text_libre')->onDelete('cascade');
-            $table->foreign('etudiant_id')->references('etudiant_id')->on('etudiant')->onDelete('cascade');
+            $table->foreign('etudiant_id')->references('session_id')->on('session')->onDelete('cascade');
         });
     }
 

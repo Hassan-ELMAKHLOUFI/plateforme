@@ -7,7 +7,7 @@
     <link rel="icon" type="image/png" href="../assets/img/favicon.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <title>
-        Matiere
+        Dashboard
     </title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
           name='viewport'/>
@@ -51,7 +51,7 @@
 
           Tip 2: you can also add an image using data-image tag
       -->
-        <div class="logo"><a href="http://www.creative-tim.com" class="simple-text logo-normal">
+        <div class="logo"><a href="javascript:void(0)" class="simple-text logo-normal">
                 Matiere
             </a></div>
         <div class="sidebar-wrapper">
@@ -188,7 +188,7 @@
                                     <form action={{ route('matiere.import') }} method="POST"
                                           enctype="multipart/form-data">
                                         @csrf
-                                        <input type="file" name="file">
+                                        <input required type="file" name="file">
                                         <input class="btn btn-primary" type="submit" name="upload" value="upload">
                                     </form>
                                 </div>
@@ -200,6 +200,7 @@
                                         <thead>
                                         <tr>
                                             <th>#</th>
+                                            <th>module_id</th>
                                             <th>module</th>
                                             <th>nom matiere</th>
                                             <th>volume horaire</th>
@@ -209,6 +210,7 @@
                                         @foreach($matieres as $key=>$matiere)
                                             <tr>
                                                 <td>{{++$key}}</td>
+                                                <td>{{$matiere->module_id}}</td>
                                                 <td>{{\App\Module::query()->find($matiere->module_id)->nom_module}}</td>
                                                 <td>{{$matiere->nom_matiere}}</td>
                                                 <td>{{$matiere->volume_horaire}}</td>
@@ -254,14 +256,14 @@
                                     @csrf
                                     <div class="form-group">
                                         <label for="nom_matiere" style="color:#c21db7;">nom matiere</label>
-                                        <input type="text" name="nom_matiere" style="color:black;" class="form-control"
+                                        <input required pattern="[a-zA-Z]{4,255}" title="aucun caractère spécial n'est autorisé 4 - 255 max" type="text" name="nom_matiere" style="color:black;" class="form-control"
                                                placeholder="nom de matiere">
                                     </div>
                                     <br>
                                     <!--<div class="form-group">
                                         <label for="module_id" style="color:#c21db7;">module</label>
 
-                                        <input type="number" name="module_id" style="color:black;" class="form-control"
+                                        <input required type="number" name="module_id" style="color:black;" class="form-control"
                                                placeholder="module">
                                     </div>-->
                                     <div class="form-group">
@@ -276,7 +278,7 @@
                                     <div class="form-group">
                                         <label for="professeur_id" style="color:#c21db7;">Professeur</label>
                                         <?php $professeur = \App\Professeur::all()?>
-                                        <select name="professeur_id" size="2">
+                                        <select name="professeur_id" size="1">
                                             @foreach($professeur as $p)
                                                 <option value={{$p->professeur_id}}>{{$p->nom}}</option>
                                             @endforeach
@@ -288,9 +290,9 @@
 
                                         <label for="volume_horaire" style="color:#c21db7;">volume horaire</label>
 
-                                        <input type="number" name="volume_horaire" style="color:black;"
+                                        <input required type="number" name="volume_horaire" style="color:black;"
                                                class="form-control"
-                                               placeholder="volume horaire">
+                                               placeholder="volume horaire" min="1">
                                     </div>
 
 
@@ -323,10 +325,10 @@
                                     @csrf
                                     @method('PUT')
 
-                                    <input type="hidden" style="color:black;" name="matiere_id" id="matiere_id">
+                                    <input required type="hidden" style="color:black;" name="matiere_id" id="matiere_id">
                                     <div class="form-group">
                                         <label for="nom_matiere" style="color:#c21db7;">nom matiere</label>
-                                        <input type="text" name="nom_matiere" id="nom_matiere" style="color:black;" class="form-control"
+                                        <input pattern="[a-zA-Z]{4,255}" title="aucun caractère spécial n'est autorisé 4 - 255 max" required type="text" name="nom_matiere" id="nom_matiere" style="color:black;" class="form-control"
                                                placeholder="nom de matiere">
                                     </div>
                                     <br>
@@ -345,9 +347,9 @@
 
                                         <label for="volume_horaire" style="color:#c21db7;">volume horaire</label>
 
-                                        <input type="number" name="volume_horaire" id="volume_horaire" style="color:black;"
+                                        <input required type="number" name="volume_horaire" id="volume_horaire" style="color:black;"
                                                class="form-control"
-                                               placeholder="volume horaire">
+                                               placeholder="volume horaire" min="1">
                                     </div>
                             </div>
                             <div class="modal-footer">
@@ -378,7 +380,7 @@
                                     @csrf
                                     @method('DELETE')
 
-                                    <input type="hidden" name="matiere_id" id="matiere_id">
+                                    <input required type="hidden" name="matiere_id" id="matiere_id">
                                     <p class="text-center" width="50px"> vous ete sûre que vous voulez supprimer ce
                                         matiere</p>
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\departement;
 use App\Option;
+use App\Reponse_text;
 use App\Test;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
@@ -58,10 +59,10 @@ return view ('create-question.index');
         $point =$request->input('point');
         $QCM = array(
             'question_text' => $question,
-            'difficulty'=>'1',
-            'note'      =>'1',
+            'type'=>'1',
+            'difficulty' => $request->difficulty,
             'test_id'   =>$test_id ,
-            'note'=>1
+            'note'=> $request->note
         );
         $id=qcm::create($QCM);
 
@@ -72,7 +73,6 @@ return view ('create-question.index');
             $option = array(
                 'option_text' => $options[$i-1],
                 'question_id' => $id->question_id,
-
                  'point'      =>'1'
             );
             option::create($option);

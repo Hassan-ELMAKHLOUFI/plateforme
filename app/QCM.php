@@ -21,9 +21,11 @@ class QCM extends Model implements ToModel, WithHeadingRow
     {
         // TODO: Implement model() method.
         return new QCM(array(
+            'type'     => $row['type'],
             'question_text'=> $row['question_text'],
             'note'=>$row['note'],
             'test_id'=> $row['test_id'],
+            'difficulty' => $row['difficulty']
 
         ));
     }

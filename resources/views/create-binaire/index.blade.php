@@ -54,7 +54,7 @@
         <option value="2">2</option>
         <option value="3">3</option>
         <option value="4">4</option>
-        <option value="5">45/option>
+        <option value="5">5</option>
     </select>
    <input type="hidden" name="test_id" value="{{$test->test_id}}">
     <label for="" >note</label>
@@ -96,7 +96,7 @@
                        data-toggle="modal"
                        data-target="#exampleModal-delete" class="delete" title="supprimer"><i class="material-icons">&#xE872;</i></a>
 
-                    <a href="option12/binaire/{{$binaire->binaire_id}}"><i class="material-icons">&#xE872;</i></a>
+                    <a href="option/binaire/{{$binaire->binaire_id}}"><i class="material-icons">&#xE872;</i></a>
                 </td>
             </tr>
         @endforeach

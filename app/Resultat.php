@@ -8,7 +8,7 @@ class Resultat extends Model
 {
     //
     protected $table = "resultat";
-    protected $fillable = ['note_total'];
+    protected $fillable = ['note_total','session_id'];
     protected $primaryKey = 'resultat_id';
 
     public function reponse_qcm(){
