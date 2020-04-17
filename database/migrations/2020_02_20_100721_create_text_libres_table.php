@@ -19,7 +19,6 @@ class CreateTextLibresTable extends Migration
             $table->string('question_text',2048);
             $table->integer('difficulty');
             $table->integer('note');
-            $table->integer('difficulty');
             $table->timestamps();
 
             $table->foreign('test_id')->references('test_id')->on('test')->onDelete('cascade');
