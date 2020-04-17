@@ -33,6 +33,7 @@ class SessionController extends Controller
             if(strcmp($password,$etudiantSessionPass->password)==0){
                 $request->session()->put('username',$username);
                 $request->session()->put('id',$etudiantSessionPass->session_id);
+                $request->session()->put('end','false');
                 return redirect()->action('TestController@index1',['s'=>$etudiantSessionPass->session_id]);
             }else{
                 $error = "le nom d'utilisateur ou le mot de passe sont incorrects";

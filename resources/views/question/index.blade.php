@@ -11,9 +11,6 @@
 
 
     <!-- Icons font CSS-->
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-            crossorigin="anonymous"></script>
     <link href="{{ asset('/passage_test/vendor/mdi-font/css/material-design-iconic-font.min.css') }}" rel="stylesheet" media="all">
     <link href="{{ asset('/passage_test/vendor/font-awesome-4.7/css/font-awesome.min.css') }}" rel="stylesheet" media="all">
     <!-- Font special for pages-->
@@ -29,7 +26,6 @@
     <!-- Main CSS-->
     <link href="{{ asset('/passage_test/css/main.css') }}" rel="stylesheet" media="all">
     <link href="{{ asset('/passage_test/css/stylecheckbox.css') }}" rel="stylesheet" media="all">
-    <!-- Theme included stylesheets -->
     <link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <!-- Main Quill library -->
     <script src="//cdn.quilljs.com/1.3.6/quill.js"></script>
@@ -38,7 +34,6 @@
         integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
         crossorigin="anonymous">
     </script>
-    <script src="/js/jspdf.min.js"></script>
     <script src="http://cdn.jsdelivr.net/g/filesaver.js"></script>
 </head>
 
@@ -46,11 +41,12 @@
 
 <?php
 $test1 = $test->test_id;
-$dif1 = 1;
-$dif2 = 0;
-$dif3 = 0;
-$dif4 = 1;
-$dif5 = 0;
+$testObj = \App\Test::query()->find($test1)->first();
+$dif1 = $testObj->d1;
+$dif2 = $testObj->d2;
+$dif3 = $testObj->d3;
+$dif4 = $testObj->d4;
+$dif5 = $testObj->d5;
 $i = 0;
 $j = 0;
 $k = 0;
@@ -764,8 +760,13 @@ for ($b = 0; $b < $j; $b++) {
             </div>
 
             <div class="card-body">
-                <?php $test1 = $test->test_id;?>
+                <?php $test1 = $test->test_id;
+                $rqs = request()->segment(count(request()->segments()));
+                ?>
                 <form class="wizard-container" method="POST" action="{{ route('Resultat.store')}}" id="js-wizard-form">
+                    @csrf
+                    <input type="hidden" name="session_id" value="{{$rqs}}">
+                    <input type="hidden" name="etudiant_id" value="{{$rqs}}">
                     @csrf
                     <?php  $cou = $nombre;?>
                     <?php  $nv = intval(100 / $cou) ?>
@@ -798,9 +799,7 @@ for ($b = 0; $b < $j; $b++) {
 
                     </ul>
                     <div class="tab-content">
-                        @php
-                            $page=0;
-                        @endphp
+                        <?php $page = 0 ?>
                         @for($n=0;$n<$k ; $n++)
                             @foreach ($qcms[$n]  as $qcm)
                                 <div class="tab-pane " id="tab{{$page+1}}">
@@ -811,7 +810,7 @@ for ($b = 0; $b < $j; $b++) {
                                         <div class="answ">Question :</div>
                                         <label class="label"> {{ $qcm->question_text }}</label>
                                         <div class="answ">Answer :</div>
-                                        @php $opt=DB::table('option')->where('question_id',$qcm->question_id)->get() @endphp
+                                        <?php $opt = DB::table('option')->where('question_id', $qcm->question_id)->get() ?>
                                         @foreach ($opt  as $option)
                                             <label>
                                                 <input type="checkbox" class="option-input checkbox"
@@ -826,21 +825,19 @@ for ($b = 0; $b < $j; $b++) {
 
                                     <div class="btn-next-con">
 
-                                        @if ($page === 0)<a class="btn-next" href="#">Next</a>
+                                        @if ($page === 0)<a class="btn-next">Next</a>
                                         @elseif($page === ($cou-1))
-                                            <a class="btn-back" href="#">back</a>
+                                            <a class="btn-back">back</a>
                                             <input type="hidden" name="test_id" value="{{$test1}}">
                                             <a class="btn-last" href="javascript:$('form').submit()">Submit</a>
                                         @else
-                                            <a class="btn-back" href="#">back</a>
-                                            <a class="btn-next" href="#">next</a>
+                                            <a class="btn-back">back</a>
+                                            <a class="btn-next">next</a>
                                         @endif
                                     </div>
 
                                 </div>
-                                @php
-                                    $page++ ;
-                                @endphp
+                                <?php $page++ ?>
 
 
                             @endforeach
@@ -853,7 +850,7 @@ for ($b = 0; $b < $j; $b++) {
                                         <div class="answ">Question :</div>
                                         <label class="label">{{ $binaire->question_text }}</label>
                                         <div class="answ">Answer :</div>
-                                        @php $opt1=DB::table('option')->where('binaire_id',$binaire->binaire_id)->get() @endphp
+                                        <?php $opt1 = DB::table('option')->where('binaire_id', $binaire->binaire_id)->get()?>
                                         @foreach ($opt1  as $option)
                                             <label>
                                                 <input type="radio" class="option-input radio"
@@ -868,30 +865,28 @@ for ($b = 0; $b < $j; $b++) {
 
                                     <div class="btn-next-con">
 
-                                        @if ($page === 0)<a class="btn-next" href="#">Next</a>
+                                        @if ($page === 0)<a class="btn-next">Next</a>
                                         @elseif($page === ($cou-1))
-                                            <a class="btn-back" href="#">back</a>
+                                            <a class="btn-back">back</a>
                                             <input type="hidden" name="test_id" value="{{$test1}}">
                                             <a class="btn-last" href="javascript:$('form').submit()">Submit</a>
                                         @else
-                                            <a class="btn-back" href="#">back</a>
-                                            <a class="btn-next" href="#">next</a>
+                                            <a class="btn-back">back</a>
+                                            <a class="btn-next">next</a>
                                         @endif
                                     </div>
 
                                 </div>
                                 <?php $page++ ?>
-
                             @endforeach
                         @endfor
-                        @php
-                            $i = 0;
-                        @endphp
+                        <?php
+                        $i = 0;
+                        ?>
                         @for($b=0;$b<$j;$b++)
                             @foreach ($text_libre[$b]  as $text)
                                 <input type="hidden" name="fichier{{$i}}">
                                 <input type="hidden" name="question_id[{{$i}}]" value="{{$text->question_id}}">
-                                <input type="hidden" name="etudiant_id" value="{{$session}}">
 
                                 <div class="tab-pane " id="tab{{$page+1}}">
                                     <div class="numquestion">question {{$page+1}} of {{$cou}}</div>
@@ -899,28 +894,22 @@ for ($b = 0; $b < $j; $b++) {
                                         <div class="answ">Question :</div>
                                         <label class="label"> {{ $text->question_text }}</label>
                                         <div class="answ" style="margin-bottom: 40px;">Answer :</div>
-                                        <!--<div class="paper">
-                                            <div class="paper-content">
-                                                <textarea autofocus></textarea>
-                                            </div>
-                                        </div>-->
                                         <div id="toolbar[{{$i}}]"></div>
                                         <div id="editor[{{$i}}]"></div>
-                                        @php
-                                            $i++;
-                                        @endphp
+                                        <?php
+                                        $i++;
+                                        ?>
                                         <input type="hidden" name="nb_ql" value="{{$i}}">
                                         <div class="btn-next-con">
 
-                                            @if ($page === 0)<a class="btn-next" href="#">Next</a>
+                                            @if ($page === 0)<a class="btn-next">Next</a>
                                             @elseif($page === ($cou-1))
-                                                <a class="btn-back" href="#">back</a>
+                                                <a class="btn-back" >back</a>
                                                 <input type="hidden" name="test_id" value="{{$test1}}">
-                                                <a class="btn-last" href="javascript:$('form').submit()"
-                                                   onclick="getHTML()">Submit</a>
+                                                <a class="btn-last" href="javascript:$('form').submit()">Submit</a>
                                             @else
-                                                <a class="btn-back" href="#">back</a>
-                                                <a class="btn-next" href="#">next</a>
+                                                <a class="btn-back" >back</a>
+                                                <a class="btn-next" >next</a>
                                             @endif
                                         </div>
 
@@ -1012,7 +1001,7 @@ for ($b = 0; $b < $j; $b++) {
 <script src="{{ asset('/passage_test/js/global.js') }}"></script>
 <script src="{{ asset('https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js') }}"></script>
 <script src="{{ asset('/passage_test/js/jquery.downCount.js') }}"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="{{ asset('https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js')}}"></script>
 
 </body>
 

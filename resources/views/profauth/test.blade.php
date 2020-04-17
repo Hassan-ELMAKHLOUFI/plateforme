@@ -111,7 +111,7 @@ Header
             <div class="section-header">
                 <h3 class="section-title">manage test</h3>
             </div>
-            <div style="text-align: center"><a href="create-test/{{$prof->professeur_id}}">
+            <div style="text-align: center"><a href="{{route("create-test.index",$prof->professeur_id)}}">
                     <button class="btn btn-primary"><i class="fa fa-plus"></i></button>
                 </a></div>
 
@@ -154,8 +154,8 @@ Header
                     </thead>
                     <tbody>
                     <?php
-                    $tests = DB::table('test')->where('professeur_id', '=', $prof->professeur_id)->get();
-                    $key = 0;
+                        $tests = DB::table('test')->where('professeur_id', '=', $prof->professeur_id)->get();
+                        $key = 0;
                     ?>
                     @foreach($tests as $test)
                         @php
@@ -187,11 +187,11 @@ Header
                                 </div>
                             </td>
                             <td>
-                                <a href="#" data-test_id="{{$test->test_id}}" onclick="teleport({{$test->test_id}})"
+                                <a data-test_id="{{$test->test_id}}" onclick="teleport({{$test->test_id}})"
                                    class="view modal-button"
                                    title="ajouter question" data-toggle="tooltip"><i
                                         class="material-icons">note_add</i></a>
-                                <a href="#" data-test_id="{{$test->test_id}}"
+                                <a data-test_id="{{$test->test_id}}"
                                    data-nom="{{$test->nom}}"
                                    data-note="{{$test->note}}"
                                    data-duree="{{$test->duree}}"
@@ -213,7 +213,9 @@ Header
                                 <a href="{{route('test.pdf',$test->test_id)}}" class="view" title="exporter session"
                                    data-toggle="tooltip"><i
                                         class="material-icons">input</i></a>
-
+                                <a href="{{route('note.pdf',$test->test_id)}}" class="view" title="exporter les notes"
+                                   data-toggle="tooltip"><i
+                                        class="material-icons">input</i></a>
                             </td>
                         </tr>
                     @endforeach
@@ -296,7 +298,6 @@ Header
                             $count = $countqcm + $countbin + $counttext;
                         }
                         @endphp
-                        <label style="font-size: 18px">Vous avez {{$count}} question</label>
                         <br>
                         <a href="/select-question/{{$test->test_id}}">
                             <button class="btn btn-success">Selectionner</button>

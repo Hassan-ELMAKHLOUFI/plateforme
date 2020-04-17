@@ -65,7 +65,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                                    class="@if(!empty(Session::get('error'))) is-invalid @endif"
                                                    name="password" required autocomplete="off" placeholder="Password">
                                         </div>
-                                        <button type="submit">s'identifier</button>
+                                        <input type="submit" value="s'identifier"/>
                                     </form>
                                 </div>
                             </div>

@@ -214,6 +214,18 @@ class TestController extends Controller
         return $pdf->download('pdf.test');
     }
 
+    public function note_export_pdf($test_id)
+    {
+        // Fetch all customers from database
+        $sessions = Session::query()->get()->where('test_id', '=', $test_id);
+        // Send data to the view using loadView function of PDF facade
+        $pdf = PDF::loadView('profauth.note_pdf', compact('sessions'));
+        // If you want to store the generated pdf to the server then you can use the store function
+        $pdf->save(storage_path() . '_filename.pdf');
+        // Finally, you can download the file using download function
+        return $pdf->download('pdf.note');
+    }
+
     public function randomPassword()
     {
         $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';

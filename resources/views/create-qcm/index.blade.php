@@ -8,8 +8,8 @@
     <meta content="" name="description">
 
     <!-- Favicons -->
-    <link href="/create-qcm/img/favicon.png" rel="icon">
-    <link href="/create-qcm/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="/create-qcmd/img/favicon.png" rel="icon">
+    <link href="/create-qcmd/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Poppins:300,400,500,700"
@@ -17,20 +17,20 @@
 
     <!-- Bootstrap CSS File -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    <link href="/create-qcm/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/create-qcmd/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Libraries CSS Files -->
-    <link href="/create-qcm/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="/create-qcm/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="/create-qcmd/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/create-qcmd/lib/animate/animate.min.css" rel="stylesheet">
 
     <!-- Main Stylesheet File -->
-    <link href="/create-qcm/css/style.css" rel="stylesheet">
+    <link href="/create-qcmd/css/style.css" rel="stylesheet">
 
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!-- level-->
-    <link rel="stylesheet" href="/create-qcm/css/form.css">
+    <link rel="stylesheet" href="/create-qcmd/css/form.css">
 
-    <link rel="stylesheet" href="/create-qcm/css/themes/bars-movie.css">
+    <link rel="stylesheet" href="/create-qcmd/css/themes/bars-movie.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
@@ -59,7 +59,7 @@ Header
     <div class="container">
 
         <div id="logo" class="pull-left">
-            <a href="#hero"><img src="/create-qcm/img/logo.png" alt="" title=""/></img></a>
+            <a href="#hero"><img src="/create-qcmd/img/logo.png" alt="" title=""/></img></a>
             <!-- Uncomment below if you prefer to use a text logo -->
             <!--<h1><a href="#hero">Regna</a></h1>-->
         </div>
@@ -107,7 +107,7 @@ Header
       Services Section
     ============================-->
     <div class="container d-flex align-items-stretch" style="margin-left: 0rem;">
-        <nav id="sidebar" class="img" style="background-image: url(/create-qcm/images/stu.jpg);">
+        <nav id="sidebar" class="img" style="background-image: url(/create-qcmd/images/stu.jpg);">
             <div class="p-4">
                 <h1><a class="logo">Services</a></h1>
                 <ul class="list-unstyled components mb-5">
@@ -154,8 +154,8 @@ Header
                                 <div class="form-row">
                                     <div class="name" style="height: 1.25rem;line-height: 0rem;">Difficulté</div>
                                     <div class="value">
-                                        <div class="input-group">
-                                            <select id="example-movie" name="rating" autocomplete="off">
+                                        <div class="input-group" >
+                                            <select id="example-movie" name="difficulty" autocomplete="off" >
                                                 <option value="1">Trés facile</option>
                                                 <option value="2">Facile</option>
                                                 <option value="3" selected="selected">Moyenne</option>
@@ -166,6 +166,18 @@ Header
                                         </div>
                                     </div>
                                 </div>
+
+
+                                <div class="form-row">
+                                    <div class="name">Note</div>
+                                    <div class="value">
+                                        <div class="input-group">
+                                            <input type="number" name="note" >
+
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="form-row">
                                     <div class="name">Question</div>
                                     <div class="value">
@@ -202,7 +214,7 @@ Header
                                 </td>
                                 <br>
                                 <br>
-                                <input name="submit" id="submit" style="width: 17rem; margin-left:7rem; "
+                                <input type="submit" id="submit" style="width: 17rem; margin-left:7rem; "
                                        class="btn btn-info" value="Ajouter et enregistrer"/>
                                 <input type="hidden" name="test_id" value="{{$test['test']->test_id}}">
                                 <input class="btn btn-success" style="width: 17rem" value="ajouter et quitter">
@@ -296,7 +308,7 @@ Header
                                 <option value="2">2</option>
                                 <option value="3">3</option>
                                 <option value="4">4</option>
-                                <option value="5">45</option>
+                                <option value="5">5</option>
                             </select>
 
                         </div>
@@ -440,21 +452,21 @@ Header
     });
 </script>
 <!-- JavaScript Libraries -->
-<script src="/create-qcm/lib/jquery/jquery.min.js"></script>
-<script src="/create-qcm/lib/jquery/jquery-migrate.min.js"></script>
-<script src="/create-qcm/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="/create-qcm/lib/easing/easing.min.js"></script>
-<script src="/create-qcm/lib/wow/wow.min.js"></script>
-<script src="/create-qcm/lib/waypoints/waypoints.min.js"></script>
-<script src="/create-qcm/lib/counterup/counterup.min.js"></script>
-<script src="/create-qcm/lib/superfish/hoverIntent.js"></script>
-<script src="/create-qcm/lib/superfish/superfish.min.js"></script>
+<script src="/create-qcmd/lib/jquery/jquery.min.js"></script>
+<script src="/create-qcmd/lib/jquery/jquery-migrate.min.js"></script>
+<script src="/create-qcmd/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/create-qcmd/lib/easing/easing.min.js"></script>
+<script src="/create-qcmd/lib/wow/wow.min.js"></script>
+<script src="/create-qcmd/lib/waypoints/waypoints.min.js"></script>
+<script src="/create-qcmd/lib/counterup/counterup.min.js"></script>
+<script src="/create-qcmd/lib/superfish/hoverIntent.js"></script>
+<script src="/create-qcmd/lib/superfish/superfish.min.js"></script>
 
 <!-- Contact Form JavaScript File -->
 <script src="contactform/contactform.js"></script>
 
 <!-- Template Main Javascript File -->
-<script src="/create-qcm/js/main.js"></script>
+<script src="/create-qcmd/js/main.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script src="jquery.barrating.min.js"></script>
 <script type="text/javascript">
@@ -464,8 +476,8 @@ Header
         });
     });
 </script>
-<script>window.jQuery || document.write('<script src="/create-qcm/js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
-<script src="/create-qcm/js/jquery.barrating.min.js"></script>
-<script src="/create-qcm/js/examples.js"></script>
+<script>window.jQuery || document.write('<script src="/create-qcmd/js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+<script src="/create-qcmd/js/jquery.barrating.min.js"></script>
+<script src="/create-qcmd/js/examples.js"></script>
 </body>
 </html>

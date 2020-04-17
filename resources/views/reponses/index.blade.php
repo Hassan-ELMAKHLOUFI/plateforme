@@ -6,6 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- Theme included stylesheets -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.12.0/css/mdb.min.css" rel="stylesheet">
     <link href="{{asset('/img/favicon.png')}}" rel="icon">
     <link href="{{asset('/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
 
@@ -41,6 +42,7 @@
 
     <link rel="stylesheet"
           href="{{asset('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')}}">
+
 
     <link rel="stylesheet" href="{{asset('/css/themes/bars-movie.css')}}">
     <link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
@@ -140,6 +142,7 @@
                     <th>nom</th>
                     <th>reponses</th>
                     <th>note final</th>
+                    <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -158,8 +161,23 @@
                                 </button>
                             </td>
                             <td>
-                                <input type="hidden" name="session_id[{{$i}}]" value="{{$s->session_id}}"/>
-                                <input type="number" name="note_final[{{$i}}]" min="0" required/>
+                                @php
+                                    $resultat = DB::table('resultat')->where('session_id',$s->session_id)->first();
+                                @endphp
+                                @if($resultat != null)
+                                    {{$resultat->note_total}}
+                                @endif
+                            </td>
+                            <td>
+                                @php
+                                    $resultat = DB::table('resultat')->where('session_id',$s->session_id)->first();
+                                @endphp
+                                <a data-session_id="{{$s->session_id}}"
+                                   data-note_total="@if($resultat != null){{$resultat->note_total}} @else 0 @endif"
+                                   data-toggle="modal"
+                                   data-target="#exampleModal-edit">
+                                    <button type="button" class="btn btn-warning">Modifier</button>
+                                </a>
                             </td>
                         </tr>
                         @php
@@ -168,12 +186,63 @@
 
                     @endforeach
                     <input type="hidden" name="nbr" value="{{$i}}">
-                    <input type="submit" value="Enregistrer"/>
+
                 </form>
             </table>
         </div>
+
+        <!-- Modal edit -->
+        <div class="modal fade-left" id="exampleModal-edit" tabindex="-1" role="dialog"
+             aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-notify modal-lg modal-right modal-success" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">modifier</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{{action('ResultatController@update')}}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <input type="hidden" id="session_id" name="session_id"/>
+
+                            <input required type="hidden" name="id" id="id">
+                            <div class="form-group">
+                                <label for="note_final" style="color:#c21db7;">Note Final</label>
+                                <input type="number" id="note_final" name="note_final" class="form-control" min="0" value="" required />
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">fermer</button>
+
+                        <button type="submit" class="btn btn-success">modifier</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 </body>
 </html>
+<script src="{{asset('/lib/jquery/jquery.min.js')}}"></script>
+<script src="{{asset('/lib/jquery/jquery-migrate.min.js')}}"></script>
+<script src="{{asset('/lib/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.12.0/js/mdb.min.js"></script>
+<script>
+    $('#exampleModal-edit').on('show.bs.modal', function (event) {
+
+        var button = $(event.relatedTarget);
+        var session_id = button.data('session_id');
+        var note_total = button.data('note_total');
+
+        var modal = $(this);
+
+        modal.find('.modal-title').text('EDIT STUDENT INFORMATION');
+        modal.find('.modal-body #session_id').val(session_id);
+        modal.find('.modal-body #note_final').val(note_total);
+    });
+</script>
 <script>
     function getWord(elm) {
         var doc = new jsPDF();
@@ -192,9 +261,7 @@
     }
 </script>
 <!-- JavaScript Libraries -->
-<script src="{{asset('/lib/jquery/jquery.min.js')}}"></script>
-<script src="{{asset('/lib/jquery/jquery-migrate.min.js')}}"></script>
-<script src="{{asset('/lib/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+
 <script src="{{asset('/lib/easing/easing.min.js')}}"></script>
 <script src="{{asset('/lib/wow/wow.min.js')}}"></script>
 <script src="{{asset('/lib/waypoints/waypoints.min.js')}}"></script>
@@ -221,4 +288,5 @@
 <script>window.jQuery || document.write('<script src="/js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
 <script src="{{asset( '/js/jquery.barrating.min.js' )}}"></script>
 <script src="{{asset( '/js/examples.js' )}}"></script>
+
 

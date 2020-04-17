@@ -275,8 +275,6 @@
 
                                     <div class="form-group">
                                         <label for="nom_p" style="color:#c21db7;">nom</label>
-
-
                                         <input required type="text" name="nom_p" style="color:black;" class="form-control"
                                                pattern="[a-zA-Z]*" placeholder="nom de professeur">
                                     </div>

@@ -20,6 +20,7 @@ class OptionController extends Controller
     {
 
     }
+
     public function index1($binaire_id)
     {
         $options['options']=DB::table('option')->where('binaire_id', $binaire_id)->get();

@@ -87,7 +87,7 @@
 					<div class="field-group">
 						<span class="fa fa-lock" aria-hidden="true"></span>
 						<div class="wthree-field">
-                            <input pattern="[a-zA-Z0-9]{4,255}" title="aucun caractère spécial n'est autorisé 4 - 255 max" id="password" type="password" class="form-control @if(!empty(Session::get('error'))) is-invalid @endif" name="password" required autocomplete="off" placeholder="Password">
+                            <input pattern="[a-zA-Z0-9]{1,255}" title="aucun caractère spécial n'est autorisé 4 - 255 max" id="password" type="password" class="form-control @if(!empty(Session::get('error'))) is-invalid @endif" name="password" required autocomplete="off" placeholder="Password">
                             <span style="color: red;" class="invalid-feedback" role="alert">
                                         <strong>{{ Session::get('error') }}</strong>
                                     </span>

@@ -1,51 +1,150 @@
 <html>
-<head>
-    <title>Webslesson Demo - Dynamically Add or Remove input fields in PHP with JQuery</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-
-    <script src="https://kit.fontawesome.com/2622940fba.js" crossorigin="anonymous"></script>
-    <!-- Favicons -->
-    <link href="img/favicon.png" rel="icon">
-    <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Poppins:300,400,500,700" rel="stylesheet">
-
-    <!-- Bootstrap CSS File -->
-    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Libraries CSS Files -->
-    <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
-
-    <!-- Main Stylesheet File -->
-    <link href="style.css" rel="stylesheet">
-    <script src=" https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-    <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Roboto:400,700'>
-    <link rel='stylesheet prefetch' href='http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css'>
-</head>
+    <head>
+        <meta charset="utf-8">
+        <title>Regna Bootstrap Template</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="" name="keywords">
+        <meta content="" name="description">
+    
+        <!-- Favicons -->
+        <link href="{{asset('img/favicon.png')}}" rel="icon">
+        <link href="{{asset('img/apple-touch-icon.png')}}" rel="apple-touch-icon">
+        <link href="{{asset( 'css/style.css' )}}" rel="stylesheet">
+    
+        <!-- Google Fonts -->
+        <link href="{{asset('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Poppins:300,400,500,700')}}"
+              rel="stylesheet">
+    
+        <!-- Bootstrap CSS File -->
+        <script src="{{asset('https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js')}}"></script>
+        <link href="{{asset('lib/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+    
+        <!-- Libraries CSS Files -->
+        <link href="{{asset('lib/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
+        <link href="{{asset('lib/animate/animate.min.css')}}" rel="stylesheet">
+    
+        <!-- Main Stylesheet File -->
+        <link href="{{asset('css/style1.css')}}" rel="stylesheet">
+    
+        <link rel="stylesheet" href="{{asset('http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css')}}">
+        <!-- level-->
+        <link rel="stylesheet" href="{{asset('css/form.css')}}">
+    
+        <link rel="stylesheet" href="{{asset('https://use.fontawesome.com/releases/v5.7.2/css/all.css')}}">
+        <link rel="stylesheet" href="{{asset('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css')}}"/>
+        <script src="{{asset('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js')}}"></script>
+    
+        <link rel="stylesheet" href="{{asset('https://fonts.googleapis.com/icon?family=Material+Icons')}}">
+    
+        <link href="{{asset('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900')}}" rel="stylesheet">
+    
+        <link rel="stylesheet" href="{{asset('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')}}">
+    
+        <link rel="stylesheet" href="{{asset('css/themes/bars-movie.css')}}">
+    
+        <!-- =======================================================
+          Theme Name: Regna
+          Theme URL: https://bootstrapmade.com/regna-bootstrap-onepage-template/
+          Author: BootstrapMade.com
+          License: https://bootstrapmade.com/license/
+        ======================================================= -->
+    </head>
+    
 <body>
 
+    
+<!--==========================
+Header
+============================-->
+<header id="header">
+    <div class="container">
+
+        <div id="logo" class="pull-left">
+            <a href="#hero"><img src="/img/logo.png" alt="" title=""/></img></a>
+            <!-- Uncomment below if you prefer to use a text logo -->
+            <!--<h1><a href="#hero">Regna</a></h1>-->
+        </div>
+
+        <nav id="nav-menu-container">
+            <ul class="nav-menu">
+                <li class="menu-active"><a href="#hero">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#team">Team</a></li>
+                <li class="menu-has-children"><a href="">Drop Down</a>
+                    <ul>
+                        <li><a href="#">Drop Down 1</a></li>
+                        <li class="menu-has-children"><a href="#">Drop Down 2</a>
+                            <ul>
+                                <li><a href="#">Deep Drop Down 1</a></li>
+                                <li><a href="#">Deep Drop Down 2</a></li>
+                                <li><a href="#">Deep Drop Down 3</a></li>
+                                <li><a href="#">Deep Drop Down 4</a></li>
+                                <li><a href="#">Deep Drop Down 5</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Drop Down 3</a></li>
+                        <li><a href="#">Drop Down 4</a></li>
+                        <li><a href="#">Drop Down 5</a></li>
+                    </ul>
+                </li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ul>
+        </nav><!-- #nav-menu-container -->
+    </div>
+</header><!-- #header -->
+
+<!--==========================
+  Hero Section
+============================-->
+<section id="hero">
+
+</section><!-- #hero -->
+
+<main id="main">
+
+    <!--==========================
+      Services Section
+    ============================-->
+    <div class="container d-flex align-items-stretch" style="margin-left: 0rem;">
+        <nav id="sidebar" class="img" style="background-image: url(/images/stu.jpg);">
+            <div class="p-4">
+                <h1><a class="logo">Services</a></h1>
+                <ul class="list-unstyled components mb-5">
+                    <li class="active">
+                        <a href="index.html"><span class="fa fa-home mr-3"></span> Acceuil</a>
+                    </li>
+                    <li>
+                        <a href="#"><span class="fa fa-user mr-3"></span> Création des test</a>
+                    </li>
+                    <li>
+                        <a href="#"><span class="fa fa-plane mr-3"></span> table des test</a>
+                    </li>
+                    <li>
+                        <a href="#"><span class="fa fa-sticky-note mr-3"></span> création question qcm</a>
+                    </li>
+                    <li>
+                        <a href="#"><span class="fa fa-cogs mr-3"></span> Création question binaire </a>
+                    </li>
+                    <li>
+                        <a href="#"><span class="fa fa-paper-plane mr-3"></span> Création question text </a>
+                    </li>
+
+                    </li>
+                </ul>
+
+            </div>
+        </nav>
+        <div id="content" class="p-4 p-md-5 pt-5" style="width: 100rem; margin-top: 3.125rem">
         <div class="table-responsive">
-            <table class="table table-bordered" id="myTable">
+            <table class="table table-bordered" style=" border-top: 2px solid #DCDCDC;"id="myTable">
                 <thead>
                 <tr>
                     <th class="exclude">#</th>
                     <th>option text</th>
                     <th>point</th>
                     <th>id binaire</th>
-
                     <th class="exclude">Action</th>
                 </tr>
                 <tbody>
@@ -77,7 +176,7 @@
         </div>
     </div>
 </div>
-
+    </div>
 
 <!-- Modal edit -->
 <div class="modal fade-left" id="exampleModal-edit" tabindex="-1" role="dialog"
@@ -123,15 +222,7 @@
                     </div>
                     <br>
 
-                    <div class="form-group">
-
-
-                        <label for="" style="color:#c21db7;">QCM id</label>
-
-                        <input type="number" style="color:black;" id="question_id" name="question_id"
-                               class="form-control"
-                               placeholder="question id">
-                    </div>
+                   
                     <br>
             </div>
             <div class="modal-footer">
