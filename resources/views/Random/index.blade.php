@@ -27,6 +27,8 @@
 
     <input type="radio" name="type" value="qcm">QCM
     <input type="radio" name="type" value="binaire">Binaire
+    <input type="radio" name="type" value="text_libre">text_libre
+
     <input type="number" name="nombre"> nombre de quexstion a ajouter
     <input type="hidden" name="test_id" value="{{$test1}}">
     <select name="difficulty" >
